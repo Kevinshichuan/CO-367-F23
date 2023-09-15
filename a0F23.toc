@@ -1,0 +1,10 @@
+\contentsline {section}{\numberline {1}GEOMETRY {\small (score 20 = 10+10)} }{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Preliminaries}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}EXERCISES}{4}{subsection.1.2}%
+\contentsline {section}{\numberline {2}CALCULUS {\small (score 30 = (5+10+5)+(5+5))} }{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}EXERCISES}{4}{subsection.2.1}%
+\contentsline {section}{\numberline {3}REAL ANALYSIS {\small (score 35 = 15+(10+10))} }{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Preliminaries}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}EXERCISES}{5}{subsection.3.2}%
+\contentsline {section}{\numberline {4}MATRICES {\small (score 25 = 15+10)} }{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}EXERCISES}{6}{subsection.4.1}%

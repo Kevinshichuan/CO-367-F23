@@ -1,0 +1,1228 @@
+\documentclass[12pt]{article}
+\usepackage{comment}
+\usepackage{enumerate}
+\usepackage{graphics,graphicx}
+\usepackage{ifthen, xspace}
+\usepackage{amssymb,amsmath,amsthm}
+%\usepackage{hyperref}
+
+%\setcounter{section}{-1}
+
+
+
+
+
+
+
+\newtheorem*{solution}{Solution}
+\newtheorem*{marking}{Marking Scheme}
+\newtheorem*{comments}{Comments}
+\newenvironment{packed_itemize}{
+\begin{itemize}
+}{\end{itemize}}
+%\excludecomment{solution}   % comment out to include solutions
+%\excludecomment{comments}   % comment out to include comments
+%\excludecomment{marking}   % comment out to include marking scheme
+
+%
+\textwidth = 6.5 in
+\textheight = 9 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.0 in
+\headheight = 0.0 in
+\headsep = 0.0 in
+\parskip = 0.2in
+\parindent = 0.0in
+
+%\input{../notation}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Henry file aliases
+\usepackage{cite}
+\usepackage{subfigure}
+\usepackage{graphicx, color, graphpap}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{ifthen}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{physics}
+\usepackage{pstricks}
+\usepackage{lineno}
+%\usepackage{dsfont}
+\usepackage{float}
+\usepackage{algorithmic}
+\usepackage{fancyhdr}
+\usepackage[us,12hr]{datetime} 
+\usepackage{exscale}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\usepackage{fullpage}       
+\usepackage{float}
+\usepackage{verbatim}
+\usepackage{multirow}
+\usepackage{overpic}
+%\usepackage[T1]{fontenc}
+\usepackage{comment} % writing comments
+\usepackage{lscape}
+\usepackage{booktabs}
+\usepackage{makeidx}
+\usepackage{algorithm,algorithmic}
+%\usepackage[mathscr]{eucal} % calligraph letters y
+\usepackage{mathrsfs}
+
+
+\numberwithin{equation}{section}  % enables section numbering
+\numberwithin{table}{section}
+\numberwithin{algorithm}{section}
+\makeindex
+
+\usepackage{csvsimple}
+
+\usepackage[pagebackref=true]{hyperref}
+% with basic options
+% N.B. pagebackref=true provides links back from the References to the 
+%body text. This can cause trouble for printing.
+\hypersetup{
+plainpages=false,       % needed if Roman numbers in frontpages
+% pdfpagelabels=true,     % adds page number as label in Acrobat's page
+%%count
+% bookmarks=true,         % show bookmarks bar?
+unicode=false,          % non-Latin characters in Acrobat bookmarks
+pdftoolbar=true,        % show Acrobat toolbar?
+pdfmenubar=true,        % show Acrobat menu?
+pdffitwindow=false,     % window fit to page when opened
+pdfstartview={FitH},    % fits the width of the page to the window
+pdftitle={F23: CO367: Assign 0
+},    % title: 
+%CHANGE THIS TEXT!
+%    pdfauthor={Author},    % author: CHANGE THIS TEXT! and uncomment 
+%%this line
+%    pdfsubject={Subject},  % subject: CHANGE THIS TEXT! and uncomment 
+%%this line
+%    pdfkeywords={keyword1} {key2} {key3}, % list of keywords, and 
+%%uncomment this line if desired
+pdfnewwindow=true,      % links in new window
+colorlinks=true,        % false: boxed links; true: colored links
+linkcolor=blue,         % color of internal links
+citecolor=green,        % color of links to bibliography
+filecolor=magenta,      % color of file links
+urlcolor=cyan           % color of external links
+}
+\newcommand*\mathinhead[2]{\texorpdfstring{$\boldsymbol{#1}$}{#2}}
+\usepackage[noabbrev]{cleveref}
+%\usepackage{refcheck}
+%%% Infrastructure begin: This is to make refcheck work with cleveref. 
+%%%Comment and uncomment together with refcheck.
+\makeatletter
+%\newcommand{\refcheckize}[1]{%
+%	\expandafter\let\csname @@\string#1\endcsname#1%
+%	\expandafter\DeclareRobustCommand\csname relax\string#1\endcsname[1]{%
+%		\csname @@\string#1\endcsname{##1}\wrtusdrf{##1}}%
+%	\expandafter\let\expandafter#1\csname relax\string#1\endcsname
+%}
+\makeatother
+%%%
+
+%%% Now we add the reference commands we want refcheck to be aware of
+%\refcheckize{\cref}
+%\refcheckize{\Cref}
+%%% Infrastructure end.
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\argmin}{argmin}
+\DeclareMathOperator{\argmax}{argmax}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\usepackage{refcount} % for counting eqtn number in enumerate enviornment
+
+
+\def\Rnbyn{\mathbb{R}^{n\times n}}
+\def\R{\mathbb{R}}
+\def\N{\mathbb{N}}
+\def\Sc{\mathbb{S}}
+\def\Sn{\Sc^n}
+\def\Snt{\Sc^{n^2+1}}
+\def\Sntm{\Sc^{(n-1)^2+1}}
+\def\Sr{\Sc^r}
+\def\Snp{\Sc_+^n}
+\def\Sp{\Sc_+}
+\def\Srp{\Sc_+^r}
+\def\Snr{\Sc^{n-r}}
+\def\Snrp{\Sc_+^{n-r}}
+\def\Snpp{\Sc_{++}^n}
+\def\Srpp{\Sc_{++}^r}
+\def\Snrpp{\Sc_{++}^{n-r}}
+%\def\real{\mathbb{R}}
+\def\H{\mathbb{H}}
+\def\D{\mathbb{D}}
+\def\Rk{\mathbb{R}^k}
+\def\Rl{\mathbb{R}^l}
+\def\Rd{\mathbb{R}^d}
+\def\Rn{\mathbb{R}^n}
+\def\Rnt{\mathbb{R}^{n^2}}
+\def\Rntp{\mathbb{R}_+^{n^2}}
+\def\Rntm{\mathbb{R}^{2n-1}}
+\def\Rr{\mathbb{R}^r}
+\def\Rq{\mathbb{R}^q}
+\def\Rmm{\mathbb{R}^{m+1}}
+\def\Rnt{\mathbb{R}^{n^2}}
+\def\Rtnm{\mathbb{R}^{t(n)-n}}
+\def\Rnp{\mathbb{R}_+^n}
+\def\C{\mathbb{C}}
+\def\Cn{\mathbb{C}^n}
+\def\Cm{\mathbb{C}^m}
+\def\Ctnm{\mathbb{C}^{t(n)-n}}
+
+\def\bY{\overline{Y\strut}}
+%\def\hY{\widehat{Y\strut}}
+\def\hY{\widehat{Y}}
+%\def\hV{\widehat{V\strut}}
+\def\hV{\widehat{V}}
+\def\Fh{F_h}
+\def\FFh{\mathcal{F}_h}
+\def\Fnh{F_{nh}}
+\def\FFnh{\mathcal{F}_{nh}}
+\def\Ah{\mathcal{A}_h}
+\def\Anh{\mathcal{A}_{nh}}
+\def\bh{b_h}
+\def\bnh{b_{nh}}
+
+\def\normF#1{\|#1\|_F}
+\def\normt#1{\|#1\|_2}
+
+%\def\eqref#1{{\normalfont(\ref{#1})}}
+\def\GN{{\bf GN\,}}
+\def\GE{\mbox{\boldmath$GE$}\,}
+\def\PD{\mbox{\boldmath$PD$}\,}
+\def\PDp{\mbox{\boldmath$PD$}}
+\def\PSD{\mbox{\boldmath$PSD$}\,}
+\def\PSDp{\mbox{\boldmath$PSD$}}
+
+
+\newenvironment{note}{\begin{quote}\small\sf NJH 
+$\diamondsuit$~}{\end{quote}}
+
+% Henry's additional definition
+\newenvironment{noteH}{\begin{quote}\small\sf \color{blue} HenryW 
+$\clubsuit$~}{\end{quote}}
+\newenvironment{noteHS}{\begin{quote}\small\sf \color{purple} Haesol 
+$\spadesuit$~}{\end{quote}}
+\newenvironment{noteTW}{\begin{quote}\small\sf \color{magenta} Tyler 
+$\spadesuit$~}{\end{quote}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% All refs in roman.
+%\def\eqref#1{{\normalfont(\ref{#1})}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\newtheorem{nmbrs}{Numbering}[section]
+%\newtheorem{defi}[nmbrs]{Definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{defi}[theorem]{Definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{assump}[theorem]{Assumption}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{prob}[theorem]{Problem}
+\newtheorem{ques}[theorem]{Question}
+\newtheorem{lem}[theorem]{Lemma}
+\newtheorem{thm}[theorem]{Theorem}
+\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{rem}[theorem]{Remark}
+\newtheorem{properties}[theorem]{Properties}
+%\newtheorem{table}[theorem]{table}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conj}[theorem]{Conjecture}
+\newtheorem{alg}[theorem]{Algorithm}
+\newtheorem{ex}[theorem]{Exercise}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{question}[theorem]{Questin}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{result}[theorem]{Result}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{coroll}[theorem]{Corollary}
+\newtheorem{theo}[theorem]{Theorem}
+\newtheorem{defin}[theorem]{Definition}
+\newtheorem{nota}[theorem]{Notation}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{case}[theorem]{Case}
+
+
+
+\crefname{thm}{Theorem}{Theorems}
+\Crefname{thm}{Theorem}{Theorems}
+\crefname{problem}{Problem}{Theorems}
+\Crefname{problem}{Problem}{Theorems}
+\Crefname{assump}{Assumption}{Theorems}
+\crefname{assump}{Assumption}{Theorems}
+\crefname{conjecture}{Conjecture}{Theorems}
+\Crefname{conjecture}{Conjecture}{Theorems}
+\crefname{prop}{Proposition}{Propositions}
+\Crefname{prop}{Proposition}{Propositions}
+\crefname{cor}{Corollary}{Corollaries}
+\Crefname{cor}{Corollary}{Corollaries}
+\crefname{lem}{Lemma}{Lemmas}
+\Crefname{lem}{Lemma}{Lemmas}
+\theoremstyle{definition}
+\crefname{defn}{definition}{definitions}
+\Crefname{defn}{Definition}{Definitions}
+\crefname{conj}{Conjecture}{Conjectures}
+\Crefname{conj}{Conjecture}{Conjectures}
+\crefname{remark}{Remark}{Remarks}
+\Crefname{remark}{Remark}{Remarks}
+\crefname{rmk}{Remark}{Remarks}
+\Crefname{rmk}{Remark}{Remarks}
+\crefname{example}{Example}{Examples}
+\Crefname{example}{Example}{Examples}
+\Crefname{case}{Case}{Cases}
+\Crefname{Case}{Case}{Cases}
+\crefname{align}{}{}
+\Crefname{align}{}{}
+\crefname{equation}{}{}
+\Crefname{equation}{}{}
+
+
+
+
+
+%\newcounter{count}
+
+%\newcommand{\cbr}[1]{\left\{ #1 \right\}}
+%\newcommand{\rbr}[1]{\left( #1 \right)}
+%\newcommand{\sbr}[1]{\left[ #1 \right]}
+\newcommand{\textdef}[1]{\textit{#1}\index{#1}}
+\newcommand{\sS}{\mathcal{S}}
+%\newcommand{\QQP}{(QQP)}
+%\newcommand{\SDP}{(SDP)}
+
+%\newcommand{\Xo}{{X_{\rm opt}}}
+%\newcommand{\Xoa}{X_{{\rm opt},\alpha}}
+%\newcommand{\yo}{{y_{\rm opt}}}
+%\newcommand{\Zo}{{Z_{\rm opt}}}
+\newcommand{\Xa}{{X(\alpha)}}
+\newcommand{\ya}{{y(\alpha)}}
+\newcommand{\Za}{{Z(\alpha)}}
+\newcommand{\ao}{{\alpha_0}}
+\newcommand{\po}{{p_{\rm opt}}}
+\newcommand{\Xpa}{{X^{\prime}(\alpha)}}
+\newcommand{\ypa}{{y^{\prime}(\alpha)}}
+\newcommand{\Zpa}{{Z^{\prime}(\alpha)}}
+
+
+\newcommand{\KK}{{\mathcal K} }
+\newcommand{\cK}{{\mathcal K} }
+\newcommand{\cS}{{\mathcal S} }
+\newcommand{\ZZ}{{\mathcal Z} }
+\newcommand{\XX}{{\mathcal X} }
+\newcommand{\ZS}{{\mathcal Z_S} }
+\newcommand{\Xs}{{\mathcal X}_s }
+\newcommand{\Lx}{{L}_X }
+\newcommand{\XS}{{\mathcal W} }
+%\newcommand{\Ss}{{\mathcal S} }
+\newcommand{\Ekyb}{{\mathcal E}^{n}(1{:}k,\bar D)}
+\newcommand{\Eayb}{{\mathcal E}^{n}(\alpha,\bar D)}
+\newcommand{\Ls}{{L}_S }
+\newcommand{\E}{{\mathcal E} }
+\newcommand{\LL}{{\mathcal L} }
+\newcommand{\RR}{{\mathcal R} }
+\newcommand{\YY}{{\mathcal Y} }
+\newcommand{\cY}{{\mathcal Y} }
+\newcommand{\EE}{{\mathcal E} }
+\newcommand{\FF}{{\mathcal F} }
+\newcommand{\DD}{{\mathcal D} }
+\newcommand{\HH}{{\mathcal H} }
+\newcommand{\BB}{{\mathcal B} }
+\newcommand{\cB}{{\mathcal B} }
+\newcommand{\CC}{{\mathcal C} }
+\newcommand{\GG}{{\mathcal G} }
+\newcommand{\OO}{{\mathcal O} }
+\newcommand{\PP}{{\mathcal P} }
+\newcommand{\PZA}{{\PP_{\ZZ_A}}}
+\newcommand{\Nn}{{\NN}^n}
+\newcommand{\TT}{{\mathcal T} }
+\newcommand{\UU}{{\mathcal U} }
+\newcommand{\VV}{{\mathcal V} }
+\newcommand{\cV}{{\mathcal V} }
+\newcommand{\WW}{{\mathcal W} }
+\newcommand{\uh}{\hat u}
+\newcommand{\vh}{\hat v}
+\newcommand{\Uh}{\hat U}
+\newcommand{\SC}{\mathcal{S}^n_C}
+\newcommand{\Sh}{{\mathcal S}^n_H}
+\newcommand{\Scal}{{\mathcal S}}
+\newcommand{\snn}{{\mathcal S}_{n-1} }
+\newcommand{\Snn}{{\mathcal S}^{2n+1} }
+\newcommand{\Snm}{{\mathcal S}^{n-1} }
+\newcommand{\Snmp}{{\mathcal S}^{n-1}_+ }
+\newcommand{\Sd}{{\mathcal S}^{d} }
+\newcommand{\Sdp}{{\mathcal S}^{d}_{+} }
+\newcommand{\Sdpp}{{\mathcal S}^{d}_{++} }
+\newcommand{\Snnp}{{\mathcal S}^{n+1}_+ }
+\newcommand{\Snnpp}{{\mathcal S}^{n+1}_{++} }
+\newcommand{\CP}{{\bf{\rm CP\,}}}
+\newcommand{\CPD}{{\bf{\rm CPD\,}}}
+\newcommand{\LCP}{{\bf{\rm LCP\,}}}
+\newcommand{\LCPE}{{\bf{\rm LCPE\,}}}
+\newcommand{\LCDE}{{\bf{\rm LCDE\,}}}
+\newcommand{\hs}{H_{\sigma}}
+\newcommand{\En}{{{\mathcal E}^n} }
+\newcommand{\Ek}{{{\mathcal E}^k} }
+\newcommand{\Kdag}{{\KK}^{\dagger}}
+\newcommand{\KKi}{{\KK}^i}
+\newcommand{\KdagV}{{\KK_V}^{\dagger}}
+\newcommand{\KV}{{\KK}_V}
+
+\newcommand{\whV}{{\widehat{V}} }
+
+\newcommand{\cL}{{\mathcal L} }
+\newcommand{\cG}{{\mathcal G} }
+\newcommand{\cI}{{\mathcal I} }
+\newcommand{\cJ}{{\mathcal J} }
+
+\newcommand{\Sayb}{{\mathcal S}^{n}(\alpha,\bar Y)}
+\newcommand{\Sapyb}{{\mathcal S}_+^{n}(\alpha,\bar Y)}
+\newcommand{\Skyb}{{\mathcal S}^{n}(1{:}k,\bar Y)}
+\newcommand{\Skpyb}{{\mathcal S}_+^{n}(1{:}k,\bar Y)}
+\newcommand{\Sok}{{\mathcal S}^{1{:}k}}
+
+\newcommand{\QED}{{\flushright{\hfill ~\rule[-1pt] {8pt}{8pt}\par\medskip ~~}}}
+\newcommand{\mat}{{\rm mat}}
+
+
+\def\Rf{\R^f}
+\def\Rfp{\R_+^f}
+\def\Rnf{\R^{nf}}
+\def\Rnfp{\R_+^{nf}}
+\newcommand{\NTnf}{NT_\text{nf}}
+\newcommand{\NTf}{NT_\text{f}}
+\newcommand{\ATnf}{AT_\text{{nf}}}
+\newcommand{\ATf}{AT_\text{f}}
+\newcommand{\xf}{x_\text{f}}
+\newcommand{\xs}{x_\text{s}}
+\newcommand{\xmineq}{x_{\mineq}}
+\newcommand{\xhf}{\hat x_\text{f}}
+\newcommand{\xnf}{x_\text{nf}}
+\newcommand{\xhnf}{\hat x_\text{nf}}
+\newcommand{\Xnf}{X_\text{nf}}
+\newcommand{\zf}{z_\text{f}}
+\newcommand{\cf}{c_\text{f}}
+\newcommand{\Af}{A_\text{f}}
+\newcommand{\Anf}{A_\text{nf}}
+\newcommand{\Bf}{B_\text{f}}
+\newcommand{\Bnf}{B_\text{nf}}
+\newcommand{\Ef}{E_\text{f}}
+\newcommand{\Enf}{E_\text{nf}}
+\newcommand{\znf}{z_\text{nf}}
+\newcommand{\Znf}{Z_\text{nf}}
+\newcommand{\vng}{v_\text{ng}}
+\newcommand{\vg}{v_\text{g}}
+\newcommand{\cnf}{c_\text{nf}}
+\newcommand{\bineq}{b_{\text{ineq}}}
+\newcommand{\beq}{b_{\text{eq}}}
+\newcommand{\bub}{b_{\text{ub}}}
+\newcommand{\Aeq}{A_{\text{eq}}}
+\newcommand{\Aineq}{A_{\text{ineq}}}
+\newcommand{\mineq}{m_\text{ineq}}
+\newcommand{\meq}{m_\text{eq}}
+\newcommand{\Fmudnf}{F_\mu^{\text{dnf}}}
+\newcommand{\Fmudf}{F_\mu^{\text{df}}}
+\newcommand{\Fmupnf}{F_\mu^{\text{pnf}}}
+\newcommand{\Fmupf}{F_\mu^{\text{pf}}}
+\newcommand{\Fmucnf}{F_\mu^{\text{cnf}}}
+
+
+
+
+%\newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\cbr}[1]{\left\{ #1 \right\}}
+\newcommand{\rbr}[1]{\left( #1 \right)}
+\newcommand{\sbr}[1]{\left[ #1 \right]}
+%\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\rPRSM}{\textbf{rPRSM}\,} % changed by TK
+\newcommand{\rPRSMp}{\textbf{rPRSM}}
+\newcommand{\QP}{\textbf{QP}\,}
+\newcommand{\QPp}{\textbf{QP}}
+\newcommand{\QAP}{\textbf{QAP}\,}
+\newcommand{\QAPp}{\textbf{QAP}}
+\newcommand{\HKM}{\textbf{HKM}\,}
+\newcommand{\HKMp}{\textbf{HKM}}
+\newcommand{\DR}{\textbf{DR}\,}
+\newcommand{\DRp}{\textbf{DR}}
+\newcommand{\ADMM}{\textbf{ADMM}\,}
+\newcommand{\ADMMp}{\textbf{ADMM}}
+\newcommand{\PR}{\textbf{PR}\,}
+\newcommand{\PRp}{\textbf{PR}}
+\newcommand{\PRS}{\textbf{PRS}\,}
+\newcommand{\PRSM}{\textbf{PRSM}\,}
+\newcommand{\PRSMp}{\textbf{PRSM}}
+\newcommand{\DNN}{\textbf{DNN}\,}
+\newcommand{\DNNp}{\textbf{DNN}}
+\newcommand{\KKT}{\textbf{KKT}\,}
+\newcommand{\KKTp}{\textbf{KKT}}
+\newcommand{\BFS}{\textbf{BFS}\,}
+\newcommand{\BFSp}{\textbf{BFS}}
+\newcommand{\EDM}{\textbf{EDM}\,}
+\newcommand{\EDMp}{\textbf{EDM}}
+\newcommand{\SDP}{\textbf{SDP}\,}
+\newcommand{\SDPs}{\textbf{SDPs}\,}
+\newcommand{\SDPsp}{\textbf{SDPs}}
+\newcommand{\SDPR}{\textbf{SDP-R}\,}
+\newcommand{\NDS}{\textbf{NDS}\,}
+\newcommand{\NDSp}{\textbf{NDS}}
+\newcommand{\DS}{\textbf{DS}\,}
+\newcommand{\DSp}{\textbf{DS}}
+\newcommand{\DSDP}{\textbf{D-SDP}\,}
+\newcommand{\DSDPp}{\textbf{D-SDP}}
+\newcommand{\SDPp}{\textbf{SDP}}
+\newcommand{\DFR}{\textbf{DFR}\,}
+\newcommand{\DFRp}{\textbf{DFR}}
+\newcommand{\FR}{\textbf{FR}\,}
+\newcommand{\FRp}{\textbf{FR}}
+\newcommand{\FDC}{{\bf{\rm FDC\,}}}
+\newcommand{\SOC}{{\bf{\rm SOC\,}}}
+\newcommand{\UCQ}{{\bf{\rm UCQ\,}}}
+\newcommand{\WCQ}{{\bf{\rm WCQ\,}}}
+\newcommand{\UCQs}{{\bf{\rm UCQs\,}}}
+\newcommand{\WUCQ}{{\bf{\rm WUCQ\,}}}
+\newcommand{\CQ}{{\bf{\rm CQ\,}}}
+\newcommand{\CQc}{{\bf{\rm CQ},\,}}
+\newcommand{\CQs}{{\bf{\rm CQs\,}}}
+\newcommand{\SDPns}{{\bf{\rm SDP}}}
+\newcommand{\DLP}{{\bf{\rm DLP\,}}}
+\newcommand{\DLPp}{{\bf{\rm DLP}}}
+\newcommand{\LP}{{\bf{\rm LP\,}}}
+\newcommand{\LPp}{{\bf{\rm LP}}}
+\newcommand{\LPns}{{\bf{\rm LP}}}
+\newcommand{\Ksym}{{\stackrel{s}{\otimes}}}
+\newcommand{\Kt}{{\stackrel{T}{\otimes}}}
+\newcommand{\Ksksym}{{\stackrel{sk}{\otimes}}}
+\newcommand{\Ksumsym}{{\stackrel{s}{\oplus}}}
+\newcommand{\symmkron}{{{O\hspace{-.09in}\cdot}\hspace{.05in}}}
+\newcommand{\cond}{{\rm cond\,}}
+\newcommand{\gap}{{\rm gap\,}}
+\newcommand{\optval}{{\rm optval\,}}
+\newcommand{\Rm}{{\R^m\,}}
+%\newcommand{\Sn}{{\mathcal S^n\,}}
+%\newcommand{\Sn}{{\mathcal S}^n}
+\newcommand{\SN}{{\mathcal S^N}}
+\newcommand{\SNp}{{\mathcal S^N_+}}
+\newcommand{\Ht}{{\mathbb H}^t}
+\newcommand{\Hm}{{\mathbb H}^m}
+\newcommand{\Hmn}{{\mathbb H}^{mn}}
+\newcommand{\Hmnp}{{\mathbb H}_+^{mn}}
+%\newcommand{\Snp}{{\mathcal S^n_+\,}}
+%\newcommand{\Snp}{{\mathcal S}^n_+\,}
+%\newcommand{\Stt}{\Sc^2_+}
+%\newcommand{\Snpp}{{\mathcal S^n_{++}\,}}
+%\newcommand{\Srpp}{{\mathcal S^r_{++}\,}}
+\newcommand{\Rtn}{{\R^{\scriptsize{t(n)}}\,}}
+\newcommand{\Ctn}{{\C^{\scriptsize{t(n)}}\,}}
+%\newcommand{\Stn}{{{\mathcal S}^{\scriptsize{\begin{pmatrix}n\cr 2}}}\,\end{pmatrix}}
+\newcommand{\Sk}{{\mathcal S^{k}}\,}
+\newcommand{\Skp}{{\mathcal S^{k}_+}\,}
+\newcommand{\Skpp}{{\mathcal S^{k}_{++}}\,}
+\newcommand{\Stp}{{\mathcal S^{t}_+}\,}
+\newcommand{\Stpp}{{\mathcal S^{t}_{++}}\,}
+\newcommand{\Stnn}{{{\mathcal S}^{\scriptsize{t(n)}}\,}}
+\newcommand{\Mtnn}{{{\mathcal M}^{\scriptsize{t(n)}}\,}}
+\newcommand{\tn}{{\scriptsize{\pmatrix{n\cr 2}}}\,}
+\newcommand{\tnp}{{\scriptsize{\pmatrix{n+1\cr 2}}}\,}
+\newcommand{\Rtnp}{{\R^{\scriptsize{\pmatrix{n+1\cr 2}}}\,}}
+\newcommand{\MM}{{\mathcal M}}
+\newcommand{\Mn}{{\mathcal M}^n}
+\newcommand{\MS}{{\mathcal M_S\,}}
+\newcommand{\NS}{{\mathcal N_S\,}}
+\newcommand{\NN}{{\mathcal{N}}}
+\newcommand{\cN}{{\mathcal{N}}}
+\newcommand{\MSi}{{\mathcal M_S^{-1}\,}}
+\newcommand{\Mrid}{M_{\real\imag D}}
+\newcommand{\Mridbar}{\overline M_{\real\imag D}}
+\newcommand{\Cp}{{\mathcal C\,}}
+\newcommand{\p}{{\mathcal P\,}}
+\newcommand{\A}{{\mathcal A}}
+\newcommand{\B}{{\mathcal B\,}}
+\newcommand{\II}{{\mathcal I}}
+\newcommand{\JJ}{{\mathcal J}}
+\newcommand{\IIf}{{\mathcal I^f}}
+\newcommand{\IIp}{{\mathcal I^+}}
+\newcommand{\IIn}{{\mathcal I^-}}
+\newcommand{\IIo}{{\mathcal I^0}}
+\newcommand{\XSA}{{{\mathcal W}_{\A}} }
+\newcommand{\F}{{\mathcal F\,}}
+\newcommand{\U}{{\mathcal U\,}}
+\newcommand{\Uone}{{\mathcal U_1\,}}
+\newcommand{\QQ}{{\mathcal Q\,}}
+\newcommand{\Flift}{{\mathcal F}_n}
+% \renewcommand{\theequation}{\thesection.\thecount}
+\newcommand{\bbm}{\begin{bmatrix}}
+\newcommand{\ebm}{\end{bmatrix}}
+\newcommand{\bem}{\begin{pmatrix}}
+\newcommand{\eem}{\end{pmatrix}}
+%\newcommand{\beq}{\begin{equation}} % conflict here 
+\newcommand{\beqs}{\begin{equation*}}
+\newcommand{\bet}{\begin{table}}
+%\newcommand{\bet}{\begin{table}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\eeqs}{\end{equation*}}
+%\newcommand{\beqr}{\begin{eqnarray}}
+\newcommand{\beqr}{\begin{eqnarray}}
+% \newcommand{\addc}{\addtocounter{count}{1} }
+% newcommand{\bs}{\setcounter{count}{0} \section}
+%\newcommand{\bs}{\section}
+\newcommand{\fa}{~ \; \forall}
+\newcommand{\req}[1]{(\ref{#1})}
+\newcommand{\sn}{{\mathcal S}_n }
+\newcommand{\hn}{{\mathcal H}_n }
+\newcommand{\g}{{\mathcal G} }
+\newcommand{\ind}{{\mathcal Ind} }
+\newcommand{\SKn}{{\tilde{\mathcal S}}^n}
+\newcommand{\Rtwon}{\mathbb{R}^{2n}}
+
+\renewcommand{\vec}{{\rm vec}}
+
+\DeclareMathOperator{\prox}{{\text{prox}} }
+\DeclareMathOperator{\refl}{{\text{refl}} }
+
+
+\DeclareMathOperator{\face}{face}% smallest face containing a set
+\DeclareMathOperator{\facee}{face^{ef}}% smallest face containing a set
+\DeclareMathOperator{\sd}{sd}
+
+%\newcommand{\epreq}{\hfill $\blacksquare$}
+\DeclareMathOperator{\Null}{null}
+\DeclareMathOperator{\nul}{null}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\embdim}{embdim}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\kvec}{{vec}}
+\DeclareMathOperator{\kMat}{{Mat}}
+\DeclareMathOperator{\adj}{{adj}}
+\DeclareMathOperator{\vol}{{vol}}
+\DeclareMathOperator{\btrace}{{blocktrace}}
+\DeclareMathOperator{\blkdiag}{{blkdiag}}
+\DeclareMathOperator{\Blkdiag}{{Blkdiag}}
+\DeclareMathOperator{\diag}{{diag}}
+\DeclareMathOperator{\Diag}{{Diag}}
+\DeclareMathOperator{\dDiag}{{dDiag}}
+\DeclareMathOperator{\Ddiag}{{Ddiag}}
+\DeclareMathOperator{\Mat}{{Mat}}
+\DeclareMathOperator{\offDiag}{{offDiag}}
+\DeclareMathOperator{\usMat}{{us2Mat}}
+\DeclareMathOperator{\usvec}{{us2vec}}
+\DeclareMathOperator{\svec}{{svec}}
+\DeclareMathOperator{\ssvec}{{ssvec}}
+\DeclareMathOperator{\sHvec}{{sHvec}}
+\DeclareMathOperator{\sbHvec}{{\bar sHvec}}
+\DeclareMathOperator{\sblkHvec}{{sblkHvec}}
+\DeclareMathOperator{\sblkHMat}{{sblkHMat}}
+\DeclareMathOperator{\vsvec}{{vs2vec}}
+\DeclareMathOperator{\dsvec}{{dsvec}}
+\DeclareMathOperator{\Hmat}{{Hmat}}
+\DeclareMathOperator{\vSmat}{{vSmat}}
+\DeclareMathOperator{\Smat}{{S2mat}}
+\DeclareMathOperator{\sMat}{{sMat}}
+\DeclareMathOperator{\sHMat}{{sHMat}}
+\DeclareMathOperator{\hMat}{{hMat}}
+\DeclareMathOperator{\vsMat}{{vs2Mat}}
+\DeclareMathOperator{\kmat}{{Mat}}
+\DeclareMathOperator{\sdiag}{{sdiag}}
+\DeclareMathOperator{\Kprod}{\otimes}
+\DeclareMathOperator{\Kcal}{{\cal K}}
+\DeclareMathOperator{\Hcal}{{\cal H}}
+\DeclareMathOperator{\relint}{{relint}}
+\DeclareMathOperator{\bdry}{{bdry}}
+\DeclareMathOperator{\cl}{{cl}}
+%\DeclareMathOperator{\abs}{{abs}}
+%\DeclareMathOperator{\rank}{{rank}}
+\DeclareMathOperator{\spanl}{{span}}
+\DeclareMathOperator{\dom}{{dom}}
+\DeclareMathOperator{\conv}{{conv}}
+%\DeclareMathOperator{\real}{{\Re}}
+\DeclareMathOperator{\imag}{{\Im}}
+\DeclareMathOperator{\sign}{{sgn}}
+%\DeclareMathOperator{\odiag}{{$o\circ$ diag}}
+%\DeclareMathOperator{\bdiag}{{b$^\circ$diag}}
+
+
+
+
+\newcommand{\Mod}[1]{\ (\textup{mod}\ #1)}
+
+
+
+%   for Real number sign
+%\newcommand{\eqref}[1]{{\rm (\ref{#1})}}
+\newcommand{\gesem}{\succeq}
+\newcommand{\lesem}{\preceq}
+\newcommand{\Sbar}{\bar{S}}
+\newcommand{\Qbar}{\bar{Q}}
+\newcommand{\Tbar}{\bar{T}}
+\newcommand{\xbar}{\bar{x}}
+\newcommand{\Xbar}{\bar{X}}
+\newcommand{\nc}{\newcommand}
+\nc{\arrow}{{\rm arrow\,}}
+\nc{\Arrow}{{\rm Arrow\,}}
+\nc{\BoDiag}{{\rm B^0Diag\,}}
+\nc{\bodiag}{{\rm b^0diag\,}}
+\newcommand{\oodiag}{{\rm o^0diag\,}}
+\newcommand{\OoDiag}{{\rm O^0Diag\,}}
+\def\nr{\par \noindent}
+\nc{\Mm}{{\mathcal M}^{m} }
+\nc{\Mmn}{{\mathcal M}^{mn} }
+\nc{\Mnr}{{\mathcal M}_{nr} }
+\nc{\Mnmr}{{\mathcal M}_{(n-1)r} }
+% \nc{\eqref}[1]{{\rm (\ref{#1})}}
+\nc{\kwqqp}{Q{$^2$}P\,}
+\nc{\kwqqps}{Q{$^2$}Ps}
+%\def\Argmin{\mathop{\rm Argmin}}
+%\def\Argmax{\mathop{\rm Argmax}}
+
+
+\def\Ssum{\mathop{\mathcal S_\Sigma}}
+\def\Sprod{\mathop{\mathcal S_\Pi}}
+\nc{\notinaho}{(X,S)\in \overline{AHO}(\A)}
+\nc{\inaho}{(X,S)\in AHO(\A)}
+
+% Simon's definitions
+\newcommand{\bea}{\begin{eqnarray}}%
+\newcommand{\eea}{\end{eqnarray}}%
+\newcommand{\beas}{\begin{eqnarray*}}%
+\newcommand{\eeas}{\end{eqnarray*}}%
+\newcommand{\Rmn}{\R^{m \times n}}%
+\newcommand{\Rnn}{\R^{n \times n}}%
+\newcommand{\Rnnp}{\R_+^{n \times n}}%
+\newcommand{\Int}{{\rm int\,}}% interior of a set
+\newcommand{\cone}{{\rm cone\, }}% cone generated by a set
+\newcommand{\sspan}{{\rm span}\,}
+\newcommand{\ccone}{{\rm \overline{cone}}}% cone generated by a set
+\newcommand{\precl}{{\rm precl}}% preclosure of a set
+%\newcommand{\bdry}{{\rm bdry}}% boundary of a set
+%\newcommand{\cl}{{\rm cl}}% closure of a set
+\newcommand{\bnd}{{\rm bnd}}% boundary of a set
+\newcommand{\relbnd}{{\rm relbnd\,}}% relative boundary of a set
+%\newcommand{\refl}{{\rm refl}}%
+\newcommand{\re}{{\rm Re}\,}%
+\newcommand{\im}{{\rm Im}\,}%
+%\newcommand{\Range}{\RR}%
+\newcommand{\la}{\ensuremath{\Leftarrow}}%
+\newcommand{\ra}{\ensuremath{\Rightarrow}}%
+\newcommand{\lla}{\;\ensuremath{\Longleftarrow}\;}% 
+\newcommand{\rra}{\;\ensuremath{\Longrightarrow}\;}% 
+\newcommand{\lra}{\ensuremath{\Leftrightarrow}}% 
+\newcommand{\llra}{\; \Longleftrightarrow\;}% 
+\renewcommand{\F}{\mathcal{F}}%
+\renewcommand{\L}{\mathcal{L}}%
+\newcommand{\X}{\mathcal{X}}%
+\newcommand{\nn}{\nonumber}%
+\newcommand{\vP}{v_P}%
+\newcommand{\vD}{v_D}%
+\newcommand{\vDP}{v_D}%
+\newcommand{\vRP}{v_{RP}}%
+\newcommand{\vDRP}{v_{DRP}}%
+\newcommand{\vDRPM}{v_{DRP_M}}%
+% Produce array delimited by []. Usage: \arr{ccc}{B&-A^T&C\\I&0&A}
+\newcommand{\arr}[2]{\ensuremath{
+\left[\begin{array}{#1}#2\end{array}\right]%
+}}{}
+% Produce small array (within text)
+% e.g.,~$\bigl[\begin{smallmatrix} A&C\\0&-I \end{smallmatrix}\bigr]$
+\newcommand{\sarr}[1]{\ensuremath{
+\left[\begin{smallmatrix}#1\end{smallmatrix}\right]}}
+% Produce *nondelimited* small array underneath a min or max 
+% e.g.,~$\begin{smallmatrix} x \in X\\ y \in Y \end{smallmatrix}$
+\newcommand{\tarr}[1]{\ensuremath{
+\begin{smallmatrix} #1 \end{smallmatrix}}}
+% Relabel list environments.
+% undo this relabel - by Henry????? - comment out the next four lines????
+%\makeatletter
+%\renewcommand{\theenumi}{\rm (\alph{enumi})}
+%\renewcommand{\p@enumii}{\theenumi}
+%\makeatother
+
+%%from Vris
+\newcommand{\Hnp}[1][]{\,\mathbb{H}_+^{\ifthenelse{\equal{#1}{}}{n}{#1}}}
+\newcommand{\Hn}[1][]{\,\mathbb{H}^{\ifthenelse{\equal{#1}{}}{n}{#1}}}
+\newcommand{\Hk}[1][]{\,\mathbb{H}^{\ifthenelse{\equal{#1}{}}{k}{#1}}}
+\newcommand{\Dn}[1][]{\,\mathbb{D}^{\ifthenelse{\equal{#1}{}}{n}{#1}}}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{#1^{(#2)}} % \seq{x}{n} gives x^{(n)}
+\newcommand{\Tcal}{\mathcal{T}}
+\newcommand{\TP}{\mathrm{TP}}
+\newcommand{\unital}{\mathrm{unital}}
+
+\newcommand{\bmat}[1]{\begin{bmatrix} #1\end{bmatrix}}
+%\newcommand{\pmat}[1]{\begin{pmatrix} #1\end{pmatrix}}
+\newcommand{\ii}{\mathrm{i}\,}
+
+%for HugoHenryStefan FacialReduction
+\newcommand{\FFp}{{\mathcal F}^+ }
+\newcommand{\ba}{b(\alpha) }
+\newcommand{\Pa}{{\bf P(\alpha)}}
+\newcommand{\pa}{{\mathcal P(\alpha)}}
+\newcommand{\Ppa}{{\bf P}_{\alpha}'}
+\newcommand{\PVa}{{\bf P}_{\alpha}^{V}}
+\newcommand{\Da}{{\bf D_{\alpha}}}
+\newcommand{\Fa}{\F(\alpha)}
+\newcommand{\Fap}{\FF_{\alpha}^+}
+\newcommand{\eig}{\text{eig}}
+
+\newcommand{\aff}{\text{aff}}
+\newcommand{\xaff}{x_\text{aff}}
+\newcommand{\yaff}{y_\text{aff}}
+\newcommand{\zaff}{z_\text{aff}}
+\newcommand{\Xaff}{X_\text{aff}}
+\newcommand{\Zaff}{Z_\text{aff}}
+
+
+% Naomi's definitions
+\newcommand{\cP}{\mathcal{P}}
+
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+{\bf CO 367, F23 \hfill  ASSIGNMENT~0 (optional)\footnote{
+\tiny COPYRIGHT: Reproduction, sharing or online posting of this document is strictly
+ forbidden $\copyright$ University of Waterloo.
+}
+ \hfill Due Thurs. Sept. 14, 9:30AM, EST on crowdmark}
+\medskip
+
+\hrule
+
+Please submit a pdf file to CROWDMARK. No other form of submission is 
+acceptable; late assignments will not be accepted. It is the 
+responsibility of the students to make sure that the pdf file they 
+submit is clearly readable.
+
+\noindent
+Important information: 
+\\{\bf You are expected to justify your answers, e.g.,~a yes or no, a
+number, a property, etc ... is not enough.} 
+\\{\bf You are expected to do the assignments on 
+your own. The only sources
+allowed for doing the assignments are:
+\begin{itemize}
+\item
+the lectures presented in class;
+\item
+all of the material on the CO367 Fall 2023 LEARN website;
+\item
+the two textbooks as listed on the syllabus (and on library reserve);
+\item
+ all of the material on the CO367 Fall 2023 Piazza website;
+\item
+ your Instructor and TAs.
+\end{itemize}
+
+Usage of any other sources in doing the homework assignments is against the
+academic integrity rules for CO367 in the Fall 2023 term.
+}
+
+For example, copying or paraphrasing a solution from some fellow student or from old solutions from
+previous offerings of related courses or various sources on the web, qualifies as cheating and the TAs have
+been instructed to actively look for evidence of academic offences when evaluating assignment papers. By
+Univ. of Waterloo policy, academic integrity violations by a student in assignments will lead to a mark of zero in that
+assignment and potentially a 5\% deduction from the Final Course Grade. All academic offences are reported
+to the Associate Dean for Undergraduate Studies.
+
+[This assignment is a \emph{Calculus, Analysis, Topology, 
+Linear Algebra Review} 
+for topics
+most relevant to CO367. If you have trouble completing
+any part of this assignment it is a strong indication that you need to
+review the relevant material.]
+
+
+\newpage
+
+
+
+The University of Waterloo subscribes to the strictest interpretation of
+academic integrity.
+
+{\bf Faculty members and students bear joint responsibility in assuring
+ that cheating on assignments or any examinations is not tolerated.
+}
+
+Students who engage in academic dishonesty will be subject to disciplinary action under Policy 71 Student
+Discipline, 
+\href{https://uwaterloo.ca/secretariat/policies-procedures-guidelines/policy-71}
+{uwaterloo.ca/secretariat/policies-procedures-guidelines/policy-71}
+
+
+\vspace{2in}
+I confirm that I have not violated the instructions for this Assignment and I will not violate
+the instructions for this Assignment.
+I confirm that I have not received any unauthorized assistance in preparing for or writing
+this Assignment.
+
+
+Student Name (please print)
+\\Student Signature
+
+\newpage
+
+\tableofcontents
+
+
+
+\newpage
+\section{GEOMETRY
+{\small(score 20 = 10+10)}
+}
+
+
+\subsection{Preliminaries}
+For a vector $x=\begin{pmatrix} x_1 & \ldots & x_n\end{pmatrix}^T \in \Rn$, 
+we define the (Euclidean) {\em norm} and {\em inner (dot) product}
+\[  
+\|x\| := \sqrt{x_1^2+ \cdots+ x_n^2}
+\]
+\[  \langle x,y\rangle \cong x \cdot y := x^Ty = x_1y_1+ \cdots+ x_ny_n.
+\]
+\begin{theorem}
+\label{thm:CauchySchwarz}
+ Let $x,y\in \Rn$. Then the Cauchy-Schwarz inequality is
+\[
+|x \cdot y| \leq ||x||||y||,
+\]
+with equality if, and only if, $x=\alpha y$, for some $\alpha\in \R$.
+\end{theorem}
+\subsection{EXERCISES}
+\begin{enumerate}
+\item (10)
+Explain the geometrical significance for the vectors $x$ and $y$ if:
+\begin{enumerate}
+\item
+\[x \cdot y < 0, \, x \cdot y > 0, \, x \cdot y = 0.
+\]
+(Justify/prove the explanations.)
+%%\begin{solution}
+%%The vectors are orthogonal (perpendicular). For a proof use the cosine
+%%formula for the angle $\theta$ between the vectors
+%%\[
+%%\cos(\theta) = (x\cdot y)/\left( \|x\|\|y\|\right).
+%%\]
+%%\end{solution}
+%%\begin{comments}
+%%Many students did not include a proof. Justification must always be included.
+%%\end{comments}
+\item
+\[x \cdot y \geq 0. \]
+%\begin{solution}
+%The angle between the vectors is acute, i.e.,~less than 90 degrees. Again
+%this can be seen from the cosine formula.
+%\end{solution}
+%\begin{comments}
+%Many students did not include a proof. Justification must always be included.
+%\end{comments}
+\end{enumerate}
+\item
+(10) 
+Let $a\in \Rn, Q\in \Sn$ and define the (quadratic)
+function $f: \Rn \rightarrow \R$ by 
+$f(x) = \frac 12 x^TQx + a \cdot x$.
+Prove that $f$ is a continuous differentiable function, i.e.,~that the
+gradient $\nabla f(x)$ is a continuous function of $x$.
+(See~\cref{eq:gradient} below.)
+%%\begin{solution}
+%%Let $\epsilon >0$ be given, and fix $\delta = \epsilon/(2\|a\|)$. Then
+%%by~\Cref{thm:CauchySchwarz}, we  have
+%%\[
+%%\|x-y\| <\delta \implies |f(x) - f(y)| = |a\cdot(x-y)|\leq \|a\| \|x-y\| <
+%%\epsilon.
+%%\]
+%%\qed
+%%\end{solution}
+%\begin{comments}
+ %Some students thought this was a one dimensional case and used
+%elementary techniques on the real line.
+%\end{comments}
+\end{enumerate}
+
+
+
+
+\section{CALCULUS
+{\small(score 30 = (5+10+5)+(5+5))}
+}
+\subsection{EXERCISES}
+\begin{enumerate}
+\item 
+For a differentiable function $g: \Rn \rightarrow \R$, 
+the {\em gradient} is the vector of partial derivatives
+\begin{equation}
+\label{eq:gradient}
+\nabla g := \begin{pmatrix}
+   \frac{\partial g}{\partial x_1}\\ 
+   \frac{\partial g}{\partial x_2}\\ 
+     \cdots\\ \frac{\partial
+g}{\partial x_n}
+\end{pmatrix}.
+\end{equation}
+\begin{enumerate}
+\item 
+\label{item:fng}
+(5)
+If $g(x) = || x ||,\, x\neq 0$, calculate $\nabla g(x)$.
+%\begin{solution}
+%$g(x) = || x || = \sqrt{x^Tx} = f(h(x))$, thus defining $f,h$. Therefore
+%\[
+%\nabla g(x) = f^\prime(h(x)) \nabla h(x) = \frac 1{2\sqrt{h(x)}} 2x =
+ %\frac 1{\norm{x}} x.
+%\]
+%\end{solution}
+\item (10)
+Let $g$ be defined as in~\Cref{item:fng} above.
+Let $a,b \in \Rn, (a+tb)\neq 0$, and define $f:\R \rightarrow \R,$ by
+$f(t) := g(a+tb)$.
+\\Calculate $f^\prime (t)$.
+%%\begin{solution}
+%%(Here $f$ is not as in the proof above.)
+%%\[
+%%f^\prime(t) = \left\langle \nabla g(a+tb), \frac {\partial (a+tb)}{\partial
+%%t}\right\rangle = \frac 1{\norm{a+tb}} \langle a+tb,b\rangle.
+%%\]
+%%\end{solution}
+%\begin{comments}
+%Students often did not use the chain rule correctly.
+%\end{comments}
+\item
+(5) Let $g$ be as above and let $x,d\in Rn$. Calculate the directional
+derivative of $g$ in the direction $d$ at the point $x$.
+\end{enumerate}
+\item
+Suppose $f:\R \rightarrow \R$ is infinitely differentiable at $x=a.$
+The {\em Taylor Series} of $f$ about $a$ is:
+\[
+f(a) + f^\prime(a) (x-a) + \frac1{2!}f^{\prime \prime}(a)(x-a)^2 + 
+    \frac1{3!}f^{\prime \prime \prime}(a)(x-a)^3 + \cdots
+\]
+Write down the Taylor series of:
+\begin{enumerate}
+\item (5)
+\[
+f(x) = x^3, \mbox{~about~} x=1.
+\]
+\item (5)
+\[
+f(x) = \log(1+x), \mbox{~about~} x=0.
+\]
+\end{enumerate}
+\end{enumerate}
+\section{REAL ANALYSIS
+{\small(score 35 = 15+(10+10))}
+}
+\subsection{Preliminaries}
+The {\em open ball} $B(x;r) : = \left\{ y \in \Rn : ||x-y|| < r
+\right\}.$ Suppose that $D$ is a subset of $\Rn$.
+\begin{description}
+\item[Interior:]
+$x \in \Int D$ if there exists $r > 0$ with $B(x;r) \subset D$.
+\item[Closure:]
+$x \in \cl D$ if there exists a sequence $x^k \in D$ with $x^k
+\rightarrow x.$
+\item[Boundary:]
+$x \in \partial D$ if $x\in \cl D \backslash \Int D.$
+\end{description}
+$D$ is {\em open} if $D = \Int D.$ 
+$D$ is {\em closed} if $D = \cl D.$ \\
+
+\subsection{EXERCISES}
+\begin{enumerate}
+\item
+(15)  For each of the following sets, find the interior, the
+closure, and the boundary. Then determine which of the sets are open,
+closed, neither, or both.
+%\begin{solution}
+%For more details please contact the instructor or the TAs.
+%\end{solution}
+\begin{enumerate}
+\item
+\[
+\left\{
+(x_1,x_2) : x_1 \geq 0, x_2 \geq 0
+\right\}.
+\]
+%\begin{solution}
+%closed
+%\end{solution}
+\item
+\[
+\left\{
+(x_1,x_2) : x_1 > 0, x_2 > 0
+\right\}.
+\]
+%\begin{solution}
+%open
+%\end{solution}
+\item
+\[
+\left\{
+(x_1,x_2) : x_1 > 0, x_2 \geq 0
+\right\}.
+\]
+%\begin{solution}
+%neither
+%\end{solution}
+\item  
+\[
+\Rn
+\]
+%\begin{solution}
+%both
+%\end{solution}
+\item
+\[
+\left\{
+(x_1,x_2) : x_1^2 + x_2^2 < 0
+\right\}.
+\]
+%\begin{solution}
+%both (empty set)
+%\end{solution}
+\item
+\[
+\emptyset .
+\]
+%\begin{solution}
+%both (empty set)
+%\end{solution}
+\end{enumerate}
+%\begin{comments}
+ %For computing the boundary in part a)b)c), many students
+%forgot that the sets were part of the nonnegative quadrant.
+%\end{comments}
+\item
+\begin{enumerate}
+\item (10) Prove that $D$ is closed if and only if the complement $D^c$
+is open.
+%\begin{solution}
+%Suppose that the complement $D^c$ is open. Therefore, for each $c\in
+%D^c$ there exists an open ball $B(c,r_c)\subset D^c$. Now let $d_j\in D,
+%d_j\to d$. Therefore, for each ball $B(d,r)$ around $d$ there exists $J$ such
+%that 
+%\[
+%\left\{ j\geq J\implies d_j \in B(d,r)\right\}  \implies
+%d\notin D^c \text{ (open set) } \implies d\in D \implies D \text{ is
+%closed}.
+%\] 
+%(For the converse, see the TAs or the instructor.)
+%\end{solution}
+\item (10)
+Prove that $x \in \partial D$ if and only if for any $r>0$ there exists
+a $y \in B(x;r) \cap D$ and a $z \in B(x;r) \cap D^c.$
+%\begin{solution}
+%(See the TAs or the instructor.)
+%\end{solution}
+\end{enumerate}
+%\begin{comments}
+%Many proofs lacked rigour.
+%\end{comments}
+
+\end{enumerate}
+
+
+
+\section{MATRICES 
+{\small(score 25 = 15+10)}
+}
+
+\subsection{EXERCISES}
+\begin{enumerate}
+\item (15)
+Let
+\[ 
+A = 
+\begin{bmatrix}
+1 & 1 & 0 \\
+0 & 1 & 1 \\
+1 & 2 & 1 
+ \end{bmatrix}.
+\]
+
+\begin{enumerate}
+\item
+Calculate the determinant of $A$.
+\item
+Calculate the rank of $A$.
+\item
+What is the rank of $A^T$.
+\item
+Find the singular values and singular vectors of $A$.
+\item
+Expand the quadratic form $q(x) = x^TAx = \sum_{ij} x_ix_j B_{ij}$ so
+that $B=(B_{ij}) = B^T$, i.e.,~so that the form is using a symmetric
+matrix.
+\end{enumerate}
+  
+%%\begin{solution}
+%%(See the TAs or the instructor.)
+%%\begin{enumerate}
+%%\item
+%%The determinant is $0$.
+%%\item
+%%$2$, see below.
+%%\item
+%%$\rank A = \rank A^T$
+%%\item
+%%the singular values are $3,1,0$ and so the rank is $2$.
+%%The singular vectors can be found using the (square root of) 
+%%eigenvalues, eigenvectors
+%%of $A^TA, AA^T$, since $AA^T = U\Sigma V^T V\Sigma U^T = U\Sigma^2U^T$ and
+%%similarly for $A^TA$.
+%%\begin{comments}
+%%The square root was often forgotten for the eigenvalues. Also the
+%%left/right eigenvectors were not used appropriately.
+%%\end{comments}
+%%\end{enumerate}
+%%\end{solution}
+
+\item (10)
+Let
+\[ 
+C = 
+ \begin{bmatrix}
+-2 & 1 & 0\cr
+0 & -1 & 2\cr
+30 & -18 & 9
+ \end{bmatrix}.
+\]
+Calculate the eigenvalues and eigenvectors of $C$. Show your
+calculations.
+\\Hint: Let $v = \begin{pmatrix}1& 3 & 3\end{pmatrix}^T$ and evaluate
+$Cv$.
+
+\end{enumerate}
+%%\begin{solution}
+%%(See the TAs or the instructor.)
+%%Note that the trace is the sum of the eigenvalues while the determinant
+%%is the product. Therefore solve the two equations for the eigenvalues
+%%\[
+%%\lambda_1+\lambda_2 = 4;\, \lambda_1\lambda_2 = 3.
+%%\]
+%%Once the eigenvalues $(1,3)$ are found,
+%%the eigenvectors can be found from solving the linear systems
+%%$Bv_i = \lambda_iv_i,\, i=1,2$ to get $(1,-1)^T,\,(-1,-1)^T$,
+%%respectively.
+%%\end{solution}
+
+\end{document}
+
+
+
