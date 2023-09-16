@@ -1,0 +1,95 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\subsection{Lecture 2}
+\begin{definition}[General NLO/NLP]
+    A \textbf{Non-linear Optimization Problem} (NLP) is of the following form:
+    $$\underbrace{p^*}_{\text{Optimal Value}} = \min\;\;\;\; \underbrace{f(x)}_{Objective function}$$
+    s.t.
+    \begin{align*}
+        g(x) &= (g_i(x)) \leq 0 \in \mathbb R^m \\
+        h(x) &= (h_j(x)) = 0 \in \mathbb R^p
+    \end{align*}
+\end{definition}
+\begin{Example}
+    $$\min (x_1 - 2)^2 + (x_2 - 1)^2$$
+    s.t.
+    \begin{align*}
+        x_1^2 - x_2 &\leq 0 \tag{$g_1(x) \leq 0$}\\
+        x_1 + x_2 - 2 &\leq 0 \tag{$g_2(x) \leq 0$}
+    \end{align*}
+\end{Example}
+
+\begin{definition}[Contour]
+    For $\alpha \in \mathbb R$, the \textbf{contour} of a function $f$ is $$C_\alpha = \{ x \in \mathbb R^n: f(x) = \alpha\}$$
+\end{definition}
+\begin{definition}[Feasible Set]
+    The \textbf{feasible set} is $$F = \{x \in \mathbb R^n: g(x) \leq 0, h(x) = 0, x \in D\}$$ (Is $D$ the domain??)
+\end{definition}
+\begin{definition}[Gradient]
+    The \textbf{gradient} of $f$ is $$\nabla f(x) = 
+    \begin{pmatrix} \frac{\partial f(x)}{\partial x_1} \\ \vdots \\ \frac{\partial f(x)}{\partial x_n}\end{pmatrix}$$
+
+    For the optimal solution $x^*$, we have
+    $$\alpha \nabla f(x^*) = \lambda_1 \nabla g_1(x^*) + \lambda_2 \nabla g_2(x^*)$$ for some $\alpha, \lambda_1, \lambda_2 \in \mathbb R$.
+
+    We will see later that we can choose $\alpha = 1$ and we need $\lambda_1 \geq 0, \lambda_2 \geq 0$.
+\end{definition}
+\begin{Example}[Max-cut Problem]
+    Given a weighted graph $G = (\underbrace{V}_{\text{vertices}}, \underbrace{E}_{\text{edges}}, \underbrace{w}_{\text{weight}})$, a \textbf{cut} is $U \subseteq V, U \neq \emptyset$. The objective function $$\max \;\;\;\; \frac{1}{2} \sum_{\substack{i \in U, j \not \in U \\ (i,j) \in E}} w_{i,j}$$ maximizes the sum of edges in a cut.
+
+    Formulating as an NLP, we introduce variables $x_i \in \{\pm 1\}, i = 1,\ldots, n$. Then the Max-cut problem (MC) is as follows:
+    $$\max\;\;\;\; \frac{1}{2} \sum_{ij \in E} w_{ij}(1 - x_ix_j)$$
+    s.t. $$x_i \in \{\pm 1\}  \;\;\;\;(\text{equivalent to } x^2_i = 1)\;\;\;\; \forall i = 1,\ldots, n$$
+    This works because $$1 - x_ix_j = \begin{cases} 0 & \text{if }x_i = x_j \;\;\;\; \text{($i,j$ in the same set, $U$ or $U^c$)} \\
+    2 & \text{otherwise}
+    \end{cases}$$
+    MC is a \textbf{quadratically constrained quadratic program} (QOP) since each constraint $x_i \in \{-1, 1\}$ is equivalent to the quadratic constraint $x^2_i = 1$. Note that MC is an NP-hard problem.
+\end{Example}
+\section{Unconstrained Optimization}
+\subsection{Lecture 2}
+\begin{Example}[Simplest Case - No Constraints]
+    Let $\Omega \subseteq \mathbb R^n$ be an open set. Assume $f$ is sufficiently smooth (differentiable) then the NLP with no constraints is $$\min_{x \in \Omega} \;\;\;\; f(x)$$
+\end{Example}
+\begin{theorem}[Taylor's Theorem on the real line]
+    Let $f: (a, b) \rightarrow \mathbb R$, and $\bar{x}, x \in (a,b)$, then there exists $z$ strictly between $x, \bar x$ such that $$f(x) = f(\bar x) + f'(\bar x)(x - \bar x) + \frac{f''(z)}{2}(x - \bar x)^2$$
+    or equivalently
+    $$f(\bar x + \delta x) = \underbrace{f(x) + f'(x) \delta x}_{\text{Linear approximation}} + O(|\delta x|)$$
+\end{theorem}
+\begin{lemma}[Directional Derivative]
+    Let $f: \mathbb R^n \rightarrow \mathbb R, \bar x, d \in \mathbb R^n$ where $d$ is the direction. We define
+    $$\phi (\epsilon) = f(\bar x + \epsilon d): \mathbb R \rightarrow \mathbb R$$
+    Then the \textbf{directional derivative}, denoted $f'(x; d)$ of $f$ at $x$ at the direction $d$ is
+    $$f'(x; d) = \phi'(0) = \lim_{\epsilon \rightarrow 0} \frac{f(x + \epsilon d) - f(x)}{\epsilon} = \nabla f(x)^T d$$
+\end{lemma}
+\begin{Example}
+    Let $f(x,y,z) = x^2z + y^3z^2 - xyz$ with $d = \begin{pmatrix}
+        -1 \\ 0 \\ 3
+    \end{pmatrix}$ Then the \textbf{directional derivative} in the direction $d$ is
+    $$\nabla f(x,y,z)^T d = \begin{pmatrix}
+        2xz - yz \\
+        3y^2z^2 - xz \\
+        x^2 + 2y^3z - xy
+    \end{pmatrix} \begin{pmatrix}
+        -1 \\ 0 \\ 3
+    \end{pmatrix} = -2xz + yz + 3x^2 + 6y^3z - 3xy$$
+\end{Example}
+\begin{corollary}
+    Let $f: (a,b) \rightarrow \mathbb R$
+    \begin{enumerate}
+        \item If $\bar x$ is a \textbf{local minimizer} of $f$ on $(a,b)$, then $f'(\bar x) = 0$ and $f''(\bar x) \geq 0$.
+        \item If $f(\bar x) = 0, f''(\bar x) > 0$ then $\bar x$ is a \textbf{strict local minimizer} of $f$.
+    \end{enumerate}
+\end{corollary}
+\begin{definition}[Hessian]
+    The \textbf{Hessian} of $f$ at $x = \begin{pmatrix}
+        x_1 \\ \vdots \\ x_n
+    \end{pmatrix}$ is the matrix
+    $$\nabla^2 f(x) = \begin{pmatrix}
+        \frac{\partial f(x)}{\partial x^2_1} & \frac{\partial f(x)}{\partial x_1 \partial x_2} & \cdots & \frac{\partial f(x)}{\partial x_1 \partial x_n} \\
+        \frac{\partial f(x)}{\partial x_2 \partial x_1} & \frac{\partial f(x)}{\partial x_2^2} & \cdots & \frac{\partial f(x)}{\partial x_2 \partial x_n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \frac{\partial f(x)}{\partial x_n \partial x_1} & \frac{\partial f(x)}{\partial x_n \partial x_2} & \cdots & \frac{\partial f(x)}{\partial x_n^2} \\
+    \end{pmatrix}$$
+\end{definition}
+\end{document}

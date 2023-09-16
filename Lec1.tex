@@ -1,0 +1,32 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\section{Introduction}
+\subsection{Lecture 1}
+\begin{definition}[Quadratic Form]
+    Let $A$ be a symmetric matrix and $x = \begin{pmatrix}
+        x_1 \\ \vdots \\ x_n
+    \end{pmatrix}$. The \textbf{quadratic form} $Q$ of the matrix $A$ is defined as $$Q = x^T Ax$$
+\end{definition}
+
+\begin{Example}
+    Consider the matrix $A = \begin{pmatrix}
+        5 & -5 \\
+        -5 & 1
+    \end{pmatrix}$. The quadratic form of $A$ is $$Q(x) = 5x^2_1 - 10x_1x_2 + x^2_2$$
+\end{Example}
+\begin{definition}[Classification of Quadratic Forms]
+    Let $Q$ be a quadratic form of a matrix $A$. Then $Q$ is
+    \begin{enumerate}
+        \item positive definite if $Q(x) > 0$ for all non-zero vectors $x$, and $Q(x) = 0$ if and only if $x = 0$. Or all eigenvalues of $A$ are positive.
+        \item positive semidefinite if $Q(x) \geq 0$ for all vectors $x$, with $Q(x) = 0$ occurring for some non-zero vectors $x$. Or all eigenvalues of $A$ are non-negative.
+        \item negative definite if $Q(x) < 0$ for all non-zero vectors $x$, and $Q(x) = 0$ if and only if $x = 0$. Or all eigenvalues of $A$ are negative.
+        \item negative semidefinite if $Q(x) \leq 0$ for all vectors $x$, with $Q(x) = 0$ occuring for some non-zero vectors $x$. Or all eigenvalues of $A$ are non-negative.
+        \item indefinite if $Q(x)$ can be positive or negative. Or there are positive and negative eigenvalues for $A$.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    https://math.stackexchange.com/questions/4061952/differentiability-using-little-oh-notation
+\end{definition}
+\end{document}
