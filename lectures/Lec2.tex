@@ -1,4 +1,4 @@
-\documentclass[main.tex]{subfiles}
+\documentclass[../main.tex]{subfiles}
 
 \begin{document}
 \subsection{Lecture 2}
@@ -39,7 +39,7 @@
     Given a weighted graph $G = (\underbrace{V}_{\text{vertices}}, \underbrace{E}_{\text{edges}}, \underbrace{w}_{\text{weight}})$, a \textbf{cut} is $U \subseteq V, U \neq \emptyset$. The objective function $$\max \;\;\;\; \frac{1}{2} \sum_{\substack{i \in U, j \not \in U \\ (i,j) \in E}} w_{i,j}$$ maximizes the sum of edges in a cut.
 
     Formulating as an NLP, we introduce variables $x_i \in \{\pm 1\}, i = 1,\ldots, n$. Then the Max-cut problem (MC) is as follows:
-    $$\max\;\;\;\; \frac{1}{2} \sum_{ij \in E} w_{ij}(1 - x_ix_j)$$
+    $$\max\;\;\;\; \frac{1}{2} \sum_{ij \in E} w_{ij}(1 - x_ix_j)$$ \textcolor{red}{Why 1/2}
     s.t. $$x_i \in \{\pm 1\}  \;\;\;\;(\text{equivalent to } x^2_i = 1)\;\;\;\; \forall i = 1,\ldots, n$$
     This works because $$1 - x_ix_j = \begin{cases} 0 & \text{if }x_i = x_j \;\;\;\; \text{($i,j$ in the same set, $U$ or $U^c$)} \\
     2 & \text{otherwise}
@@ -54,7 +54,7 @@
 \begin{theorem}[Taylor's Theorem on the real line]
     Let $f: (a, b) \rightarrow \mathbb R$, and $\bar{x}, x \in (a,b)$, then there exists $z$ strictly between $x, \bar x$ such that $$f(x) = f(\bar x) + f'(\bar x)(x - \bar x) + \frac{f''(z)}{2}(x - \bar x)^2$$
     or equivalently
-    $$f(\bar x + \delta x) = \underbrace{f(x) + f'(x) \delta x}_{\text{Linear approximation}} + O(|\delta x|)$$
+    $$f(\bar x + \delta x) = \underbrace{f(x) + f'(x) \delta x}_{\text{Linear approximation}} + o(|\delta x|)(\text{little O})$$
 \end{theorem}
 \begin{lemma}[Directional Derivative]
     Let $f: \mathbb R^n \rightarrow \mathbb R, \bar x, d \in \mathbb R^n$ where $d$ is the direction. We define
@@ -70,7 +70,7 @@
         2xz - yz \\
         3y^2z^2 - xz \\
         x^2 + 2y^3z - xy
-    \end{pmatrix} \begin{pmatrix}
+    \end{pmatrix}^{T} \begin{pmatrix}
         -1 \\ 0 \\ 3
     \end{pmatrix} = -2xz + yz + 3x^2 + 6y^3z - 3xy$$
 \end{Example}
@@ -92,4 +92,6 @@
         \frac{\partial f(x)}{\partial x_n \partial x_1} & \frac{\partial f(x)}{\partial x_n \partial x_2} & \cdots & \frac{\partial f(x)}{\partial x_n^2} \\
     \end{pmatrix}$$
 \end{definition}
+
+
 \end{document}

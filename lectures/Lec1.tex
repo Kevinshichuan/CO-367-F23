@@ -1,8 +1,8 @@
-\documentclass[main.tex]{subfiles}
+\documentclass[../main.tex]{subfiles}
 
 \begin{document}
 \section{Introduction}
-\subsection{Lecture 1}
+\subsection{Lecture 1-Preliminaries}
 \begin{definition}[Quadratic Form]
     Let $A$ be a symmetric matrix and $x = \begin{pmatrix}
         x_1 \\ \vdots \\ x_n
@@ -26,7 +26,92 @@
     \end{enumerate}
 \end{definition}
 
-\begin{definition}
-    https://math.stackexchange.com/questions/4061952/differentiability-using-little-oh-notation
+\begin{definition}[big O and little ]
+    https://www.stat.cmu.edu/~cshalizi/uADA/13/lectures/app-b.pdf
+\end{definition}
+
+\begin{definition}[differentiable based on big o and little o]
+   $https://sites.math.washington.edu/~folland/Math134/lin-approx.pdf$
+\end{definition}
+
+
+
+\begin{definition}[Inner Product Space]
+    Let $x \in \mathbb{R}^n$, represented as:
+    
+    \[
+    x = \begin{pmatrix}
+        x_1 \\
+        \vdots \\
+        x_n
+    \end{pmatrix}
+    \]
+    
+    The inner product space is defined as:
+    
+    \[
+    \langle x, y \rangle = x^T y = \sum_{i=1}^{n} x_i y_i \quad \text{(dot product)}
+    \]
+
+    The angle between vectors $x$ and $y$ is given by $\cos(\theta) = \frac{\langle x, y \rangle}{\|x\|}$.
+
+    With corresponding norm to be the Euclidean Norm
+\end{definition}
+
+\begin{definition}[Open ball]
+    Given $\delta > 0$, $\bar{x}\in \mathbb{R}^n$, the open ball $B_{\delta}(\bar{x})=\{x \in \mathbb{R}^n\ | \|x-\bar{x}\|< \delta\}$
+    
+\end{definition}
+
+\begin{definition}[map]
+    Suppose the map $f:\mathbb{R}^n -> \mathbb{R}$.
+\end{definition}
+
+\begin{definition}[open set]
+    Let D $\subset \mathbb{R}^n$, D open set. $\forall x \in D$, $\exists \delta >0$, s.t $B_{\delta}(x)\subset D$
+\end{definition}
+
+\begin{definition}[differ]
+    We define \(f\) to be in \(C^1, C^2\) on an open set \(D \subseteq \mathbb{R}^n\), denoted \(f \in C^1(D), C^2(D)\), respectively, if the partial first \(\frac{\partial f(x)}{\partial x_i}\) and second \(\frac{\partial^2 f(x)}{\partial x_i \partial x_j}\) derivatives exist and are continuous for all \(i, j\), respectively. We then get the gradient vector in \(\mathbb{R}^n\) and the \(n \times n\) symmetric Hessian matrix, respectively denoted as:
+\[
+\nabla f(x) = \left( \frac{\partial f(x)}{\partial x_i} \right) \in \mathbb{R}^n, \quad \nabla^2 f(x) = \left[ \frac{\partial^2 f(x)}{\partial x_i \partial x_j} \right] \in \mathbb{S}^n.
+\]
+Here, \(\mathbb{S}^n\) is the vector space of \(n \times n\) symmetric matrices.
+
+\end{definition}
+
+
+\begin{definition}[General Nonlinear opt. function NLO]
+    The general problem of nonlinear optimization, denoted NLO, is defined as follows: Given C²-smooth functions
+\(f, g_i, h_j : D \subseteq \mathbb{R}^n \rightarrow \mathbb{R}\) for \(i = 1, \ldots, m\) and \(j = 1, \ldots, p\), where \(D\) is an open subset of \(\mathbb{R}^n\), the objective is to find the optimal value \(p^*\) and an optimum \(x^*\) of NLO, represented as:
+
+\[
+p^* := \min f(x) \\
+\text{s.t.} \quad g_i(x) \leq 0, \quad \forall i = 1, \ldots, m \\
+h_j(x) = 0, \quad \forall j = 1, \ldots, p \\
+x \in D
+\]
+
+If $f,g_i,h_i$ are all \textbf{affine} function and D=$R^2$, then we have an LP
+\end{definition}
+
+\begin{definition}[affine]
+    % Define the affine function: f(x) = Ax + b
+\begin{equation}
+    f(x) = Ax + b
+\end{equation}
+where b$\neq$0
+
+\end{definition}
+\begin{definition}[Types of Minimality]
+    Consider \(f : \mathbb{R}^n \rightarrow \mathbb{R}\) and \(D \subset \mathbb{R}^n\). Then \(\bar{x} \in D\) is:
+
+\begin{itemize}
+    \item a \textit{global minimizer} for \(f\) on \(D\) if \(f(\bar{x}) \leq f(x)\) for all \(x \in D\).
+    \item a \textit{strict global minimizer} for \(f\) on \(D\) if \(f(\bar{x}) < f(x)\) for all \(x \in D\) where \(x \neq \bar{x}\).
+    \item a \textit{local minimizer} for \(f\) on \(D\) if there exists \(\delta > 0\) such that \(f(\bar{x}) \leq f(x)\) for all \(x \in D \cap B_\delta(\bar{x})\).
+    \item a \textit{strict local minimizer} for \(f\) on \(D\) if there exists \(\delta > 0\) such that \(f(\bar{x}) < f(x)\) for all \(x \in D \cap B_\delta(\bar{x})\) where \(x \neq \bar{x}\).
+\end{itemize}
 \end{definition}
 \end{document}
+
