@@ -9,6 +9,72 @@
     \end{align*}
 \end{definition}
 
+\begin{definition}[]
+    Define f,D,$\bar{x}$, D is an open set, suppose $\bar{x}$ is a local minmum for f on D,
+    Then:
+    \begin{enumerate}
+        \item Nec: $\nabla f(\bar{x})=0,\nabla^2f(\bar{x}) \geq 0
+        $ positive semidefinite
+        \item Suff: $\nabla f(\bar{x})=0,\nabla^2f(\bar{x}) > 0
+        $ positive definite $\implies \bar{x}$ is a strict local minmum on Define
 
+    \end{enumerate}
+
+
+\end{definition}
+
+\begin{proof}
+    1. updated later after I confirmed some details with the professor
+\end{proof}
+
+\begin{Example}[Algorithm to find Min using Nec above]
+    Given f:$\mathbb{R}\implies \mathbb{R}$ and $f^{'}(\bar{x})\neq 0$
+    , then $x_{new}=\bar{x}-slop*f^{'}(\bar{x})$.
+    
+\end{Example}
+
+\begin{Example}
+    Given f:$\mathbb{R}^n \implies \mathbb{R}, \phi(\epsilon)=f(\bar{x}+\epsilon d)$ 
+    \\ using tylar expansion 
+    $f(\bar{x}+\epsilon d)$=
+    $f(\bar{x})$+$\epsilon$ $\nabla f(\bar{x})^T d$ +$o(\|\epsilon\|)$ \textcolor{red}{shouldnt be $\epsilon d$? or d is the unit vector}
+
+    let $d=-\nabla f(\bar{x})$, f($\bar{x}$)-$\epsilon \| f(\bar{x})\|^2$+$o(\epsilon)$.
+    $<f(x)$ (if $\nabla f(\bar{x})\neq 0$)
+    \\ i.e test nec condition 
+    \\ If $\nabla f(\bar{x})\neq 0$, then $x_{new}=\bar{x}+\epsilon(-\nabla f(\bar(x)))$
+    Move to the deapest direction
+
+
+    
+\end{Example}
+
+\begin{definition}[Cauchy's method of steepest descant]
+    \text{https://www.math.usm.edu/lambers/mat419/lecture10.pdf}
+    $x_{0} \in \mathbb{R}^n$.   
+    $$Is \nabla f(x_k)\approxeq 0?\text{IF yes Stop}$$.
+    $$O.W, \text{ find a Stop} \alpha >0$$
+    $$x_{k+1}=x_k-\alpha\nabla f(x_k)$$
+    $$repeat$$
+\end{definition}
+
+\begin{Example}
+    $f(x,y)=x^3-12xy+8y^3$ \\
+    $\nabla f(x,y)=\begin{pmatrix}
+        3x^2-12y \\
+        -12x+24y^2
+    \end{pmatrix}$. $\nabla^2 f(x,y)=\begin{pmatrix}
+        6x & -12 \\
+        -12 & 48y
+    \end{pmatrix}$.  \\
+    $$\nabla f=0 \implies (x,y)=(0,0) or (2,1)$$
+    $$\nabla^2 f(2,1)=\begin{pmatrix}
+        12 & -2 \\
+        -12 & 48
+    \end{pmatrix}$$
+
+    All leading principal minors are ppsitive $\implies$ strict local minimum
+    \\ while (0,0) are indefinite and this is called \textbf{inflection point}
+\end{Example}
 
 \end{document}
