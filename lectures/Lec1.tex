@@ -1,6 +1,6 @@
-\documentclass[../main.tex]{subfiles}
+% \documentclass[../main.tex]{subfiles}
 
-\begin{document}
+% \begin{document}
 \section{Introduction}
 \subsection{Lecture 1-Preliminaries}
 \begin{definition}[Quadratic Form]
@@ -26,12 +26,14 @@
     \end{enumerate}
 \end{definition}
 
-\begin{definition}[big O and little ]
-    https://www.stat.cmu.edu/~cshalizi/uADA/13/lectures/app-b.pdf
+\begin{definition}[\href{https://www.stat.cmu.edu/~cshalizi/uADA/13/lectures/app-b.pdf}{Big O and little o}]
+    Big O is basically the rate of growth of that function. A function $f(n)$ is of order 1, or $O(1)$ if there exists some non zero constant $c$ such that $$\frac{f(n)}{c} \rightarrow 1$$ as $n \rightarrow \infty$.
+
+    Little o is the upper bound of the rate of growth of that function. Therefore, a function $f(n)$ is of order 1, or $o(1)$ if for all constants $c > 0$, $$\frac{f(n)}{c} \rightarrow 0$$ as $n \rightarrow \infty$.
 \end{definition}
 
-\begin{definition}[differentiable based on big o and little o]
-   $https://sites.math.washington.edu/~folland/Math134/lin-approx.pdf$
+\begin{definition}[\href{https://sites.math.washington.edu/~folland/Math134/lin-approx.pdf}{Differentiability Based on Big o and Little o}]
+    WIP
 \end{definition}
 
 
@@ -113,5 +115,11 @@ where b$\neq$0
     \item a \textit{strict local minimizer} for \(f\) on \(D\) if there exists \(\delta > 0\) such that \(f(\bar{x}) < f(x)\) for all \(x \in D \cap B_\delta(\bar{x})\) where \(x \neq \bar{x}\).
 \end{itemize}
 \end{definition}
-\end{document}
+\begin{definition}[Linear Approximation]
+    Suppose $f$ is a function that is differentiable on an interval $I$ containing the point $a$. The \textbf{linear approximation} to $f$ at $a$ is the linear function $$L(x) = f(a) + f'(a)(x-a)$$ for $x \in I$.
+\end{definition}
+\begin{definition}[Quadratic Approximation]
+    Similar as above, the \textbf{quadratic approximation} to $f$ at $a$ is the quadratic function $$Q(x) = f(a) + f'(a)(x-a) + \frac{1}{2}f''(a)(x-a)^2$$ for $x \in I$.
+\end{definition}
+% \end{document}
 
