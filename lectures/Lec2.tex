@@ -92,6 +92,12 @@
         \frac{\partial f(x)}{\partial x_n \partial x_1} & \frac{\partial f(x)}{\partial x_n \partial x_2} & \cdots & \frac{\partial f(x)}{\partial x_n^2} \\
     \end{pmatrix}$$
 \end{definition}
-
+\begin{theorem}[Multivariate Taylor]
+    Consider a $C^2$-smooth function $f: U \rightarrow \mathbb R$ on an open set $U \subset \mathbb R^n$. If $\bar x$ and $x$ are such that the segment $[\bar x, x] := \{\bar x + t(x - \bar x): t \in [0,1]\}$ is contained in $U$, then there exists a point $z \in [\bar x, x]$ such that
+    $$f(x) = f(\bar x) + \langle \nabla f(\bar x), x - \bar x \rangle + \frac{1}{2} \langle \nabla^2 f(z) (x - \bar x), (x - \bar x) \rangle$$
+\end{theorem}
+\begin{lemma}
+    Let $v \in \mathbb R^n$. Then $$v = 0 \iff \langle v,d \rangle = 0, \quad \forall d \in \mathbb R^n$$
+\end{lemma}
 
 % \end{document}

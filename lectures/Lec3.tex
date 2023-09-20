@@ -10,22 +10,22 @@
 \end{definition}
 
 \begin{definition}[]
-    Define f,D,$\bar{x}$, D is an open set, suppose $\bar{x}$ is a local minimum for f on D,
+    Define $f,D,\bar{x}$, $D$ is an open set
     Then:
     \begin{enumerate}
-        \item Nec: $\nabla f(\bar{x})=0,\nabla^2f(\bar{x}) \succeq 0
-        $ positive semidefinite
-        \item Suff: $\nabla f(\bar{x})=0,\nabla^2f(\bar{x}) \succ 0
-        $ positive definite $\implies \bar{x}$ is a strict local minimum on D
-
+        \item Nec: If $\bar{x}$ is a local minimum for $f$ on $D$, then $\nabla f(\bar{x})=0$ and $\nabla^2f(\bar{x}) \succeq 0
+        $ is positive semidefinite.
+        \item Suff: If $\nabla f(\bar{x})=0,\nabla^2f(\bar{x}) \succ 0
+        $ is positive definite then $\bar{x}$ is a strict local minimum of $f$ on $D$.
     \end{enumerate}
-
-
 \end{definition}
-
 \begin{proof}
     1. updated later after I confirmed some details with the professor
 \end{proof}
+
+\begin{definition}[Critical/Stationary Points]
+    A point $\bar x \in U$ is a critical point of a function $f: U \rightarrow \mathbb R$ if $\nabla f(\bar x)$ exists and satisfies $\nabla f(\bar x) = 0$.
+\end{definition}
 
 \begin{problem}[Algorithm to Find Local Minimizer]
     Given $f: \mathbb{R}\rightarrow \mathbb{R}$ and $f'(\bar{x})\neq 0$, then $x_{new}=\bar{x}-(\text{step})*f'(\bar{x})$.
