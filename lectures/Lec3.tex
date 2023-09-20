@@ -10,13 +10,13 @@
 \end{definition}
 
 \begin{definition}[]
-    Define f,D,$\bar{x}$, D is an open set, suppose $\bar{x}$ is a local minmum for f on D,
+    Define f,D,$\bar{x}$, D is an open set, suppose $\bar{x}$ is a local minimum for f on D,
     Then:
     \begin{enumerate}
-        \item Nec: $\nabla f(\bar{x})=0,\nabla^2f(\bar{x}) \geq 0
+        \item Nec: $\nabla f(\bar{x})=0,\nabla^2f(\bar{x}) \succeq 0
         $ positive semidefinite
-        \item Suff: $\nabla f(\bar{x})=0,\nabla^2f(\bar{x}) > 0
-        $ positive definite $\implies \bar{x}$ is a strict local minmum on Define
+        \item Suff: $\nabla f(\bar{x})=0,\nabla^2f(\bar{x}) \succ 0
+        $ positive definite $\implies \bar{x}$ is a strict local minimum on D
 
     \end{enumerate}
 
@@ -27,10 +27,10 @@
     1. updated later after I confirmed some details with the professor
 \end{proof}
 
-\begin{problem}[Algorithm to find Min using Nec above]
-    Given f:$\mathbb{R}\implies \mathbb{R}$ and $f^{'}(\bar{x})\neq 0$
-    , then $x_{new}=\bar{x}-slop*f^{'}(\bar{x})$.
+\begin{problem}[Algorithm to Find Local Minimizer]
+    Given $f: \mathbb{R}\rightarrow \mathbb{R}$ and $f'(\bar{x})\neq 0$, then $x_{new}=\bar{x}-(\text{step})*f'(\bar{x})$.
     
+    The idea is that if $f'(\bar x) > 0$, then we know that the function is increasing at $\bar x$, so we want to move to the left to obtain the minimum. Similarly, if $f'(\bar x) < 0$, then we know that the function is decreasing at $\bar x$, so we want to move to the right to obtain the minimum.
 \end{problem}
 
 \begin{problem}
