@@ -33,6 +33,19 @@
 \end{definition}
 
 \begin{definition}[\href{https://sites.math.washington.edu/~folland/Math134/lin-approx.pdf}{Differentiability Based on Big o and Little o}]
+    If $f$ is differentiable at $x = a$, then $$f(a + h) = f(a) + f'(a)h + o(h)$$
+    Conversely, if there exists constants $A$ and $B$ such that $$f(a + h) = A + Bh + o(h)$$ then $f$ is differentiable at $x = a$. Moreover, $A = f(a)$ and $B = f'(a)$.
+\end{definition}
+\begin{definition}[Product Rule]
+    If $f, g$ are differentiable at $x = a$, then $$f(a + h) = f(a) + f'(a)h + o(h), \quad g(a + h) = g(a) + g'(a)h + o(h)$$
+    Then
+    \begin{align*}
+        p(a + h) &= f(a + h)g(a + h) \\
+        &= f(a)g(a) + [f(a)g'(a) + g(a)f(a)]h + o(h) 
+    \end{align*}
+    Then by above theorem, $p = fg$ is differentiable at $x = a$, and $p'(a) = f(a)g'(a) + g(a)f'(a)$.
+\end{definition}
+\begin{definition}[Chain Rule]
     WIP
 \end{definition}
 
@@ -120,6 +133,12 @@ where b$\neq$0
 \end{definition}
 \begin{definition}[Quadratic Approximation]
     Similar as above, the \textbf{quadratic approximation} to $f$ at $a$ is the quadratic function $$Q(x) = f(a) + f'(a)(x-a) + \frac{1}{2}f''(a)(x-a)^2$$ for $x \in I$.
+\end{definition}
+\begin{definition}[Formal Definition of Derivative]
+    The \textbf{derivative} of $f$ at $a$ is defined as $$f'(a) = \lim_{x \rightarrow a} \frac{f(x) - f(a)}{x-a}$$ if the limit exists.
+
+    An alternate definition is
+    $$f'(a) = \lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h}$$
 \end{definition}
 % \end{document}
 
