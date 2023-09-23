@@ -1,6 +1,6 @@
-\documentclass[../main.tex]{subfiles}
+% \documentclass[../main.tex]{subfiles}
 
-\begin{document}
+% \begin{document}
 \subsection{Lecture 3}
 
 \begin{definition}[Matrix Norm]
@@ -10,30 +10,30 @@
 \end{definition}
 
 \begin{definition}[]
-    Define f,D,$\bar{x}$, D is an open set, suppose $\bar{x}$ is a local minmum for f on D,
+    Define $f,D,\bar{x}$, $D$ is an open set
     Then:
     \begin{enumerate}
-        \item Nec: $\nabla f(\bar{x})=0,\nabla^2f(\bar{x}) \geq 0
-        $ positive semidefinite
-        \item Suff: $\nabla f(\bar{x})=0,\nabla^2f(\bar{x}) > 0
-        $ positive definite $\implies \bar{x}$ is a strict local minmum on Define
-
+        \item Nec: If $\bar{x}$ is a local minimum for $f$ on $D$, then $\nabla f(\bar{x})=0$ and $\nabla^2f(\bar{x}) \succeq 0
+        $ is positive semidefinite.
+        \item Suff: If $\nabla f(\bar{x})=0,\nabla^2f(\bar{x}) \succ 0
+        $ is positive definite then $\bar{x}$ is a strict local minimum of $f$ on $D$.
     \end{enumerate}
-
-
 \end{definition}
-
 \begin{proof}
     1. updated later after I confirmed some details with the professor
 \end{proof}
 
-\begin{Example}[Algorithm to find Min using Nec above]
-    Given f:$\mathbb{R}\implies \mathbb{R}$ and $f^{'}(\bar{x})\neq 0$
-    , then $x_{new}=\bar{x}-slop*f^{'}(\bar{x})$.
-    
-\end{Example}
+\begin{definition}[Critical/Stationary Points]
+    A point $\bar x \in U$ is a critical point of a function $f: U \rightarrow \mathbb R$ if $\nabla f(\bar x)$ exists and satisfies $\nabla f(\bar x) = 0$.
+\end{definition}
 
-\begin{Example}
+\begin{problem}[Algorithm to Find Local Minimizer]
+    Given $f: \mathbb{R}\rightarrow \mathbb{R}$ and $f'(\bar{x})\neq 0$, then $x_{new}=\bar{x}-(\text{step})*f'(\bar{x})$.
+    
+    The idea is that if $f'(\bar x) > 0$, then we know that the function is increasing at $\bar x$, so we want to move to the left to obtain the minimum. Similarly, if $f'(\bar x) < 0$, then we know that the function is decreasing at $\bar x$, so we want to move to the right to obtain the minimum.
+\end{problem}
+
+\begin{problem}
     Given f:$\mathbb{R}^n \implies \mathbb{R}, \phi(\epsilon)=f(\bar{x}+\epsilon d)$ 
     \\ using tylar expansion 
     $f(\bar{x}+\epsilon d)$=
@@ -47,7 +47,7 @@
 
 
     
-\end{Example}
+\end{problem}
 
 \begin{definition}[Cauchy's method of steepest descant]
     \text{https://www.math.usm.edu/lambers/mat419/lecture10.pdf}
@@ -58,7 +58,7 @@
     $$repeat$$
 \end{definition}
 
-\begin{Example}
+\begin{problem}
     $f(x,y)=x^3-12xy+8y^3$ \\
     $\nabla f(x,y)=\begin{pmatrix}
         3x^2-12y \\
@@ -75,6 +75,6 @@
 
     All leading principal minors are ppsitive $\implies$ strict local minimum
     \\ while (0,0) are indefinite and this is called \textbf{inflection point}
-\end{Example}
+\end{problem}
 
-\end{document}
+% \end{document}

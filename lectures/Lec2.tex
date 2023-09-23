@@ -1,24 +1,24 @@
-\documentclass[../main.tex]{subfiles}
+% \documentclass[../main.tex]{subfiles}
 
-\begin{document}
+% \begin{document}
 \subsection{Lecture 2}
 \begin{definition}[General NLO/NLP]
     A \textbf{Non-linear Optimization Problem} (NLP) is of the following form:
-    $$\underbrace{p^*}_{\text{Optimal Value}} = \min\;\;\;\; \underbrace{f(x)}_{Objective function}$$
+    $$\underbrace{p^*}_{\text{Optimal Value}} = \min\;\;\;\; \underbrace{f(x)}_{\text{Objective function}}$$
     s.t.
     \begin{align*}
         g(x) &= (g_i(x)) \leq 0 \in \mathbb R^m \\
         h(x) &= (h_j(x)) = 0 \in \mathbb R^p
     \end{align*}
 \end{definition}
-\begin{Example}
+\begin{problem}[Example]
     $$\min (x_1 - 2)^2 + (x_2 - 1)^2$$
     s.t.
     \begin{align*}
         x_1^2 - x_2 &\leq 0 \tag{$g_1(x) \leq 0$}\\
         x_1 + x_2 - 2 &\leq 0 \tag{$g_2(x) \leq 0$}
     \end{align*}
-\end{Example}
+\end{problem}
 
 \begin{definition}[Contour]
     For $\alpha \in \mathbb R$, the \textbf{contour} of a function $f$ is $$C_\alpha = \{ x \in \mathbb R^n: f(x) = \alpha\}$$
@@ -35,7 +35,7 @@
 
     We will see later that we can choose $\alpha = 1$ and we need $\lambda_1 \geq 0, \lambda_2 \geq 0$.
 \end{definition}
-\begin{Example}[Max-cut Problem]
+\begin{problem}[Max-cut Problem]
     Given a weighted graph $G = (\underbrace{V}_{\text{vertices}}, \underbrace{E}_{\text{edges}}, \underbrace{w}_{\text{weight}})$, a \textbf{cut} is $U \subseteq V, U \neq \emptyset$. The objective function $$\max \;\;\;\; \frac{1}{2} \sum_{\substack{i \in U, j \not \in U \\ (i,j) \in E}} w_{i,j}$$ maximizes the sum of edges in a cut.
 
     Formulating as an NLP, we introduce variables $x_i \in \{\pm 1\}, i = 1,\ldots, n$. Then the Max-cut problem (MC) is as follows:
@@ -45,12 +45,12 @@
     2 & \text{otherwise}
     \end{cases}$$
     MC is a \textbf{quadratically constrained quadratic program} (QOP) since each constraint $x_i \in \{-1, 1\}$ is equivalent to the quadratic constraint $x^2_i = 1$. Note that MC is an NP-hard problem.
-\end{Example}
+\end{problem}
 \section{Unconstrained Optimization}
 \subsection{Lecture 2}
-\begin{Example}[Simplest Case - No Constraints]
+\begin{problem}[Simplest Case - No Constraints]
     Let $\Omega \subseteq \mathbb R^n$ be an open set. Assume $f$ is sufficiently smooth (differentiable) then the NLP with no constraints is $$\min_{x \in \Omega} \;\;\;\; f(x)$$
-\end{Example}
+\end{problem}
 \begin{theorem}[Taylor's Theorem on the real line]
     Let $f: (a, b) \rightarrow \mathbb R$, and $\bar{x}, x \in (a,b)$, then there exists $z$ strictly between $x, \bar x$ such that $$f(x) = f(\bar x) + f'(\bar x)(x - \bar x) + \frac{f''(z)}{2}(x - \bar x)^2$$
     or equivalently
@@ -62,7 +62,7 @@
     Then the \textbf{directional derivative}, denoted $f'(x; d)$ of $f$ at $x$ at the direction $d$ is
     $$f'(x; d) = \phi'(0) = \lim_{\epsilon \rightarrow 0} \frac{f(x + \epsilon d) - f(x)}{\epsilon} = \nabla f(x)^T d$$
 \end{lemma}
-\begin{Example}
+\begin{problem}
     Let $f(x,y,z) = x^2z + y^3z^2 - xyz$ with $d = \begin{pmatrix}
         -1 \\ 0 \\ 3
     \end{pmatrix}$ Then the \textbf{directional derivative} in the direction $d$ is
@@ -73,7 +73,7 @@
     \end{pmatrix}^{T} \begin{pmatrix}
         -1 \\ 0 \\ 3
     \end{pmatrix} = -2xz + yz + 3x^2 + 6y^3z - 3xy$$
-\end{Example}
+\end{problem}
 \begin{corollary}
     Let $f: (a,b) \rightarrow \mathbb R$
     \begin{enumerate}
@@ -92,6 +92,12 @@
         \frac{\partial f(x)}{\partial x_n \partial x_1} & \frac{\partial f(x)}{\partial x_n \partial x_2} & \cdots & \frac{\partial f(x)}{\partial x_n^2} \\
     \end{pmatrix}$$
 \end{definition}
+\begin{theorem}[Multivariate Taylor]
+    Consider a $C^2$-smooth function $f: U \rightarrow \mathbb R$ on an open set $U \subset \mathbb R^n$. If $\bar x$ and $x$ are such that the segment $[\bar x, x] := \{\bar x + t(x - \bar x): t \in [0,1]\}$ is contained in $U$, then there exists a point $z \in [\bar x, x]$ such that
+    $$f(x) = f(\bar x) + \langle \nabla f(\bar x), x - \bar x \rangle + \frac{1}{2} \langle \nabla^2 f(z) (x - \bar x), (x - \bar x) \rangle$$
+\end{theorem}
+\begin{lemma}
+    Let $v \in \mathbb R^n$. Then $$v = 0 \iff \langle v,d \rangle = 0, \quad \forall d \in \mathbb R^n$$
+\end{lemma}
 
-
-\end{document}
+% \end{document}

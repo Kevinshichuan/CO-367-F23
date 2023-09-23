@@ -1,6 +1,6 @@
-\documentclass[../main.tex]{subfiles}
+% \documentclass[../main.tex]{subfiles}
 
-\begin{document}
+% \begin{document}
 \section{Introduction}
 \subsection{Lecture 1-Preliminaries}
 \begin{definition}[Quadratic Form]
@@ -9,12 +9,12 @@
     \end{pmatrix}$. The \textbf{quadratic form} $Q$ of the matrix $A$ is defined as $$Q = x^T Ax$$
 \end{definition}
 
-\begin{Example}
+\begin{problem}[Example]
     Consider the matrix $A = \begin{pmatrix}
         5 & -5 \\
         -5 & 1
     \end{pmatrix}$. The quadratic form of $A$ is $$Q(x) = 5x^2_1 - 10x_1x_2 + x^2_2$$
-\end{Example}
+\end{problem}
 \begin{definition}[Classification of Quadratic Forms]
     Let $Q$ be a quadratic form of a matrix $A$. Then $Q$ is
     \begin{enumerate}
@@ -26,12 +26,27 @@
     \end{enumerate}
 \end{definition}
 
-\begin{definition}[big O and little ]
-    https://www.stat.cmu.edu/~cshalizi/uADA/13/lectures/app-b.pdf
+\begin{definition}[\href{https://www.stat.cmu.edu/~cshalizi/uADA/13/lectures/app-b.pdf}{Big O and little o}]
+    Big O is basically the rate of growth of that function. A function $f(n)$ is of order 1, or $O(1)$ if there exists some non zero constant $c$ such that $$\frac{f(n)}{c} \rightarrow 1$$ as $n \rightarrow \infty$.
+
+    Little o is the upper bound of the rate of growth of that function. Therefore, a function $f(n)$ is of order 1, or $o(1)$ if for all constants $c > 0$, $$\frac{f(n)}{c} \rightarrow 0$$ as $n \rightarrow \infty$.
 \end{definition}
 
-\begin{definition}[differentiable based on big o and little o]
-   $https://sites.math.washington.edu/~folland/Math134/lin-approx.pdf$
+\begin{definition}[\href{https://sites.math.washington.edu/~folland/Math134/lin-approx.pdf}{Differentiability Based on Big o and Little o}]
+    If $f$ is differentiable at $x = a$, then $$f(a + h) = f(a) + f'(a)h + o(h)$$
+    Conversely, if there exists constants $A$ and $B$ such that $$f(a + h) = A + Bh + o(h)$$ then $f$ is differentiable at $x = a$. Moreover, $A = f(a)$ and $B = f'(a)$.
+\end{definition}
+\begin{definition}[Product Rule]
+    If $f, g$ are differentiable at $x = a$, then $$f(a + h) = f(a) + f'(a)h + o(h), \quad g(a + h) = g(a) + g'(a)h + o(h)$$
+    Then
+    \begin{align*}
+        p(a + h) &= f(a + h)g(a + h) \\
+        &= f(a)g(a) + [f(a)g'(a) + g(a)f(a)]h + o(h) 
+    \end{align*}
+    Then by above theorem, $p = fg$ is differentiable at $x = a$, and $p'(a) = f(a)g'(a) + g(a)f'(a)$.
+\end{definition}
+\begin{definition}[Chain Rule]
+    WIP
 \end{definition}
 
 
@@ -113,5 +128,17 @@ where b$\neq$0
     \item a \textit{strict local minimizer} for \(f\) on \(D\) if there exists \(\delta > 0\) such that \(f(\bar{x}) < f(x)\) for all \(x \in D \cap B_\delta(\bar{x})\) where \(x \neq \bar{x}\).
 \end{itemize}
 \end{definition}
-\end{document}
+\begin{definition}[Linear Approximation]
+    Suppose $f$ is a function that is differentiable on an interval $I$ containing the point $a$. The \textbf{linear approximation} to $f$ at $a$ is the linear function $$L(x) = f(a) + f'(a)(x-a)$$ for $x \in I$.
+\end{definition}
+\begin{definition}[Quadratic Approximation]
+    Similar as above, the \textbf{quadratic approximation} to $f$ at $a$ is the quadratic function $$Q(x) = f(a) + f'(a)(x-a) + \frac{1}{2}f''(a)(x-a)^2$$ for $x \in I$.
+\end{definition}
+\begin{definition}[Formal Definition of Derivative]
+    The \textbf{derivative} of $f$ at $a$ is defined as $$f'(a) = \lim_{x \rightarrow a} \frac{f(x) - f(a)}{x-a}$$ if the limit exists.
+
+    An alternate definition is
+    $$f'(a) = \lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h}$$
+\end{definition}
+% \end{document}
 
