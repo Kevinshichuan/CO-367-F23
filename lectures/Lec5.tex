@@ -70,8 +70,14 @@
 
   \textcolor{red}{also something about the condition number, i dont really understand.}
 \end{problem}
+\begin{definition}[Singular Values of a Matrix]
+  The singular values of a matrix $A$ are the square roots of the eigenvalues of the matrix $A^TA$. They are always non-negative real numbers.
+
+  The number of non-zero singular values of a matrix equals the rank of that matrix.
+\end{definition}
 \begin{definition}[Condition Number of a Matrix]
-  The condition number of a matrix $A$ is $\kappa_A = \|A \| \| A^{-1} \|$.
+  Suppose $A \in \mathbb R^{m \times n}, m > n$ is full column rank. The condition number of the matrix $A$, $\text{cond}(A)$, is the ratio of the largest to smallest nonzero singular values of $A$. Let $\sigma_{\max}$ be the largest singular value and $\sigma_{\min}$ be the smallest singular value. Then
+  $$\text{cond}(A) = \frac{\sigma_{\max}}{\sigma_{\min}}$$
 \end{definition}
 \begin{definition}[Frechet Derivative]
   Let $h: U \to W$, where $U$ is an open subset of $V$, and $V,W$ are finite dimensional vector spaces. The function $h$ is \textbf{Frechet differentiable} at $x \in U$ if there exists a linear transformation $A: V \to W$ such that

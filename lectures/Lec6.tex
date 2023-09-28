@@ -1,1 +1,67 @@
 \subsection{Lecture 6}
+Goal: Solving normal equation/non linear case
+\begin{definition}[\href{https://www.geeksforgeeks.org/singular-value-decomposition-svd/}{SVD Decomposition}]
+  Let $A$ be an $m \times n$ matrix. Then $A$ can be factored into
+  $$\underbrace{A}_{m \times n} = \underbrace{U}_{m \times m}\underbrace{\Sigma}_{m \times n}\underbrace{V^T}_{n \times n}$$
+  where
+  \begin{itemize}
+    \item $U$ is an $m \times m$ orthogonal matrix consisting of eigenvectors of $AA^T$
+    \item $V^T$ is the transpose of an $n \times n$ matrix containing the eigenvectors of $A^TA$
+    \item $\Sigma$ is a diagonal matrix with $r = \text{rank}(A)$ positive eigenvalues of $AA^T$ (Singular values of $A$) on the diagonal.
+  \end{itemize}
+\end{definition}
+\textcolor{red}{there is a section on piazza posted lecture notes that shows why using SVD decomposition to solve normal equation is a bad idea. Not sure if i should include here}
+\begin{definition}[Orthogonal Matrix]
+  A matrix $Q$ is orthogonal if $Q^TQ = I$.
+\end{definition}
+\begin{definition}[Orthonormal Columns]
+  A matrix $Q$ has orthonormal columns if each column vector is a unit vector (norm is 1), and any two distinct columns are orthogonal (inner product is 0).
+\end{definition}
+\begin{definition}[QR Factorization]
+  For any $m \times n$ matrix $A$, there there exists an $m \times m$ orthogonal matrix $Q$ ($QQ^T = I$) and an $m \times n$ upper triangular matrix $R$ ($R_{i,j} = 0, \forall i < j)$ satisfying $A = QR$. Moreover, if the columns of $A$ are linearly independent then we can get
+  \begin{align*}
+    A &= QR \\
+    &= Q \begin{bmatrix}
+      R_1 \\ 0
+    \end{bmatrix} \\
+    &= \begin{bmatrix}
+      Q_1 & Q_2
+    \end{bmatrix} \begin{bmatrix}
+      R_1 \\ 0
+    \end{bmatrix} \\
+    &= Q_1R_1
+  \end{align*}
+  where 
+  \begin{itemize}
+    \item $R_1$ is an invertible $n \times n$ upper triangular matrix
+    \item $0$ is an $(m - n) \times n$ zero matrix
+    \item $Q_1$ is an $m \times n$ matrix with orthonormal columns
+    \item $Q_2$ is an $m \times (m - n)$ matrix with orthonormal columns
+  \end{itemize}
+\end{definition}
+\begin{theorem}[QR Factorization on Normal Equation]
+  Assuming that the columns of $A$ are linearly independent, then the normal equation $A^TAx = A^Tb$ can be solved by applying QR factorization to $A$:
+  \begin{align*}
+    (A^TA)x &= A^Tb \\
+    ((Q_1R_1)^TQ_1R_1)x &= (Q_1R_1)^Tb \\
+    (R_1^TQ_1^TQ_1R_1)x &= R_1^TQ_1^Tb \\
+    R_1^TR_1x &= R_1^TQ_1^Tb \tag*{Since $Q_1$ is orthogonal}\\
+    R_1x &= Q_1^Tb \tag*{Since $R_1$ is invertible}
+  \end{align*}
+\end{theorem}
+\begin{definition}[Methods of Solving General Linear Systems]
+  Suppose we are given a linear system $Bx = b$, and we know that this system has a solution, i.e. $b \in \text{range}(B)$. There are 3 important algorithms/factorizations used to find $x$:
+  \begin{itemize}
+    \item Gaussian Elimination (LU factorization) ($PB = LU$)
+    \item QR factorization
+    \item SVD, singular value decomposition
+  \end{itemize}
+\end{definition}
+\begin{problem}[Solving Large Positive Definite Systems]
+  Suppose we have a linear system, $Ax = b$, with $A$ postive definite. If $x^*$ is a solution, then $Ax^* - b = 0$. Then this is equivalent to minimizing the function $$f(x) = \frac{1}{2} \|A_x - b\|^2, \nabla f(x) = Ax - b = 0$$ \textcolor{red}{Dont understand this and the part after as well. You will have to add more notes here. Link to notes \href{https://cdn-uploads.piazza.com/paste/kcat3sa7dyu2te/bf8109b64a3bff7a1ffbacd0a5d43d03fabf0c01350afdf12f55b5382b6571da/Lecture_6.pdf}{HERE}}
+\end{problem}
+\begin{theorem}[Conjugate Gradient Method]
+  The first search direction is the negative gradient, $$v_0 = -\nabla q(x_0)$$ with $q = f$. At the $k$th iteration:
+  $$v_{k+1} = -\nabla q(x_k) + \beta_k v_k$$
+  where $\beta_k$ is chosen to ensure $\langle Av_{k+1}, v_k \rangle = 0$. This guarantees that the directions are $A$-conjugate \textcolor{red}{wtf is $A$ conjugate}. We then set $$x_{k+1} = x_k + \alpha_{k+1}v_{k+1}$$ where $\alpha_{k+1}$ is chosen from an exact line search (\textcolor{red}{what is line search}).
+\end{theorem}
