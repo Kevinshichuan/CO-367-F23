@@ -58,23 +58,30 @@
     $$repeat$$
 \end{definition}
 
-\begin{problem}
-    $f(x,y)=x^3-12xy+8y^3$ \\
-    $\nabla f(x,y)=\begin{pmatrix}
-        3x^2-12y \\
-        -12x+24y^2
-    \end{pmatrix}$. $\nabla^2 f(x,y)=\begin{pmatrix}
-        6x & -12 \\
-        -12 & 48y
-    \end{pmatrix}$.  \\
-    $$\nabla f=0 \implies (x,y)=(0,0) or (2,1)$$
-    $$\nabla^2 f(2,1)=\begin{pmatrix}
-        12 & -2 \\
-        -12 & 48
+\begin{problem}[Example of finding global and local minimizers]
+    Find global and local minimizers of $f(x,y) = x^3 - 12xy + 8y^3$.
+  
+    \bigskip
+    We first find the gradient and the Hessian:
+    $$\nabla f(x,y) = \begin{pmatrix}
+      3x^2 - 12y \\
+      -12x + 24y^2
     \end{pmatrix}$$
-
-    All leading principal minors are ppsitive $\implies$ strict local minimum
-    \\ while (0,0) are indefinite and this is called \textbf{inflection point}
-\end{problem}
+    $$\nabla^2 f(x,y) = \begin{pmatrix}
+      -6x & -12 \\
+      -12 & 48y
+    \end{pmatrix}$$
+    We can find the critical points when we solve for $\nabla f(x,y) = 0$. Solving it, we get solutions $(0,0)$ or $(2,1)$.
+  
+    The Hessian at $(0,0)$ is $$\nabla^2 f(0,0) = \begin{pmatrix}
+      0 & -12 \\
+      -12 & 0
+    \end{pmatrix}$$ The eigenvalues of $\nabla^2 f(0,0)$ are $-12, 12$. Therefore it is indefinite. So $(0,0)$ is a saddle point.
+  
+    The Hessian at $(2,1)$ is $$\nabla^2 f(2,1) = \begin{pmatrix}
+      -12 & -12 \\
+      -12 & 48
+    \end{pmatrix}$$ Checking all leading principal minors, we see that they are all positive. So $\nabla^2 f(2,1)$ is positive definite. So $(2,1)$ is a local minimizer.
+  \end{problem}
 
 % \end{document}
