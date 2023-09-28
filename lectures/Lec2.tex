@@ -85,12 +85,12 @@
     The \textbf{Hessian} of $f$ at $x = \begin{pmatrix}
         x_1 \\ \vdots \\ x_n
     \end{pmatrix}$ is the matrix
-    $$\nabla^2 f(x) = \begin{pmatrix}
+    $$\nabla^2 f(x) = \begin{bmatrix}
         \frac{\partial f(x)}{\partial x^2_1} & \frac{\partial f(x)}{\partial x_1 \partial x_2} & \cdots & \frac{\partial f(x)}{\partial x_1 \partial x_n} \\
         \frac{\partial f(x)}{\partial x_2 \partial x_1} & \frac{\partial f(x)}{\partial x_2^2} & \cdots & \frac{\partial f(x)}{\partial x_2 \partial x_n} \\
         \vdots & \vdots & \ddots & \vdots \\
         \frac{\partial f(x)}{\partial x_n \partial x_1} & \frac{\partial f(x)}{\partial x_n \partial x_2} & \cdots & \frac{\partial f(x)}{\partial x_n^2} \\
-    \end{pmatrix}$$
+    \end{bmatrix}$$
 \end{definition}
 \begin{theorem}[Multivariate Taylor]
     Consider a $C^2$-smooth function $f: U \rightarrow \mathbb R$ on an open set $U \subset \mathbb R^n$. If $\bar x$ and $x$ are such that the segment $[\bar x, x] := \{\bar x + t(x - \bar x): t \in [0,1]\}$ is contained in $U$, then there exists a point $z \in [\bar x, x]$ such that

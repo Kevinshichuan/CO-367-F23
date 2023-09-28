@@ -67,21 +67,21 @@
       3x^2 - 12y \\
       -12x + 24y^2
     \end{pmatrix}$$
-    $$\nabla^2 f(x,y) = \begin{pmatrix}
+    $$\nabla^2 f(x,y) = \begin{bmatrix}
       -6x & -12 \\
       -12 & 48y
-    \end{pmatrix}$$
+    \end{bmatrix}$$
     We can find the critical points when we solve for $\nabla f(x,y) = 0$. Solving it, we get solutions $(0,0)$ or $(2,1)$.
   
-    The Hessian at $(0,0)$ is $$\nabla^2 f(0,0) = \begin{pmatrix}
+    The Hessian at $(0,0)$ is $$\nabla^2 f(0,0) = \begin{bmatrix}
       0 & -12 \\
       -12 & 0
-    \end{pmatrix}$$ The eigenvalues of $\nabla^2 f(0,0)$ are $-12, 12$. Therefore it is indefinite. So $(0,0)$ is a saddle point.
+    \end{bmatrix}$$ The eigenvalues of $\nabla^2 f(0,0)$ are $-12, 12$. Therefore it is indefinite. So $(0,0)$ is a saddle point.
   
-    The Hessian at $(2,1)$ is $$\nabla^2 f(2,1) = \begin{pmatrix}
+    The Hessian at $(2,1)$ is $$\nabla^2 f(2,1) = \begin{bmatrix}
       -12 & -12 \\
       -12 & 48
-    \end{pmatrix}$$ Checking all leading principal minors, we see that they are all positive. So $\nabla^2 f(2,1)$ is positive definite. So $(2,1)$ is a local minimizer.
+    \end{bmatrix}$$ Checking all leading principal minors, we see that they are all positive. So $\nabla^2 f(2,1)$ is positive definite. So $(2,1)$ is a local minimizer.
   \end{problem}
 
 % \end{document}

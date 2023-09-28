@@ -1,0 +1,71 @@
+\newpage
+\section{Linear Least Squares \& Solving Linear Systems}
+\subsection{Lecture 5}
+\begin{problem}[Motivation For Least Squares]
+  Suppose we have a series of observed values from an experiment:
+  $$\{(t_1, s_1), (t_2, s_2),\ldots, (t_m,s_m)\}$$ where $t_i$ is the time and $s_i$ is the observed value at time $t_i$. We want to find a polynomial function $$p(t) = x_0 + x_1t + \cdots + x_nt^n$$ that fits the data. So we want to find coefficients $x_0,\ldots x_n$ such that $p(t_i) \approx s_i$ for all $i$. More formally, we want to minimize the absolute value of the error of each term. The error ($\ell_1$ norm) is defined as $$|e_i| = |p(t_i) - s_i|$$ This can be formulated into a $\ell_1$ norm minimization problem:$$\min \left\{\sum^m_{i=1}|p(t_i) - s_i| : (x_0,\ldots,x_n) \in \mathbb R^{n+1}\right\}$$ This is a non-differentiable optimization problem since we have absolute values which make it not smooth. So we can be reformualte it as a linear program:
+  $$\min \quad \sum^m_{i=1}\lambda_i$$
+  s.t.
+  \begin{align*}
+    s_i - p(t_i) &\leq \lambda_i \tag*{for all $i = 1,\ldots,m$}\\
+    p(t_i) - s_i &\leq \lambda_i \tag*{for all $i = 1,\ldots,m$}\\
+  \end{align*}
+  This minimization problem is called \textbf{compressive sensing}.
+\end{problem}
+\begin{definition}[Vandermonde Matrix]
+  Let $$A = \begin{bmatrix}
+    1 & t_1 & t_1^2 & \cdots & t_1^n\\
+    1 & t_2 & t_2^2 & \cdots & t_2^n\\
+    \vdots & \vdots & \vdots & \ddots & \vdots\\
+    1 & t_m & t_m^2 & \cdots & t_m^n\\
+  \end{bmatrix} \in \mathbb R^{m \times (n+1)}, \quad b = \begin{pmatrix}
+    s_1 \\ s_2 \\ \vdots \\ s_m
+  \end{pmatrix}, \quad x = \begin{pmatrix}
+    x_0 \\ x_1 \\ \vdots \\ x_n
+  \end{pmatrix}$$
+  $A$ is called a \textbf{Vandermonde matrix}.
+\end{definition}
+\begin{theorem}[]
+  The Vandermonde Matrix $$A = \begin{bmatrix}
+    1 & t_1 & t_1^2 & \cdots & t_1^n\\
+    1 & t_2 & t_2^2 & \cdots & t_2^n\\
+    \vdots & \vdots & \vdots & \ddots & \vdots\\
+    1 & t_m & t_m^2 & \cdots & t_m^n\\
+  \end{bmatrix} \in \mathbb R^{m \times (n+1)}, \quad b = \begin{pmatrix}
+    s_1 \\ s_2 \\ \vdots \\ s_m
+  \end{pmatrix}, \quad x = \begin{pmatrix}
+    x_0 \\ x_1 \\ \vdots \\ x_n
+  \end{pmatrix}$$
+  is full column rank if $n + 1 \leq m$ and the points $t_i$ are distinct.
+\end{theorem}
+\begin{definition}[$\ell_1$ and $\ell_2$ Norm]
+  The $\ell_1$ norm of a vector $x$ is defined to be $$\|x \| = \sum |x_i|$$
+  The $\ell_2$ norm of a vector $x$ is defined to be $$\|x \| = \sqrt{\sum x_i^2}$$
+\end{definition}
+\begin{problem}[Linear Least Squares Problem]
+  Recall our $\ell_1$ norm minimization problem:
+  $$\min \left\{\sum^m_{i=1}|p(t_i) - s_i| : (x_0,\ldots,x_n) \in \mathbb R^{n+1}\right\}$$
+  We can instead use $\ell_2$ norm defined as $\|e\|_2 = \sqrt{\sum e_i^2}$. So our $\ell_2$ minimization problem is $$\min \left\{\sum^m_{i=1}(p(t_i) - s_i)^2 : (x_0,\ldots,x_n) \in \mathbb R^{n+1}\right\}$$ where $p(t) = x_0 + x_1t + \cdots + x_nt^n$. Using the Vandermonde matrix, we can rewrite our problem to be
+  $$\min \frac{1}{2} \|Ax - b\|^2$$ where $$A = \begin{bmatrix}
+    1 & t_1 & t_1^2 & \cdots & t_1^n\\
+    1 & t_2 & t_2^2 & \cdots & t_2^n\\
+    \vdots & \vdots & \vdots & \ddots & \vdots\\
+    1 & t_m & t_m^2 & \cdots & t_m^n\\
+  \end{bmatrix} \in \mathbb R^{m \times (n+1)}, \quad b = \begin{pmatrix}
+    s_1 \\ s_2 \\ \vdots \\ s_m
+  \end{pmatrix}, \quad x = \begin{pmatrix}
+    x_0 \\ x_1 \\ \vdots \\ x_n
+  \end{pmatrix}$$
+  The objective function is $g(x) = \frac{1}{2}\|Ax - b\|^2$. Let's first expand $g(x)$:
+  \begin{align*}
+    g(x) &= \frac{1}{2} \|Ax - b \|^2 \\
+    &= \frac{1}{2}(Ax - b)^T (Ax - b) \\
+    &= \frac{1}{2} (Ax)^T Ax - (Ax)^Tb + \frac{1}{2} \|b \|^2 \\
+    &= \frac{1}{2} x^T A^T Ax - x^T A^T b + \frac{1}{2} \|b \|^2 
+  \end{align*}
+  Then, using the definition of linear transformation definition of the gradient (\textcolor{red}{WTF is this}), we have $$\nabla g(x) = A^T Ax - A^T b$$
+  To find the critical points, we solve for $\nabla g(x) = 0$. So the critical points are $x^*$ that satisfy the equation
+  $$A^TAx = A^Tb$$
+  This is also called a \textbf{normal equation}.
+\end{problem}
+
