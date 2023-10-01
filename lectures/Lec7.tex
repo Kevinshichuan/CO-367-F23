@@ -5,9 +5,9 @@
   \end{pmatrix}$$ Then the nonlinear least squares problem is $$\min \{h(x)\}$$ where $$h(x) = \frac{1}{2} \|F(x)\|^2 = \frac{1}{2}\langle F(x), F(x) \rangle = \frac{1}{2} \sum^m_{i=1} f_i^2(x)$$
 \end{definition}
 \begin{definition}[Jacobian Matrix]
-  Let $F$ be defined as above, then the Jacobian matrix is $J(x) = F'(x)$ where $$F'(x) = \begin{pmatrix}
+  Let $F$ be defined as above, then the Jacobian matrix is $J(x) = F'(x)$ where $$F'(x) = \begin{bmatrix}
     \nabla f_1(x)^T \\ \nabla f_2(x)^T \\ \vdots \\ \nabla f_m(x)^T
-  \end{pmatrix}$$
+  \end{bmatrix}$$
 \end{definition}
 \begin{problem}[Solving Nonlinear Least Squares]
   For the nonlinear least squares problem defined above, we consider the special case $m = n$. Then we can consider the problem as solving the square system of nonlinear equations $F(x) = 0$. Recall that for current approximation $x_c$, $$0 = F(x_c + d) \approx F(x_c) + \underbrace{F'(x_c)}_{\text{Jacobian}}\underbrace{d}_{\text{search direction}}$$ So we solve $$F'(x_c)d = -f(x_c)$$ which is called the Newton equation. Then we can take a step in the search/Newton direction $d$ to get a new approxiamtion $x_{c+1} = x_c + \alpha d$ for appropriate step length $\alpha$.
