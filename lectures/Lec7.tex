@@ -12,3 +12,6 @@
 \begin{problem}[Solving Nonlinear Least Squares]
   For the nonlinear least squares problem defined above, we consider the special case $m = n$. Then we can consider the problem as solving the square system of nonlinear equations $F(x) = 0$. Recall that for current approximation $x_c$, $$0 = F(x_c + d) \approx F(x_c) + \underbrace{F'(x_c)}_{\text{Jacobian}}\underbrace{d}_{\text{search direction}}$$ So we solve $$F'(x_c)d = -f(x_c)$$ which is called the Newton equation. Then we can take a step in the search/Newton direction $d$ to get a new approxiamtion $x_{c+1} = x_c + \alpha d$ for appropriate step length $\alpha$.
 \end{problem}
+\begin{definition}[Argmin and argmax]
+  $\text{argmin } f(x)$ is the set of all minimizers of $f(x)$, similarly $\text{argmax }f(x)$ is the set of all maximizers of $f(x)$.
+\end{definition}
