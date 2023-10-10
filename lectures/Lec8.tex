@@ -51,5 +51,7 @@ The difference in trust region strategy and line search strategy is that in line
   Solving it, we get $$(x, y) = \left(\pm \sqrt{\frac{2}{3}}, \pm \sqrt{\frac{1}{3}}\right), \quad \lambda = y$$
   Testing each point, we get that $\left(\sqrt{\frac{2}{3}}, \sqrt{\frac{1}{3}}\right)$ is the maximizer of $f$.
 \end{problem}
-
+\begin{proposition}
+  Suppose $\langle d, \nabla f(\bar x) \rangle < 0$. Then there exists $B \succ 0$ that satisfies $d = -B^{-1} \nabla f(\bar x)$. 
+\end{proposition}
 
