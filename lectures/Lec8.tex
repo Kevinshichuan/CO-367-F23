@@ -1,0 +1,57 @@
+\section{Iterative Methods for Unconstrained Optimization}
+\subsection{Lecture 8}
+Before, we have iterative methods to solve linear and linear least squares system.
+
+\textbf{Goal}: Solve more general problems of minimization.
+
+An iterative algorithm is a procedure that produces an (infinite) sequence of points $\{x_k\}$, in $\mathbb R^n$ such that our sequence converges to a critical point of $f$ or to a point that satisfies the second order necessary conditions of optimality.
+\begin{theorem}[Cauchy-Schwarz Inequality]
+  Let $x, y \in \mathbb R^n$. Then $$|\langle x, y \rangle| \leq \|x\| \|y\|$$
+\end{theorem}
+
+\subsubsection*{Line Search Strategy}
+\textbf{Main Idea}: At a point $x_k$, we find the direction with the steepest descent(in the gradient direction) and move in that direction to a new point $x_{k+1}$.
+
+\textbf{How do we choose step size?} We first set $$g(\alpha) = f(x_k + \alpha \nabla f(x_k))$$ for step size $\alpha$, so we are traveling in the direction of the gradient (steepest descent). So now we have a one dimensional problem, then we can just solve for $g'(\alpha) = 0$ to find the critical point in the direction of the gradient. After finding $\alpha$, we can obtain the next point $x_{k+1} = x_k + \alpha \nabla f(x_k)$.
+
+\begin{definition}[Line Search Strategy]
+  At each iteration $k$, we choose a vector (search direction) $v_k \neq 0 \in \mathbb R^n$, then choose $\alpha_k > 0$ (step length) that approximately solves
+$$\alpha_k \in \text{argmin } f(x_k + \alpha v_k)$$
+Then we update $x_{k+1} = x_k + \alpha_k v_k$.
+\end{definition}
+\begin{definition}[Descent Direction]
+  Let $x \in U \subseteq \mathbb R^n$ with $U$ being an open set. Then $d \in \mathbb R^n$ is a descent direction for $f$ at $x$ if there exists $\bar \alpha > 0$ such that $$x + \alpha d \in U, f(x + \alpha d) < f(x)$$ for all $0 < \alpha < \bar \alpha$.
+\end{definition}
+\begin{lemma}
+  Let $f$ be sufficiently smooth on an open set $U$ and let $\bar x \in U$. Let $d \in \mathbb R^n$ satisfy $$\langle d, \nabla f(\bar x) \rangle < 0$$ Then $d$ is a descent direction for $f$ at $x$.
+\end{lemma}
+\subsubsection*{Trust Region Strategy}
+The difference in trust region strategy and line search strategy is that in line search strategy, we first choose the direction, then choose step size. In trust region, we first choose the step size, then we choose the direction.
+\begin{definition}[Trust Region Strategy]
+  In each iteration, we construct a model of $f$. That is, in each step we consider $m_k: \mathbb R^n \to \mathbb R$ that is a simple function that approximates $f$ well on some simple set $\Omega_k$ (the trust region) around our current approximation $x_k$. Then we find the new approximation $$\hat x = \text{argmin } m_k(x) \quad \text{$x \in \Omega_k$}$$
+  A common model is the quadratic model $$m_k(x) = f(x_k) + \langle \nabla f(x_k), x - x_k \rangle + \frac{1}{2} \langle x - x_k, B_k(x - x_k) \rangle$$ where $B_k \approx \nabla^2 f(x_k)$ approximates the Hessian. If the values $f(\hat x)$ and $m_k(\hat x)$ are close, then we declare $x_{k+1} = \hat x$. Otherwise, we shrink the size of the trust region $\Omega_k$ and repeat the process.
+
+  Usually $\Omega_k$ is a ball, ellipsoid, or a box around $x_k$.
+
+  The main points are how to choose a model function $m_k$, and how to choose a trust region $\Omega_k$.
+\end{definition}
+
+\begin{problem}[Lagrange Multiplier Example]
+  Maximize $f(x,y) = x^2 y$ subject to $g(x,y) = x^2 + y^2 = 1$. By using Lagrange multipliers, we know that the maximizer, $(x^*, y^*)$ satisfies $$\nabla f(x^*, y^*) = \lambda \nabla g(x^*, y^*)$$ We have 
+  \begin{align*}
+    \nabla g(x,y) &= \begin{bmatrix} 2x \\ 2y \end{bmatrix} \\
+    \nabla f(x,y) &= \begin{bmatrix} 2xy \\ x^2 \end{bmatrix}
+  \end{align*} Then, using Lagrange multipliers, we solve
+  $$\begin{bmatrix} 2xy \\ x^{2} \end{bmatrix} = \lambda \begin{bmatrix} 2x \\ 2y \end{bmatrix}$$ Since we also have the constraint $x^2 + y^2 = 1$, we solve the system of equations
+  \begin{align*}
+    2xy &= 2\lambda x \\
+    x^2 &= 2\lambda y \\
+    x^2 + y^2 &= 1
+  \end{align*}
+  Solving it, we get $$(x, y) = \left(\pm \sqrt{\frac{2}{3}}, \pm \sqrt{\frac{1}{3}}\right), \quad \lambda = y$$
+  Testing each point, we get that $\left(\sqrt{\frac{2}{3}}, \sqrt{\frac{1}{3}}\right)$ is the maximizer of $f$.
+\end{problem}
+\begin{proposition}
+  Suppose $\langle d, \nabla f(\bar x) \rangle < 0$. Then there exists $B \succ 0$ that satisfies $d = -B^{-1} \nabla f(\bar x)$. 
+\end{proposition}
+
