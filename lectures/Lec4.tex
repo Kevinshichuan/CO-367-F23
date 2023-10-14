@@ -100,3 +100,53 @@
   Let $f: \mathbb R^n \to \mathbb R$ be a function and let $\alpha \in \mathbb R$. An $\alpha$-sublevel set of $f$ is defined by $$S_\alpha(f) = \{x \in \mathbb R^n: f(x) \leq \alpha\}$$
   That is, all points $x$ below the line $f(x) = \alpha$.
 \end{definition}
+
+\begin{problem}
+  Can we find minimizer for $q:\mathbb{R^n}\rightarrow \mathbb{R}$.
+  $q(x)=\frac{1}{2}x^TQx+b^Tx+\alpha(Q=Q^T)$
+  
+  Let $p^*=inf q(x)$ 
+  \begin{itemize}
+    \item When is it finite?
+    \item When is it attained?
+  \end{itemize} 
+  
+\end{problem}
+
+\begin{proposition}[bdd blow \textcolor{red}{Needtoconfirm}]
+   $q(x)$ is bdd below iff $Q\succeq 0$ and b$\in$ Range(Q) and 0=$\nabla q(x)=Qx-b$ so $x^*=Q^{-1}b$ is Orthogonal (\textcolor{red}{why}) so always attained
+
+
+\end{proposition}
+\begin{proof}
+  Since Q is positive semidef, we can use spectural decomposition,
+  $Q=UDU^T,U^TU=I$. $x^TQx=x^TUDU^Tx$ which is also a quadratic form, let $y=U^Tx,x=Uy$
+  \\ Thus for q(x), we sub $x=uy$, then we get 
+  \begin{align*}
+    q(x) &= \frac{1}{2}(Uy)^TQ(Uy)+b^TUy+\alpha \\
+    &= \frac{1}{2}y^TDy+(U^Tb)^Ty+\alpha \text{  Let }\bar{b}=U^Tb \\
+    &= \sum\lambda_iy_i^2+\bar{b_i}y_i+\alpha
+  \end{align*}
+  Which is a seperable problem.
+  $p_i^*=min\, \frac{1}{2}\lambda_iy_i^2+\bar{b_i}y_i$
+  \\ $p_i^*$ is finite iff $\lambda_i \geq 0,\implies . $\textcolor{red}{This part incomplete}
+\end{proof}
+
+\begin{theorem}[Weierstrass]
+  Given f:$R^n\rightarrow R$ cts and D in $R^n$ closed and bounded,
+  Then $\exists\bar{x}\in D$s.t $\bar{x}\in$ argmin f(x)
+\end{theorem}
+
+\begin{proposition}
+  If f is coercive, f maps $R^n$ to R and cts, then there exists $\bar{x}\in argmin\,f(x)$
+\end{proposition}
+\begin{proof}
+  Omit
+\end{proof}
+
+\begin{theorem}[q(x) is coercive iff Q is positive definite]
+  
+\end{theorem}
+\begin{proof}
+  Omit
+\end{proof}

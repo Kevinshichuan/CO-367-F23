@@ -63,7 +63,8 @@
     &= \frac{1}{2} (Ax)^T Ax - (Ax)^Tb + \frac{1}{2} \|b \|^2 \\
     &= \frac{1}{2} x^T A^T Ax - x^T A^T b + \frac{1}{2} \|b \|^2 
   \end{align*}
-  Then, using the definition of linear transformation definition of the gradient (\textcolor{red}{WTF is this}), we have $$\nabla g(x) = A^T Ax - A^T b$$
+  Then, using the definition of linear transformation definition of the gradient (\textcolor{red}{WTF is this (This is the matrix differentiation. I think there are only three forms and just remember them lollhttps://atmos.washington.edu/~dennis/MatrixCalculus.pdf)}), we have $$\nabla g(x) = A^T Ax - A^T b$$
+  
   To find the critical points, we solve for $\nabla g(x) = 0$. So the critical points are $x^*$ that satisfy the equation
   $$A^TAx = A^Tb$$
   This is also called a \textbf{normal equation}.

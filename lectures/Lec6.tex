@@ -65,3 +65,143 @@ Goal: Solving normal equation/non linear case
   $$v_{k+1} = -\nabla q(x_k) + \beta_k v_k$$
   where $\beta_k$ is chosen to ensure $\langle Av_{k+1}, v_k \rangle = 0$. This guarantees that the directions are $A$-conjugate \textcolor{red}{wtf is $A$ conjugate}. We then set $$x_{k+1} = x_k + \alpha_{k+1}v_{k+1}$$ where $\alpha_{k+1}$ is chosen from an exact line search (\textcolor{red}{what is line search}).
 \end{theorem}
+
+
+\begin{problem}
+  \begin{align*}
+    \text{min} \quad f(x)  \\
+    x & \in D \subset \mathbb{R}
+    \end{align*}
+\end{problem}
+
+
+\begin{itemize}
+\item 1\textsuperscript{st} \& 2\textsuperscript{nd} order optimality condition both necessary and sufficient
+\item 1\textsuperscript{st}, 2\textsuperscript{nd} order model
+\end{itemize}
+
+\section*{Applicable Model for "best" data fitting}
+\[ C(s_i, p_i), \quad i = 1,...,m \]
+\begin{align*}
+\text{We got linear model and we need to solve } & A^T A x = A^T b \text{ normal equation} \\
+\text{Today: Solve normal equation (whenever case)} \\
+\text{i.e., this is from optimality condition for } \\ 
+& \text{min } \frac{1}{2}\|Ax-b\|_2^2 = f(x) \\ \text{, s.t.} 
+A & \in M_{m,n} \\
+x & \in \mathbb{R}^n \\
+\text{stationary } \nabla f(\bar{x}) & = A^T(A\bar{x}-b) = 0 \\
+\text{An alternate view is min } \|y-b\| & \\ \text{, s.t. } y \in \text{Range}(A) 
+& \Rightarrow \text{ a projection problem} \\
+& \text{i.e., project } b \text{ onto Range of } A \\
+\text{Aside: use SVD of } A=U\Sigma V^T & : \Sigma = \begin{bmatrix}
+\sigma_1 & & 0 \\
+& \ddots & \\
+0 & & \sigma_r \\
+& 0 &
+\end{bmatrix}, \quad r = \text{rank}(A)\, \sigma_i >0
+\end{align*}
+
+
+
+
+
+SVD can be used for a "rank revealing" decomposition.
+
+\[
+U = \begin{bmatrix} U_1 & U_2 \end{bmatrix}
+\]
+
+Where:
+\begin{align*}
+U_1 & : \text{m x r orthogonal columns span R(A)} \\
+U_2 & : \text{m x (m-r) spanning } \mathcal{N}(A^T)
+\end{align*}
+
+Properties:
+\[
+U^TU = I \quad \text{and} \quad I= U_1^TU_1 =( U_1^TU_1)^T = \mathcal{C}(U_1U_1^T) = U_1U_1^T
+\]
+
+This means $U_1U_1^T$ is symmetric idempotent, i.e., orthogonal projection.
+
+To solve the projection minimizing $\| y - b \|$ where $y \in \text{Range}(\mathcal{R}(A))$:
+\[
+\text{optimal } y^* = U_1U_1^Tb
+\]
+
+Defining the Moore-Penrose generalized inverse:
+\[
+A^+ = V \Sigma^+ U^T
+\]
+where
+\[
+\Sigma^+ = \begin{bmatrix} \frac{1}{\sigma_1} & \dots & 0 \\ 0 & \dots & 0 \end{bmatrix}
+\]
+and
+\[
+\gamma_i = \frac{b_i}{\sigma_i} \quad \text{if } \sigma_i \neq 0
+\]
+
+Finally, to find $x$ such that $Ax = y^* = U_1U_1^Tb = AA^+b$:
+If $A$ has full column rank (i.e., $\mathcal{R}(A^T) = \mathbb{R}^n$), then $x$ is unique.
+Otherwise $\bar{x}+v,v\in N(A)$ is a solution for all v in N(A)
+Choosing a large solution. This solution of min is called "Best least square solution"
+\\ we can write it as bilevel problem
+
+
+
+
+The solution of minimum norm is called the \textit{"best least square solution"}. This can be represented as a "bilevel problem":
+\[
+\min_{\hat{x}} \|\hat{x}\|_2 \quad \text{for values when different}
+\]
+subject to:
+\[
+x \in \arg\min_{z} \frac{1}{2} \|Ax - b\|_2^2
+\]
+
+The bLSS (best least square solution) is the unique LSS (least square solution) in $\mathcal{R}(A^T)$.
+
+Given:
+\[
+A = U \Sigma V^T \quad (\text{SVD of } A)
+\]
+Where $\Sigma$ is a diagonal matrix with:
+\[
+\Sigma = \begin{pmatrix} \sigma_1 & 0 \\ 0 & \sigma_r \end{pmatrix} \quad \text{and} \quad \sigma_r \geq 0
+\]
+
+The condition number of matrix $A$ is given by:
+\[
+\text{Cond}(A) = \frac{\sigma_1}{\sigma_r}
+\]
+
+If $A$ is not of full rank, then:
+\[
+\text{Cond}(A) = \infty \implies \text{Cond}(A^TA) = \text{Cond}(A^T) = \text{Cond}(A)
+\]
+
+We also have:
+\[
+A^TA = V \Sigma^T U^T U \Sigma V^T = V \Sigma^2 V^T
+\]
+With:
+\[
+\Sigma^2 = \begin{pmatrix} \sigma_1^2 & 0 \\ 0 & \sigma_r^2 \end{pmatrix}
+\]
+Thus:
+\[
+\text{Cond}(A^TA) = \frac{\sigma_1^2}{\sigma_r^2}
+\]
+
+For the solution $B$:
+\[
+B\hat{x} = Bx = b + sb
+\]
+Where:
+\[
+\|x^* - \hat{x}\| \leq \text{Cond}(B) \frac{\|b\|}{\|b + b\|}
+\]
+
+
+
