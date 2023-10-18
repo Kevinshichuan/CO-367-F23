@@ -1,5 +1,6 @@
 \subsection{Lecture 4}
 
+<<<<<<< HEAD
 \begin{problem}[How can we check if a matrix is positive definite/semidefinite]
   
 \end{problem}
@@ -71,14 +72,21 @@
     \item All principal minors of $A$ are nonnegative.
   \end{enumerate}
 \end{proposition}
+=======
+
+>>>>>>> 18d5a23423e1869cf90f4a775e4092f171e9d73a
 \begin{problem}[Motivation]
   When can we guarantee that global minimizers of $f: \mathbb R^n \rightarrow \mathbb R$ exist?
 
   For example, the real valued function on $\mathbb R$ $f(x) = e^x$ is bounded below by 0 but has no minimizers. The minimum value is 0 but is not attained.
 \end{problem}
 \begin{proposition}[Weierstrass Extreme Value Theorem]
-  If $f: \mathbb R^n \rightarrow \mathbb R$ is continuous, and if $D \subset \mathbb R^n$ is a closed and bounded set, then $f$ is bounded below and the minimum value is attained on $D$.
+  If $f: \mathbb R^n \rightarrow \mathbb R$ is continuous, and if $D \subset \mathbb R^n$ is a compact set (closed and bounded), then $f$ is attains its global maximum and minimum on $D$.
 \end{proposition}
+\begin{problem}[Example of a continuous function that does not attain its minimum]
+  Let $f: \mathbb R \rightarrow \mathbb R$ be defined by $f(x) = e^x$. Then $f$ is continuous, but $D = \mathbb R$ is not compact (closed but not bounded). We can see that $f$ does not have any global minimizer.
+  
+\end{problem}
 \begin{definition}[Coercive function]
   A continuous function $f: \mathbb R^n \rightarrow \mathbb R$ is \textbf{coercive} if for any sequence $x_i$ with $\|x_i \| \rightarrow \infty$, it must be the case that $f(x_i) \rightarrow +\infty$. In other words, $$\lim_{\|x\| \rightarrow \infty} f(x) = +\infty$$
   Here are some examples:

@@ -9,6 +9,7 @@
     \end{align*}
 \end{definition}
 
+<<<<<<< HEAD
 \begin{definition}[Multivariate unconstrained optimality conditions]
     Define $f,D,\bar{x}$, $D$ is an open set
     Then:
@@ -19,9 +20,36 @@
         $ is positive definite then $\bar{x}$ is a strict local minimum of $f$ on $D$.
     \end{enumerate}
 \end{definition}
+=======
+\begin{theorem}[Second Order Optimality Conditions (Min)]
+  Let $f: \mathbb R^n \to \mathbb R$ be twice continuously differentiable at an open set $D$. Then
+  \begin{enumerate}
+    \item Necessary conditions: If $\bar{x}$ is a local minimizer for $f$ on $D$, then $$\nabla f(\bar{x})=0 \quad \text{ and } \quad \nabla^2f(\bar{x}) \succeq 0
+    $$
+    \item Sufficient conditions: If $\nabla f(\bar{x})=0,\nabla^2f(\bar{x}) \succ 0$ is positive definite then $\bar{x}$ is a strict local minimizer of $f$ on $D$.
+  \end{enumerate}
+\end{theorem}
+\begin{theorem}[Second Order Optimality Conditions (Max)]
+  Let $f: \mathbb R^n \to \mathbb R$ be twice continuously differentiable at an open set $D$. Then
+  \begin{enumerate}
+    \item Necessary conditions: If $\bar{x}$ is a local maximizer for $f$ on $D$, then $$\nabla f(\bar{x})=0 \quad \text{ and } \quad \nabla^2f(\bar{x}) \preceq 0
+    $$
+    \item Sufficient conditions: If $\nabla f(\bar{x})=0,\nabla^2f(\bar{x}) \prec 0$ is positive definite then $\bar{x}$ is a strict local maximizer of $f$ on $D$.
+  \end{enumerate}
+\end{theorem}
+>>>>>>> 18d5a23423e1869cf90f4a775e4092f171e9d73a
 \begin{proof}
     1. updated later after I confirmed some details with the professor
 \end{proof}
+\begin{theorem}[]
+  Let $f: \mathbb R^n \to \mathbb R$ be twice continuously differentiable and let $\bar{x}$ be a critical point of $f$. Then
+  \begin{itemize}
+    \item $\bar x$ is a global minimizer if $\nabla^2 f(\x) \succeq 0$ for all $\x \in \mathbb R^n$.
+    \item $\bar x$ is a strict global minimizer if $\nabla^2 f(\x) \succ 0$ for all $\x \in \mathbb R^n$.
+    \item $\bar x$ is a global maximizer if $\nabla^2 f(\x) \preceq 0$ for all $\x \in \mathbb R^n$.
+    \item $\bar x$ is a strict global maximizer if $\nabla^2 f(\x) \prec 0$ for all $\x \in \mathbb R^n$.
+  \end{itemize}
+\end{theorem}
 
 \begin{definition}[Critical/Stationary Points]
     A point $\bar x \in U$ is a critical point of a function $f: U \rightarrow \mathbb R$ if $\nabla f(\bar x)$ exists and satisfies $\nabla f(\bar x) = 0$.

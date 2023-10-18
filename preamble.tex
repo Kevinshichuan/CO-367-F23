@@ -89,6 +89,9 @@
   \fancyhf{}%
   \fancyhead[R]{\thepage}%
 }
+\newcommand{\subsubsubsection}[1]{\paragraph{#1}\mbox{}\\}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
 %%%%%%%%%%%%%%%%%%%%%%%%%% Define some useful colors %%%%%%%%%%%%%%%%%%%%%%%%%%
 \definecolor{ocre}{RGB}{243,102,25}
 \definecolor{mygray}{RGB}{243,243,244}
@@ -136,3 +139,6 @@
 	\let\@ifnextchar\new@ifnextchar
 	\array{#1}}
 \makeatother %for augmented matrix
+
+\newcommand{\x}{\textbf{x}}
+\newcommand{\y}{\textbf{y}}

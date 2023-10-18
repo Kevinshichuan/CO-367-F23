@@ -51,14 +51,6 @@
 \begin{problem}[Simplest Case - No Constraints]
     Let $\Omega \subseteq \mathbb R^n$ be an open set. Assume $f$ is sufficiently smooth (differentiable) then the NLP with no constraints is $$\min_{x \in \Omega} \;\;\;\; f(x)$$
 \end{problem}
-\begin{theorem}[Taylor's Theorem on the real line]
-    Let $f: (a, b) \rightarrow \mathbb R$, and $\bar{x}, x \in (a,b)$. Then the Taylor's series centered at $\bar x$ (approximation near $\bar x$) is $$f(x) = f(\bar x) + f'(\bar x)(x - \bar x) + \frac{f''(z)}{2}(x - \bar x)^2$$
-    where $z$ is between $x$ and $\bar x$ that gives the largest value of $f''(z)$. The term $\frac{f''(z)}{2}(x - \bar x)^2$ is the \textbf{error term}
-
-    Equivalently,
-    $$f(\bar x + \Delta x) = \underbrace{f(x) + f'(x) \Delta x}_{\text{Linear approximation}} + o(|\Delta x|)(\text{little O})$$
-    This formula emphasizes its use in approximating changes in $f$ for small changes in $x$, denoted $\Delta x$. $o(|\Delta x|)$, the error term, means that the error goes to 0 faster than $|\Delta x|$ as $\Delta x$ goes to 0. Therefore, this is saying that the linear approximation becomes more and more accurate for smaller $\Delta x$.
-\end{theorem}
 \begin{definition}[Secant Line]
     A secant line is a line that connects two points on a function.
 \end{definition}
@@ -75,6 +67,7 @@
         &= 10t
     \end{align*}
 \end{problem}
+<<<<<<< HEAD
 \begin{lemma}[Directional Derivative]
     Let $f: \mathbb R^n \rightarrow \mathbb R, \bar x, d \in \mathbb R^n$ where $d$ is the direction. We define
     $$\phi (\epsilon) = f(\bar x + \epsilon d): \mathbb R \rightarrow \mathbb R$$ the value of the function $f$ at a point that is displaced from $\bar x$ by a distance of $\epsilon$ in the direction $d$.
@@ -113,6 +106,9 @@
 \end{problem}
 \begin{corollary}[Unconstrained optimiality conditions on the real line]
 
+=======
+\begin{corollary}
+>>>>>>> 18d5a23423e1869cf90f4a775e4092f171e9d73a
     Let $f: (a,b) \rightarrow \mathbb R$
     \begin{enumerate}
         \item (Necessity)If $\bar x$ is a \textbf{local minimizer} of $f$ on $(a,b)$, then $f'(\bar x) = 0$ and $f''(\bar x) \geq 0$.
@@ -136,6 +132,7 @@
     \end{bmatrix}$$
 \end{definition}
 
+<<<<<<< HEAD
 \textbf{Note}: The Hessian is always symmetrics for $C^2$ functions.
 We denote the vector space of symmetric
 matrices by $S^n$, we use the trace inner product for A,B
@@ -145,6 +142,8 @@ matrices by $S^n$, we use the trace inner product for A,B
     $$f(x) = f(\bar x) + \langle \nabla f(\bar x), x - \bar x \rangle + \frac{1}{2} \langle \nabla^2 f(z) (x - \bar x), (x - \bar x) \rangle$$
     where $z$ is between $x$ and $\bar x$.
 \end{theorem}
+=======
+>>>>>>> 18d5a23423e1869cf90f4a775e4092f171e9d73a
 \begin{lemma}
     Let $v \in \mathbb R^n$. Then $$v = 0 \iff \langle v,d \rangle = 0, \quad \forall d \in \mathbb R^n$$
 \end{lemma}
