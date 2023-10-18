@@ -1,0 +1,266 @@
+\section{Review}
+\subsection{Calculus}
+\begin{definition}[Norm]
+  $\| \cdot \|: \mathbb R^n \to \mathbb R$ is a mapping from $\mathbb R^n$ to $\mathbb R$ such that
+  \begin{itemize}
+    \item For every $\x \in \mathbb R^n$, $\| \x \| \geq 0$
+    \item $\| \x \| = 0$ if and only if $\x = 0$.
+    \item For every $\alpha \in \mathbb R$ and for every $\x \in \mathbb R^n$, $\| \alpha \x \| = |\alpha| \| \x \|$
+    \item (Triangle inequality) For every $\textbf{x, y} \in \mathbb R^n$, $$\| \x + \y \| \leq \| \x \| + \| \y \|$$
+  \end{itemize}
+  Two common norms, $\ell_1$ and $\ell_2$ norms:
+  \begin{enumerate}
+    \item $\ell_1$: $\| \x \|_1 = \sum_{i=1}^n |x_i| = |x_1| + |x_2| + \cdots + |x_n|$
+    \item $\ell_2$: $\| \x \|_2 = \sqrt{\sum_{i=1}^n x_i^2} = \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2}$
+  \end{enumerate}
+\end{definition}
+\begin{proposition}[Cauchy-Schwarz Inequality]
+  For every $\x,\y \in \mathbb R^n$
+  $$|\x^T \y| = \langle \x, \y \rangle \leq \| \x \|_2 \| \y \|_2$$
+  with equality if and only if $\x = \alpha \y$ for some $\alpha \in \mathbb R$.
+\end{proposition}
+\begin{definition}[Neighborhood/Open ball]
+  Given $\delta > 0$, $\bar\x\in \mathbb{R}^n$, the open ball $B_{\delta}(\bar{\x})=\{\x \in \mathbb{R}^n\ | \|\x-\bar{\x}\|_2< \delta\}$
+\end{definition}
+\begin{definition}[Sequence Convergence in $\mathbb R^n$]
+  We say that a sequence $\{\x_k\} \subseteq \mathbb R^n$ converges to $\x^* \in \mathbb R^n$ and write $$\lim_{k \to \infty} \x_k = x^*$$ if for every $\epsilon > 0$ there exists $N \in \mathbb N$ such that for every $k \geq N$, $\| \x_k - \x^* \| < \epsilon$.
+\end{definition}
+\begin{definition}[Limit Point]
+  If $\{\x_k\}$ has a subsequence that converges to $\x^*$, then $\x^*$ is called a limit point of $\{\x_k\}$.
+
+  Given a set $E \subseteq \mathbb R^n$, if there exists a sequence $\{\x_k\} \subseteq E$ that converges to $\x^*$, then $\x^*$ is called a limit point of $E$.
+\end{definition}
+\begin{definition}[Closed Set]
+  A set $E \subseteq \mathbb R^n$ is closed if it contains all of its limit points.
+
+  That is, for every sequence $\{\x_k\} \subseteq E$ with $$\lim_{k \rightarrow \infty} \x_k = \x^*$$ if $\x^* \in E$, then $E$ is closed.
+\end{definition}
+\begin{definition}[Interior Point]
+  A point $\x \in E$ is an interior point of $E$ is there is a neighborhood/open ball of $\x$ that is contained in $E$.
+\end{definition}
+\begin{definition}[Open Set]
+  A set $E$ is open if all of its elements are interior points.
+
+  So, for any point you pick in $E$, you can find a small neighborhood around that point which is entirely contained in $E$ (there are no boundary points in $E$).
+\end{definition}
+\begin{theorem}[Properties of Open/Closed Sets]
+  The followings hold:
+  \begin{itemize}
+    \item A set is closed (open) if its complement, $\mathbb R^n \setminus E$, is open (closed).
+    \item Union of finitely many closed sets is closed
+    \item Intersection of (finitely or infinitely many) closed sets is closed.
+    \item Intersection of finitely many open sets is open
+    \item Union of (finitely or infinitely many) open sets is open.
+  \end{itemize}
+\end{theorem}
+\begin{definition}[Bounded]
+  A set $E \subset \mathbb R^n$ is bounded if it can be contained in a ball of finite radius. That is, there exists a neighborhood, $B_\delta(\x)$, such that $E \subseteq B_\delta(\x)$.
+\end{definition}
+\begin{definition}[Compact]
+  A set $E \subset \mathbb R^n$ is compact if it is closed and bounded.
+\end{definition}
+\begin{definition}[Lipschitz Continuous/Contraction]
+  Let $E \subseteq \mathbb R^n$. Let $f: E \to \mathbb R^m$ be a function. We say $f$ is Lipschitz continuous on $E$ if there exists a constant $L > 0$ such that for all $\x, \y \in E$,
+  $$\| f(\x) - f(\y) \| \leq L \| \x - \y \|$$
+\end{definition}
+\begin{theorem}[Continuity of Functions]
+  Let $E \subseteq \mathbb R^n, f,g: E \to \mathbb R^m$ and $\alpha \in \mathbb R$. If $f$ and $g$ are continuous at $\x_0$, then
+  \begin{enumerate}
+    \item $f + g, fg, \alpha f$ are continuous at $x_0$
+    \item $\frac{f}{g}$ is continuous at $\x_0$ provided that $g(\x_0) \neq 0$.
+  \end{enumerate}
+\end{theorem}
+\begin{definition}[Formal Definition of Derivative]
+  The \textbf{derivative} of $f$ at $a$ is defined as $$f'(a) = \lim_{x \rightarrow a} \frac{f(x) - f(a)}{x-a}$$ if the limit exists.
+
+  An alternate definition is
+  $$f'(a) = \lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h}$$
+\end{definition}
+\begin{theorem}[Extreme Value Theorem (EVT)]
+  If $E \subset \mathbb R^n$ is a compact set (closed and bounded) and $f: E \to \mathbb R$ is a continuous function, then $f$ attains a maximum and minimum on $E$. That is, there exists points $\x_{\text{min}}, \x_{\text{max}} \in E$ such that for all $\x \in E$,
+  $$f(x) \leq f(\x_{\text{max}}) \quad \text{and} \quad f(\x_{\text{min}}) \leq f(\x)$$
+\end{theorem}
+\begin{theorem}[Continuously Differentiable]
+  $f$ is continuously differentiable at $\x_0$ if all partial derivatives exist and are continuous in a neighborhood of $\x_0$. We say $f$ is continuously differentiable, $f \in C^1$, if its partial derivatives are continuous everywhere.
+
+  \bigskip
+  $f$ is twice differentiable on $E$ if $\nabla^2 f(x)$ exists for all $\x \in E$. If each entry of the Hessian $\nabla^2 f(\x)$ is continuous, we say $f$ is twice differentiable on $E$, $f \in C^2$.
+\end{theorem}
+\begin{theorem}[]
+  If $f: E \to \mathbb R$ is twice differentiable, then the Hessian is symmetric.
+\end{theorem}
+\begin{theorem}[Mean Value Theorem (MVT)]
+  Let $f: \mathbb R \to \mathbb R$ be continuous on the closed interval $[a,b]$ and differentiable on the open interval $(a,b)$. Then there exists $c \in (a,b)$ such that
+  $$f(b) - f(a) = f'(c) (b - a)$$
+\end{theorem}
+\begin{lemma}[Directional Derivative]
+  Let $f: \mathbb R^n \rightarrow \mathbb R, \bar x, d \in \mathbb R^n$ where $d$ is the direction. We define
+  $$\phi (\epsilon) = f(\bar x + \epsilon d): \mathbb R \rightarrow \mathbb R$$ the value of the function $f$ at a point that is displaced from $\bar x$ by a distance of $\epsilon$ in the direction $d$.
+  Then the \textbf{directional derivative}, denoted $f'(x; d)$ of $f$ at $x$ at the direction $d$ is
+  $$f'(x; d) = \phi'(0) = \lim_{\epsilon \rightarrow 0} \frac{f(x + \epsilon d) - f(x)}{\epsilon} = \nabla f(x)^T d$$
+\end{lemma}
+\begin{definition}[Directional Derivative (Different notation)]
+  The directional derivative of $f$ at a point $\bar x, \in \mathbb R^n$ in the direction $d$ is $$f'(\bar x; d) = \frac{d}{ds} f(\bar x + sd) \bigg|_{s = 0}$$
+\end{definition}
+\begin{theorem}[]
+  If $f$ is differentiable at $\bar x$, then $$f'(\bar x; d) = \nabla f(\bar x)^T d$$
+\end{theorem}
+\begin{proof}[Proof]
+  We only prove in the case where $\bar x = (a, b) \in \mathbb R^2$.
+  \begin{align*}
+      f'(\bar x; d) &= \frac{d}{ds} f(\bar x + sd) \bigg|_{s = 0} \\
+      &= \frac{d}{ds} f(\underbrace{a + sd_1}_{x}, \underbrace{b + sd_2}_{y}) \bigg|_{s = 0} \\
+      &= \left[\frac{\partial f}{\partial x} \frac{dx}{ds} + \frac{\partial f}{\partial y}\frac{dy}{ds}\right]_{s=0} \tag*{Chain rule}\\
+      &= \left[\frac{\partial}{\partial x}f(a + sd_1, b + sd_2) \cdot d_1 + \frac{\partial}{\partial y}f(a + sd_1, b + sd_2) \cdot d_2\right]_{s=0} \\
+      &= \frac{\partial f}{\partial x} (a,b) \cdot d_1 + \frac{\partial f}{\partial y}(a,b) \cdot d_2 \\
+      &= \left(\frac{\partial f}{\partial x}(a,b), \frac{\partial f}{\partial y} (a,b)\right) \cdot (d_1, d_2) \\
+      &= \nabla f(a,b) \cdot d
+  \end{align*}
+\end{proof}
+\begin{problem}
+  Let $f(x,y,z) = x^2z + y^3z^2 - xyz$ with $d = \begin{pmatrix}
+      -1 \\ 0 \\ 3
+  \end{pmatrix}$ Then the \textbf{directional derivative} in the direction $d$ is
+  $$\nabla f(x,y,z)^T d = \begin{pmatrix}
+      2xz - yz \\
+      3y^2z^2 - xz \\
+      x^2 + 2y^3z - xy
+  \end{pmatrix}^{T} \begin{pmatrix}
+      -1 \\ 0 \\ 3
+  \end{pmatrix} = -2xz + yz + 3x^2 + 6y^3z - 3xy$$
+\end{problem}
+\begin{theorem}[Taylor's Theorem on the real line]
+  Let $f: (a, b) \rightarrow \mathbb R$, and $\bar{x}, x \in (a,b)$. Then the Taylor's series centered at $\bar x$ (approximation near $\bar x$) is $$f(x) = f(\bar x) + f'(\bar x)(x - \bar x) + \frac{f''(z)}{2}(x - \bar x)^2$$
+  where $z$ is between $x$ and $\bar x$ that gives the largest value of $f''(z)$. The term $\frac{f''(z)}{2}(x - \bar x)^2$ is the \textbf{error term}
+
+  Equivalently,
+  $$f(\bar x + \Delta x) = \underbrace{f(x) + f'(x) \Delta x}_{\text{Linear approximation}} + o(|\Delta x|)(\text{little O})$$
+  This formula emphasizes its use in approximating changes in $f$ for small changes in $x$, denoted $\Delta x$. $o(|\Delta x|)$, the error term, means that the error goes to 0 faster than $|\Delta x|$ as $\Delta x$ goes to 0. Therefore, this is saying that the linear approximation becomes more and more accurate for smaller $\Delta x$.
+\end{theorem}
+\begin{theorem}[Multivariate Taylor]
+  Consider a $C^2$-smooth function $f: U \rightarrow \mathbb R$ on an open set $U \subset \mathbb R^n$. If $\bar x$ and $x$ are such that the segment $[\bar x, x] := \{\bar x + t(x - \bar x): t \in [0,1]\}$ is contained in $U$, then the Taylor series expansion of $f$ centered around $\bar x$ is
+  $$f(x) = f(\bar x) + \langle \nabla f(\bar x), x - \bar x \rangle + \frac{1}{2} \langle \nabla^2 f(z) (x - \bar x), (x - \bar x) \rangle$$
+  where $z$ is between $x$ and $\bar x$.
+\end{theorem}
+\begin{theorem}[Taylor's Theorem]
+  Let $f: \mathbb R^n \to \mathbb R$ be continuously differentiable and let $\textbf{d} \in \mathbb R^n$ be a direction vector. Then
+  $$f(\x + \textbf{d}) = f(\x) + \underbrace{\nabla f(\x + t\textbf{d})^T \textbf{d}}_{\text{directional derivative}}$$ for some $t \in (0,1)$. Moreover, if $f$ is twice differentiable, then
+  $$f(\x + \textbf{d}) = f(\x) + \nabla f(\x)^T\textbf{d} + \frac{1}{2} \underbrace{\textbf{d}^T \nabla^2 f(\x + t\textbf{d}) \textbf{d}}_{\text{second order directional derivative}}$$ for some $t \in (0,1)$.
+
+  \bigskip
+  This theorem provides a way to approximate the value of the function $f$ at a point $\x + \textbf{d}$ based on the value and derivatives of $f$ at or near the point $\x$.
+\end{theorem}
+
+\subsection{Linear Algebra}
+\begin{definition}[Characteristic Polynomial]
+  The characteristic polynomial of $A \in \mathbb R^{n \times n}$ is 
+  $$p(\lambda) = \det(A - \lambda I)$$ The degree of $p(\lambda)$ is $n$, and the leading term is $(-1)^n \lambda^n$.
+
+  The eigenvalues of $A$ are the roots of the characteristic polynomial.
+\end{definition}
+\begin{definition}[Eigenvectors and Eigenvalues]
+  $0 \neq v \in \mathbb R^n$ is an \textbf{eigenvector} of $A$ if there exists $\lambda \in \mathbb R$ such that $Av = \lambda v$. The number $\lambda$ is called an \textbf{eigenvalue} of $A$.
+\end{definition}
+\begin{theorem}[Finding Eigenvectors and Eigenvalues]
+  Let $A$ be a matrix.
+  \begin{enumerate}
+    \item Set up the characteristic equation. We find $$\det(A - \lambda I) = 0$$
+    \item Solve for $\lambda$. These are the eigenvalues.
+    \item Plug eigenvalues $\lambda_1,\ldots, \lambda_n$ into $(A - \lambda I)v = 0$ and solve for $v$. These are the eigenvectors.
+  \end{enumerate}
+\end{theorem}
+\begin{definition}[Quadratic Form]
+  Let $A$ be a symmetric matrix and $x = \begin{pmatrix}
+      x_1 \\ \vdots \\ x_n
+  \end{pmatrix}$. The \textbf{quadratic form} $Q$ of the matrix $A$ is defined as $$Q = x^T Ax$$
+\end{definition}
+
+\begin{problem}[Example]
+  Consider the matrix $A = \begin{bmatrix}
+      5 & -5 \\
+      -5 & 1
+  \end{bmatrix}$. The quadratic form of $A$ is $$Q(x) = 5x^2_1 - 10x_1x_2 + x^2_2$$
+\end{problem}
+\begin{definition}[Classification of Quadratic Forms]
+  Let $Q = x^TAx$ be a quadratic form of a matrix $A$. Then $A$ is
+  \begin{enumerate}
+      \item positive definite if $Q(x) > 0$ for all non-zero vectors $x$, and $Q(x) = 0$ if and only if $x = 0$. Or all eigenvalues of $A$ are positive. Denoted by $A \succ 0$.
+      \item positive semidefinite if $Q(x) \geq 0$ for all vectors $x$, with $Q(x) = 0$ occurring for some non-zero vectors $x$. Or all eigenvalues of $A$ are non-negative. Denoted by $A \succeq 0$.
+      \item negative definite if $Q(x) < 0$ for all non-zero vectors $x$, and $Q(x) = 0$ if and only if $x = 0$. Or all eigenvalues of $A$ are negative. Denoted by $A \prec 0$.
+      \item negative semidefinite if $Q(x) \leq 0$ for all vectors $x$, with $Q(x) = 0$ occuring for some non-zero vectors $x$. Or all eigenvalues of $A$ are non-negative. Denoted by $A \preceq 0$.
+      \item indefinite if $Q(x)$ can be positive or negative. Or there are positive and negative eigenvalues for $A$.
+  \end{enumerate}
+\end{definition}
+\begin{theorem}[Orthogonal Spectral Decomposition]
+  Let $A \in \mathbb S^n$. Then $A$ has an \textbf{orthogonal spectral decomposition}
+  $$A = \sum_i \lambda_i u_i u_i^T = UDU^T$$ where $U$ is orthogonal with the orthogonal eigenvectors $u_i$ as columns and $D$ is a diagonal matrix with real eigenvalues on the diagonal.
+\end{theorem}
+\begin{proposition}
+  Let $A \in \mathbb S^n$. The following are equivalent (Positive definite):
+  \begin{enumerate}
+    \item $A \succ 0$.
+    \item All the eigenvalues of $A$ are in $\mathbb R^n_{++}$, the interior of the nonnegative orthant.
+    \item $A$ has a real symmetric positive definite square root, $A = SS, S \in \mathbb S^n_{++}$.
+    \item $A$ has a lower triangular factorization, a Cholesky factorization, $A = LL^T$ and $L$ has positive diagonal elements.
+    \item All principal minors of $A$ are positive.
+    \item All leading principal minors of $A$ are positive.
+  \end{enumerate}
+  And the following are equivalent (Positive semidefinite):
+  \begin{enumerate}
+    \item $A \succeq 0$.
+    \item All the eigenvalues of $A$ are in $\mathbb R^n_{+}$, the nonnegative orthant.
+    \item $A$ has a real symmetric square root, $A = SS, S \in \mathbb S^n$.
+    \item $A$ has a lower triangular factorization, a Cholesky factorization, $A = LL^T$.
+    \item All principal minors of $A$ are nonnegative.
+  \end{enumerate}
+\end{proposition}
+
+\begin{definition}[Principal Submatrices]
+  Let $$A = \begin{bmatrix}
+    1 & 1 & 2 & 7 \\
+    1 & 1 & 4 & 6 \\
+    2 & 4 & 7 & 8 \\
+    7 & 6 & 8 & 1 \\
+  \end{bmatrix}, \quad I = \{1,3\}, \quad A[I] = \begin{bmatrix}
+    1 & 2 \\
+    2 & 7 \\
+  \end{bmatrix}$$
+  Then $A[I]$ is a \textbf{principal submatrix} of $A$.
+\end{definition}
+\begin{definition}[Principal Minors]
+  Let $A \in \mathbb S^n$, where $\mathbb S^n$ is the set of all symmetric $n \times n$ matrices.
+\begin{enumerate}
+  \item $\det(A[I])$ is called the \textbf{principal minor} of $A$.
+  \item If $I = \{1,\ldots, k\}$ then $\det(A[I])$ is called the \textbf{leading principal minor} of $A$.
+\end{enumerate}
+\end{definition}
+\begin{proposition}[Characterizing Positive Definiteness with Principal Minors]
+  Let $A \in \mathbb S^n$. Then
+  \begin{enumerate}
+    \item $A \succeq 0 \iff \det(A[I]) \geq 0$ for all principal minors $\det(A[I])$.
+    \item $A \succ 0 \iff \det(A[I]) > 0$ for all \textbf{leading} principal minors $\det(A[I])$.
+  \end{enumerate}
+\end{proposition}
+\begin{theorem}[]
+  Let $A \in \mathbb R^{n \times n}$ be symmetric. Then the following are equivalent:
+  \begin{enumerate}
+    \item $A$ is positive semidefinite (definite).
+    \item All eigenvalues of $A$ are nonnegative (positive).
+    \item $A$ can be factored as $A = BB^T$ where $B$ is an $n \times p$ matrix for some $p$. (Cholesky factorization)
+  \end{enumerate}
+\end{theorem}
+\begin{definition}[Diagonally Dominant]
+  A matrix $A$ is diagonally dominant if for every $i$, $$|a_{ii}| \geq \sum_{j \neq i} |a_{ij}|$$
+  So each diagonal element is greater than or equal to the sum of the absolute values of the other elements in the same row.
+
+  It is called strictly diagonally dominant if for every $i$, $$|a_{ii}| > \sum_{j \neq i} |a_{ij}|$$
+\end{definition}
+\begin{proposition}
+  Let $A \in \mathbb R^{n \times n}$ be a symmetric, diagonally dominant matrix whose diagonal entries are nonnegative, then $A$ is positive semidefinite.
+
+  \bigskip
+  Let $A \in \mathbb R^{n \times n}$ be a symmetric, strictly diagonally dominant matrix whose diagonal entries are positive, then $A$ is positive semidefinite.
+
+  \bigskip
+  Note that the converse is not true.
+\end{proposition}

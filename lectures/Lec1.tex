@@ -3,28 +3,6 @@
 % \begin{document}
 \section{Introduction}
 \subsection{Lecture 1-Preliminaries}
-\begin{definition}[Quadratic Form]
-    Let $A$ be a symmetric matrix and $x = \begin{pmatrix}
-        x_1 \\ \vdots \\ x_n
-    \end{pmatrix}$. The \textbf{quadratic form} $Q$ of the matrix $A$ is defined as $$Q = x^T Ax$$
-\end{definition}
-
-\begin{problem}[Example]
-    Consider the matrix $A = \begin{bmatrix}
-        5 & -5 \\
-        -5 & 1
-    \end{bmatrix}$. The quadratic form of $A$ is $$Q(x) = 5x^2_1 - 10x_1x_2 + x^2_2$$
-\end{problem}
-\begin{definition}[Classification of Quadratic Forms]
-    Let $Q$ be a quadratic form of a matrix $A$. Then $Q$ is
-    \begin{enumerate}
-        \item positive definite if $Q(x) > 0$ for all non-zero vectors $x$, and $Q(x) = 0$ if and only if $x = 0$. Or all eigenvalues of $A$ are positive.
-        \item positive semidefinite if $Q(x) \geq 0$ for all vectors $x$, with $Q(x) = 0$ occurring for some non-zero vectors $x$. Or all eigenvalues of $A$ are non-negative.
-        \item negative definite if $Q(x) < 0$ for all non-zero vectors $x$, and $Q(x) = 0$ if and only if $x = 0$. Or all eigenvalues of $A$ are negative.
-        \item negative semidefinite if $Q(x) \leq 0$ for all vectors $x$, with $Q(x) = 0$ occuring for some non-zero vectors $x$. Or all eigenvalues of $A$ are non-negative.
-        \item indefinite if $Q(x)$ can be positive or negative. Or there are positive and negative eigenvalues for $A$.
-    \end{enumerate}
-\end{definition}
 
 \begin{definition}[\href{https://www.stat.cmu.edu/~cshalizi/uADA/13/lectures/app-b.pdf}{Big O and little o}]
     Big O is basically the rate of growth of that function. A function $f(n)$ is of order 1, or $O(1)$ if there exists some non zero constant $c$ such that $$\frac{f(n)}{c} \rightarrow 1$$ as $n \rightarrow \infty$.
@@ -73,10 +51,7 @@
     With corresponding norm to be the Euclidean Norm
 \end{definition}
 
-\begin{definition}[Open ball]
-    Given $\delta > 0$, $\bar{x}\in \mathbb{R}^n$, the open ball $B_{\delta}(\bar{x})=\{x \in \mathbb{R}^n\ | \|x-\bar{x}\|< \delta\}$
-    
-\end{definition}
+
 
 \begin{definition}[map]
     Suppose the map $f:\mathbb{R}^n -> \mathbb{R}$.
@@ -134,11 +109,6 @@ where b$\neq$0
 \begin{definition}[Quadratic Approximation]
     Similar as above, the \textbf{quadratic approximation} to $f$ at $a$ is the quadratic function $$Q(x) = f(a) + f'(a)(x-a) + \frac{1}{2}f''(a)(x-a)^2$$ for $x \in I$.
 \end{definition}
-\begin{definition}[Formal Definition of Derivative]
-    The \textbf{derivative} of $f$ at $a$ is defined as $$f'(a) = \lim_{x \rightarrow a} \frac{f(x) - f(a)}{x-a}$$ if the limit exists.
 
-    An alternate definition is
-    $$f'(a) = \lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h}$$
-\end{definition}
 % \end{document}
 

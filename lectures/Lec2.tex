@@ -51,14 +51,6 @@
 \begin{problem}[Simplest Case - No Constraints]
     Let $\Omega \subseteq \mathbb R^n$ be an open set. Assume $f$ is sufficiently smooth (differentiable) then the NLP with no constraints is $$\min_{x \in \Omega} \;\;\;\; f(x)$$
 \end{problem}
-\begin{theorem}[Taylor's Theorem on the real line]
-    Let $f: (a, b) \rightarrow \mathbb R$, and $\bar{x}, x \in (a,b)$. Then the Taylor's series centered at $\bar x$ (approximation near $\bar x$) is $$f(x) = f(\bar x) + f'(\bar x)(x - \bar x) + \frac{f''(z)}{2}(x - \bar x)^2$$
-    where $z$ is between $x$ and $\bar x$ that gives the largest value of $f''(z)$. The term $\frac{f''(z)}{2}(x - \bar x)^2$ is the \textbf{error term}
-
-    Equivalently,
-    $$f(\bar x + \Delta x) = \underbrace{f(x) + f'(x) \Delta x}_{\text{Linear approximation}} + o(|\Delta x|)(\text{little O})$$
-    This formula emphasizes its use in approximating changes in $f$ for small changes in $x$, denoted $\Delta x$. $o(|\Delta x|)$, the error term, means that the error goes to 0 faster than $|\Delta x|$ as $\Delta x$ goes to 0. Therefore, this is saying that the linear approximation becomes more and more accurate for smaller $\Delta x$.
-\end{theorem}
 \begin{definition}[Secant Line]
     A secant line is a line that connects two points on a function.
 \end{definition}
@@ -74,42 +66,6 @@
         &= 2(t) \cdot 1 + 2(2t) \cdot 2 \\
         &= 10t
     \end{align*}
-\end{problem}
-\begin{lemma}[Directional Derivative]
-    Let $f: \mathbb R^n \rightarrow \mathbb R, \bar x, d \in \mathbb R^n$ where $d$ is the direction. We define
-    $$\phi (\epsilon) = f(\bar x + \epsilon d): \mathbb R \rightarrow \mathbb R$$ the value of the function $f$ at a point that is displaced from $\bar x$ by a distance of $\epsilon$ in the direction $d$.
-    Then the \textbf{directional derivative}, denoted $f'(x; d)$ of $f$ at $x$ at the direction $d$ is
-    $$f'(x; d) = \phi'(0) = \lim_{\epsilon \rightarrow 0} \frac{f(x + \epsilon d) - f(x)}{\epsilon} = \nabla f(x)^T d$$
-\end{lemma}
-\begin{definition}[Directional Derivative (Different notation)]
-    The directional derivative of $f$ at a point $\bar x, \in \mathbb R^n$ in the direction $d$ is $$f'(\bar x; d) = \frac{d}{ds} f(\bar x + sd) \bigg|_{s = 0}$$
-\end{definition}
-\begin{theorem}[]
-    If $f$ is differentiable at $\bar x$, then $$f'(\bar x; d) = \nabla f(\bar x)^T d$$
-\end{theorem}
-\begin{proof}[Proof]
-    We only prove in the case where $\bar x = (a, b) \in \mathbb R^2$.
-    \begin{align*}
-        f'(\bar x; d) &= \frac{d}{ds} f(\bar x + sd) \bigg|_{s = 0} \\
-        &= \frac{d}{ds} f(\underbrace{a + sd_1}_{x}, \underbrace{b + sd_2}_{y}) \bigg|_{s = 0} \\
-        &= \left[\frac{\partial f}{\partial x} \frac{dx}{ds} + \frac{\partial f}{\partial y}\frac{dy}{ds}\right]_{s=0} \tag*{Chain rule}\\
-        &= \left[\frac{\partial}{\partial x}f(a + sd_1, b + sd_2) \cdot d_1 + \frac{\partial}{\partial y}f(a + sd_1, b + sd_2) \cdot d_2\right]_{s=0} \\
-        &= \frac{\partial f}{\partial x} (a,b) \cdot d_1 + \frac{\partial f}{\partial y}(a,b) \cdot d_2 \\
-        &= \left(\frac{\partial f}{\partial x}(a,b), \frac{\partial f}{\partial y} (a,b)\right) \cdot (d_1, d_2) \\
-        &= \nabla f(a,b) \cdot d
-    \end{align*}
-\end{proof}
-\begin{problem}
-    Let $f(x,y,z) = x^2z + y^3z^2 - xyz$ with $d = \begin{pmatrix}
-        -1 \\ 0 \\ 3
-    \end{pmatrix}$ Then the \textbf{directional derivative} in the direction $d$ is
-    $$\nabla f(x,y,z)^T d = \begin{pmatrix}
-        2xz - yz \\
-        3y^2z^2 - xz \\
-        x^2 + 2y^3z - xy
-    \end{pmatrix}^{T} \begin{pmatrix}
-        -1 \\ 0 \\ 3
-    \end{pmatrix} = -2xz + yz + 3x^2 + 6y^3z - 3xy$$
 \end{problem}
 \begin{corollary}
     Let $f: (a,b) \rightarrow \mathbb R$
@@ -129,11 +85,7 @@
         \frac{\partial f(x)}{\partial x_n \partial x_1} & \frac{\partial f(x)}{\partial x_n \partial x_2} & \cdots & \frac{\partial f(x)}{\partial x_n^2} \\
     \end{bmatrix}$$
 \end{definition}
-\begin{theorem}[Multivariate Taylor]
-    Consider a $C^2$-smooth function $f: U \rightarrow \mathbb R$ on an open set $U \subset \mathbb R^n$. If $\bar x$ and $x$ are such that the segment $[\bar x, x] := \{\bar x + t(x - \bar x): t \in [0,1]\}$ is contained in $U$, then the Taylor series expansion of $f$ centered around $\bar x$ is
-    $$f(x) = f(\bar x) + \langle \nabla f(\bar x), x - \bar x \rangle + \frac{1}{2} \langle \nabla^2 f(z) (x - \bar x), (x - \bar x) \rangle$$
-    where $z$ is between $x$ and $\bar x$.
-\end{theorem}
+
 \begin{lemma}
     Let $v \in \mathbb R^n$. Then $$v = 0 \iff \langle v,d \rangle = 0, \quad \forall d \in \mathbb R^n$$
 \end{lemma}
