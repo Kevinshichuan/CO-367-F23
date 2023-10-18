@@ -1,5 +1,5 @@
 \section{Iterative Methods for Unconstrained Optimization}
-\subsection{Lecture 8}
+\subsection{Lecture 8-10}
 Before, we have iterative methods to solve linear and linear least squares system.
 
 \textbf{Goal}: Solve more general problems of minimization.
@@ -21,6 +21,7 @@ Choose a starting point $x_0$. For $k = 0,1,2,\ldots$
 $$\alpha_k \in \text{argmin } f(x_k + \alpha d_k)$$
 Then we update $x_{k+1} = x_k + \alpha_k v_k$.
 \end{definition}
+\subsubsubsection{Finding Descent Direction}
 \begin{definition}[Descent Direction]
   Let $x \in U \subseteq \mathbb R^n$ with $U$ being an open set. Then $d \in \mathbb R^n$ is a descent direction for $f$ at $x$ if there exists $\bar \alpha > 0$ such that $$x + \alpha d \in U, f(x + \alpha d) < f(x)$$ for all $0 < \alpha < \bar \alpha$.
 
@@ -32,7 +33,6 @@ Then we update $x_{k+1} = x_k + \alpha_k v_k$.
   \bigskip (i.e., the directional derivative of $f$ at $\bar x$ in the direction of $d$ is negative, so we know that it is the descent direction.)
 \end{lemma}
 
-% \textbf{How do we choose step size?} We first set $$g(\alpha) = f(x_k + \alpha \nabla f(x_k))$$ for step size $\alpha$, so we are traveling in the direction of the gradient (steepest descent). So now we have a one dimensional problem, then we can just solve for $g'(\alpha) = 0$ to find the critical point in the direction of the gradient. After finding $\alpha$, we can obtain the next point $x_{k+1} = x_k + \alpha \nabla f(x_k)$.
 The main difference between line search methods is the choice of the descent direction
 \begin{problem}[Example]
   If $\nabla f(x) \neq 0$ then $d = - \nabla f(x)$ is a descent direction since
@@ -45,9 +45,61 @@ The main difference between line search methods is the choice of the descent dir
   Let $f: \mathbb R^n \to \mathbb R$ be continuously differentiable and let $\bar x \in \mathbb R^n$. Assume that $d$ is a descent direction of $f$ at $\bar x$, so $$\nabla f(\bar x)^T d < 0$$ Then there exists $\delta > 0$ such that for every $\alpha \in (0, \delta]$, 
   $$f(\bar x + \alpha d) < f(\bar x)$$.
 \end{theorem}
+\begin{proof}[Proof]
+  By Taylor's theorem, for all $x \in \mathbb R^n$, 
+  $$f(x) = f(\bar x) + \nabla f(\bar x)^T (x - \bar x) + o(\|x - \bar x\|)$$
+  Then
+  $$f(\bar x + \alpha d) = f(\bar x) + \nabla f(\bar x)^T (\bar x + \alpha d - \bar x) + o(\|\bar x + \alpha d - \bar x\|)$$
+  Simplifying gives
+  $$f(\bar x + \alpha d) = f(\bar x) + \alpha \underbrace{\nabla f(\bar x)^T d}_{< 0} + o(\|\alpha d\|)$$ Rearranging and dividing both sides by $\alpha \|d\|$, we get
+  $$\frac{f(\bar x + \alpha d) - f(\bar x)}{\alpha \|d\|} = \frac{\nabla f(\bar x)^T d}{\|d\|} + \frac{o(\|\alpha d\|)}{\alpha \|d\|}$$
+  Taking the limit as $\alpha \to 0$, we get
+  $$\lim_{\alpha \to 0} \frac{f(\bar x + \alpha d) - f(\bar x)}{\alpha \|d\|} = \frac{\nabla f(\bar x)^T d}{\|d\|}$$
+  Since $\nabla f(\bar x)^T d < 0$, we know that the limit is negative. Then there exists $\delta > 0$ such that for all $\alpha \in (0, \delta]$, we have
+  $$\frac{f(\bar x + \alpha d) - f(\bar x)}{\alpha \|d\|} < 0$$
+\end{proof}
 
-
-
+\subsubsubsection{Finding Step Size}
+The process of finding the step size $\alpha_k$ is called line search. Some common choices for step size are as follows:
+\begin{enumerate}
+  \item $\alpha_k = \alpha$ (a constant) for every $k$
+  \item Exact line search: $\alpha_k = \text{argmin}_{\alpha \geq 0} f(x_k + \alpha d_k)$
+  \item Inexact line search: A step size $\alpha_k$ that achieves a sufficient decrease in $f$. One popular inexact line search conditions are called the Wolfe conditions.
+\end{enumerate}
+\begin{problem}[Exact Line Search]
+  For exact line search, we define a new function
+  $$\phi(\alpha) = f(x_k + \alpha d_k)$$
+  We can differentiate w.r.t. $\alpha$ using the chain rule to obtain
+  $$\phi' (\alpha) = \nabla f(x_k + \alpha d_k)^T d_k$$
+  Then we set $\phi'(\alpha) = 0$ to obtain the critical point of $\phi$. Then we can use the second derivative test to determine if the critical point is a local minimizer. If it is, then we have found the optimal step size $\alpha_k$.
+\end{problem}
+\begin{definition}[Wolfe Conditions]
+  Let $0 < c_1 < c_2 < 1$. The Wolfe conditions are
+  \begin{enumerate}
+    \item Sufficient decrease condition: $$f(x_k + \alpha d_k) \leq f(x_k) + c_1 \alpha \nabla f(x_k)^T d_k$$ or equivalently
+    $$\phi(\alpha_k) \leq \phi(0) + c_1 \alpha \phi'(0)$$
+    \item Curvature condition: $$\nabla f(x_k + \alpha d_k)^T d_k \geq c_2 \nabla f(x_k)^T d_k$$ or equivalently
+    $$\phi'(\alpha_k) \geq c_2 \phi'(0)$$
+  \end{enumerate}
+\end{definition}
+\begin{theorem}[Existence of Step Lengths that Satisfy Wolfe Conditions]
+  Assume $f: \mathbb R^n \to \mathbb R$ is continuously differentiable. Let $d_k$ be a descent direction at $x_k$ and assume $f$ is bounded below along the ray $\{x_k + \alpha d_k: \alpha \geq 0\}$. Then if $0 < c_1 < c_2 < 1$ there exist intervals of step lengths satisfying the Wolfe conditions.
+\end{theorem}
+\begin{proof}[Proof]
+  Omitted
+\end{proof}
+\subsubsubsection{Steepest Descent Method}
+The steepest descent method is easy to implement as it requires the calculation of the gradient but not second derivatives. The descent direction at each iteration is chosen as $$d_k = - \nabla f(x_k)$$
+\begin{lemma}
+  Let $f: \mathbb R^n \to \mathbb R$ be continuously differentiable and let $\bar x \in \mathbb R^n$ such that $\nabla f(\bar x) \neq 0$. Then the optimal solution of the following minimization problem $$\min_{d \in \mathbb R^n} \{\nabla f(\bar x)^T d: \|d\|_2 = 1\}$$ is $$d^* = \frac{-\nabla f(\bar x)}{\|\nabla f(\bar x)\|_2}$$
+\end{lemma}
+\begin{proof}[Proof]
+  By Cauchy-Schwarz inequality, we have
+  $$\nabla f(\bar x)^T d \geq -\| \nabla f(\bar x)\|_2 \| d\|_2 = -\|\nabla f(\bar x)\|_2$$
+  The smallest value of $d$ is $d = \frac{-\nabla f(\bar x)}{\|\nabla f(\bar x)\|_2}$ since if we plug in $d$ into the inequality, we get
+  $$\nabla f(\bar x)^T \frac{-\nabla f(\bar x)}{\|\nabla f(\bar x)\|_2} = \frac{-\|\nabla f(\bar x)\|^2_2}{\|\nabla f(\bar x)\|_2}=-\|\nabla f(\bar x)\|_2$$
+  So $d^* = \frac{-\nabla f(\bar x)}{\|\nabla f(\bar x)\|_2}$ is a minimizer of this problem.
+\end{proof}
 \subsubsection{Trust Region Strategy}
 The difference in trust region strategy and line search strategy is that in line search strategy, we first choose the direction, then choose step size. In trust region, we first choose the step size, then we choose the direction.
 \begin{definition}[Trust Region Strategy]
@@ -74,7 +126,4 @@ The difference in trust region strategy and line search strategy is that in line
   Solving it, we get $$(x, y) = \left(\pm \sqrt{\frac{2}{3}}, \pm \sqrt{\frac{1}{3}}\right), \quad \lambda = y$$
   Testing each point, we get that $\left(\sqrt{\frac{2}{3}}, \sqrt{\frac{1}{3}}\right)$ is the maximizer of $f$.
 \end{problem}
-\begin{proposition}
-  Suppose $\langle d, \nabla f(\bar x) \rangle < 0$. Then there exists $B \succ 0$ that satisfies $d = -B^{-1} \nabla f(\bar x)$. 
-\end{proposition}
 
