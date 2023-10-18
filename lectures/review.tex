@@ -150,6 +150,15 @@
   \bigskip
   This theorem provides a way to approximate the value of the function $f$ at a point $\x + \textbf{d}$ based on the value and derivatives of $f$ at or near the point $\x$.
 \end{theorem}
+\begin{theorem}[Taylor's Thoerem (alternative)]
+  Let $f: \mathbb R^n \to \mathbb R$ be continuously differentiable at $\x^*$. Then $\forall x \in \mathbb R^n$
+  $$f(\x) = \underbrace{f(\x^*) + \nabla f(\x^*)^T (\x - \x^*)}_{\text{linear approximation of $f$ at $\x^*$}} + o(\| \x - \x^* \|)$$
+  where $o(\| \x - \x^* \|)$ is the error term that goes to 0 faster than $\| \x - \x^* \|$ as $\x \to \x^*$.
+
+  Let $f: \mathbb R^n \to \mathbb R$ be twice continuously differentiable at $\x^*$. Then $\forall x \in \mathbb R^n$
+  $$f(\x) = \underbrace{f(\x^*) + \nabla f(\x^*)^T (\x - \x^*) + \frac{1}{2} (\x - \x^*)^T \nabla^2 f(\x^*) (\x - \x^*)}_{\text{quadratic approximation of $f$ at $\x^*$}} + o(\| \x - \x^* \|^2)$$
+  where $o(\| \x - \x^* \|^2)$ is the error term that goes to 0 faster than $\| \x - \x^* \|^2$ as $\x \to \x^*$.
+\end{theorem}
 
 \subsection{Linear Algebra}
 \begin{definition}[Characteristic Polynomial]
