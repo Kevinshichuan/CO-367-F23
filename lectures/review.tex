@@ -160,6 +160,21 @@
   $$f(\x) = \underbrace{f(\x^*) + \nabla f(\x^*)^T (\x - \x^*) + \frac{1}{2} (\x - \x^*)^T \nabla^2 f(\x^*) (\x - \x^*)}_{\text{quadratic approximation of $f$ at $\x^*$}} + o(\| \x - \x^* \|^2)$$
   where $o(\| \x - \x^* \|^2)$ is the error term that goes to 0 faster than $\| \x - \x^* \|^2$ as $\x \to \x^*$.
 \end{theorem}
+\begin{problem}[Lagrange Multiplier Example]
+  Maximize $f(x,y) = x^2 y$ subject to $g(x,y) = x^2 + y^2 = 1$. By using Lagrange multipliers, we know that the maximizer, $(x^*, y^*)$ satisfies $$\nabla f(x^*, y^*) = \lambda \nabla g(x^*, y^*)$$ We have 
+  \begin{align*}
+    \nabla g(x,y) &= \begin{bmatrix} 2x \\ 2y \end{bmatrix} \\
+    \nabla f(x,y) &= \begin{bmatrix} 2xy \\ x^2 \end{bmatrix}
+  \end{align*} Then, using Lagrange multipliers, we solve
+  $$\begin{bmatrix} 2xy \\ x^{2} \end{bmatrix} = \lambda \begin{bmatrix} 2x \\ 2y \end{bmatrix}$$ Since we also have the constraint $x^2 + y^2 = 1$, we solve the system of equations
+  \begin{align*}
+    2xy &= 2\lambda x \\
+    x^2 &= 2\lambda y \\
+    x^2 + y^2 &= 1
+  \end{align*}
+  Solving it, we get $$(x, y) = \left(\pm \sqrt{\frac{2}{3}}, \pm \sqrt{\frac{1}{3}}\right), \quad \lambda = y$$
+  Testing each point, we get that $\left(\sqrt{\frac{2}{3}}, \sqrt{\frac{1}{3}}\right)$ is the maximizer of $f$.
+\end{problem}
 
 \subsection{Linear Algebra}
 \begin{definition}[Characteristic Polynomial]
