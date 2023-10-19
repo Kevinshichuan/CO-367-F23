@@ -288,3 +288,17 @@
   \bigskip
   Note that the converse is not true.
 \end{proposition}
+\begin{definition}[Four Fundamental Subspaces]
+  Let $A$ be a $m \times n$ matrix.
+  \begin{itemize}
+    \item The range space of $A$ is defined as $\text{Range}(A) = \{Ax: x \in \mathbb R^n\} \subseteq \mathbb R^m$.
+    \item The range space of $A^T$ is defined as $\text{Range}(A^T) = \{A^T y: y \in \mathbb R^m\} \subseteq \mathbb R^n$.
+    \item The null space of $A$ is defined as $\text{Null}(A) = \{x \in \mathbb R^n: Ax = 0\} \subseteq \mathbb R^n$.
+    \item The null space of $A^T$ is defined as $\text{Null}(A^T) = \{y \in \mathbb R^m: A^T y = 0\} \subseteq \mathbb R^m$.
+  \end{itemize}
+\end{definition}
+\begin{theorem}[Rank Nullity Theorem]
+  Let $A$ be an $m \times n$ matrix. Then
+  $$\text{rank}(A) + \dim(\text{Null}(A)) = n$$
+  Recall that rank of a matrix is the number of pivots in the reduced row echelon form of the matrix. The dimension of a subspace is the number of linearly independent vectors that span the subspace.
+\end{theorem}
