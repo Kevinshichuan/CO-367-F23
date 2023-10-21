@@ -128,7 +128,7 @@
 \begin{proof}
   Since Q is positive semidef, we can use spectural decomposition,
   $Q=UDU^T,U^TU=I$. $x^TQx=x^TUDU^Tx$ which is also a quadratic form, let $y=U^Tx,x=Uy$
-  \\ Thus for q(x), we sub $x=uy$, then we get 
+  \\ Thus for q(x), we sub $x=Uy$, then we get 
   \begin{align*}
     q(x) &= \frac{1}{2}(Uy)^TQ(Uy)+b^TUy+\alpha \\
     &= \frac{1}{2}y^TDy+(U^Tb)^Ty+\alpha \text{  Let }\bar{b}=U^Tb \\
@@ -136,7 +136,9 @@
   \end{align*}
   Which is a seperable problem.
   $p_i^*=min\, \frac{1}{2}\lambda_iy_i^2+\bar{b_i}y_i$
-  \\ $p_i^*$ is finite iff $\lambda_i \geq 0,\implies . $\textcolor{red}{This part incomplete}
+  \\ $p_i^*$ is finite iff $\lambda_i \geq 0$,
+  $ \lambda_i=0 \implies \bar{b_i}=0\textcolor{red}{Why}$. 
+  $\bar{b_i}=u_i^Tb$
 \end{proof}
 
 \begin{theorem}[Weierstrass]

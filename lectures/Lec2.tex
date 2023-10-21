@@ -77,7 +77,15 @@
     
 \end{corollary}
 \begin{proof}
-    Omit here, can prove by using the little O or the definition
+    \begin{align*}
+        \text{Since $\bar{x}$ is the local minimizer of f, given small $|\Delta x|$},
+        \\ f(\bar{x}+\Delta x)-f(\bar{x}) &\geq 0 \\
+        f(\bar{x}+\Delta x) & = f(\bar{x})+f'(\bar{x})*\Delta x+o(|\Delta x|) \\
+        f'(\bar{x})*\Delta x+o(|\Delta x|) &\geq 0 \\
+        \frac{f'(\bar{x})}{|\Delta x|}*\Delta x+\frac{o(|\Delta x|)}{|\Delta x|} &\geq 0 \\
+        \end{align*}
+    Since this holds for all positive and negative $\Delta x$. Thus $f'(x)=0$
+        For the second order proof, we used taylor thm to construct the contradiction
 \end{proof}
 \begin{definition}[Hessian]
     The \textbf{Hessian} of $f$ at $x = \begin{pmatrix}
