@@ -104,6 +104,22 @@ Moreover, since $U$ is open, we have $x + td \in U$ for all sufficiently small $
   Ignore it for now\textcolor{red}{text}
 \end{proof}
 
+\subsubsection[short]{Second order model: Newton Type}
+Model $mq(x)=f(x_c+\nabla f(x_c)^T\Delta x+\frac{1}{2}\Delta x^TB_c \Delta x$ 
+where $B_c\simeq \nabla^2f(x_c)$
+
+\begin{lemma}[TFAE]
+  1. $mq(\Delta x)$ is bdd below
+  \\2. $B_c \succeq 0$ and $\nabla f(x_c)\in range(B_c)$
+  \\3. $\Delta \bar{x}=-B_c^+\nabla f(x_c)$ is a global minimum of mq
+\end{lemma}
+\begin{proof}
+  2 to 1:
+  \\ Suppose 2 holds, we have $B_c \succeq 0$ and $\exists \bar{\Delta x},B_c\bar{\Delta x}=-\nabla f(x_c))$.
+  This is also the stationary condition. Again, since $B_c$ is psd, there exists a psd square root such that $ss=B_c$.
+  \\ Then lets complete the square $$mq(\Delta x)=$$ \textcolor{red}{confirm}
+
+\end{proof}
 The main difference between line search methods is the choice of the descent direction
 \begin{problem}[Example]
   If $\nabla f(x) \neq 0$ then $d = - \nabla f(x)$ is a descent direction since
