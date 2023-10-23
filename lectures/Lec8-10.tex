@@ -1,3 +1,26 @@
+\begin{problem}[DNE of multiplier]
+  \textbf{Recall:}
+\begin{align*}
+\text{minimize } & f(x) \\
+\text{subject to } & f_i(x) = 0, \quad i = 1, \dots, m \\
+L(x, \lambda) &= f(x) - \sum_{i=1}^m \lambda_i f_i(x) \quad \text{(Lagrangian multiplier)}
+\end{align*}
+
+\text{If } $x^* \text{ is a local minimum and }$
+\begin{align*}
+\left\{ \nabla f_i(x^*) \right\} \text{ is a linearly independent set, then }
+\nabla L(x^*, \lambda) &= \nabla f(x^*) + \sum_{i=1}^m \lambda_i \nabla h_i(x^*) = 0 \text{ for some } \lambda \in \mathbb{R}
+\end{align*}
+
+\textbf{Example:}
+\begin{align*}
+f(x) &= x \\
+h(x) &= x^2 = 0 \\
+L(x, \lambda) &= x + \lambda x^2, \quad \text{with constraint } x^2 = 0 \\
+0 &= \nabla L(x, \lambda) = 1 + 2 \lambda x=1+0. \text{ No $\lambda$ exist}
+\end{align*}
+
+\end{problem}
 \section{Iterative Methods for Unconstrained Optimization}
 \subsection{Lecture 8-10}
 Before, we have iterative methods to solve linear and linear least squares system.
@@ -33,6 +56,54 @@ Then we update $x_{k+1} = x_k + \alpha_k v_k$.
   \bigskip (i.e., the directional derivative of $f$ at $\bar x$ in the direction of $d$ is negative, so we know that it is the descent direction.)
 \end{lemma}
 
+\begin{proof}
+  \textbf{Proof.} From the hypothesis we have
+\[
+f(x + td) = f(x) + t \nabla f(x) \cdot d + o(t).
+\]
+Therefore we deduce
+\[
+\frac{f(x + td) - f(x)}{t} = \langle d, \nabla f(x) \rangle + \frac{o(t)}{t} < 0, \text{ for all sufficiently small } t > 0.
+\]
+Moreover, since $U$ is open, we have $x + td \in U$ for all sufficiently small $t > 0$. \qed
+
+\end{proof}
+
+\begin{problem}[Example(direction of steepest descent)]
+  \textbf{We saw}
+  \[
+  \min \nabla f(x)^t \cdot d \quad \text{s.t.} \quad ||d|| = 1
+  \]
+  \textbf{get} 
+  \[
+  d = -\frac{\nabla f(x)^T}{||\nabla f(x)||}
+  \]
+  \textbf{Cauchy direction of steepest descent}
+  
+  \textbf{Alternatively},
+  \[
+  -\nabla f(x)^T \cdot d \leq ||d|| \cdot ||\nabla f(x)^T|| = ||d|| \cdot f(x)^T
+  \]
+  \textbf{but} 
+  \[
+  d = -\nabla f(x)^T \text{ gives equality.}
+  \]
+  \textbf{So C.S yields s.t direction}
+  
+  $\textbf{If } B \succ 0, \textbf{then} $
+  \[
+  d = -B^{-1} \nabla f(x)^T \text{ in a "deflated gradient" direction.}
+  \]
+  
+  
+\end{problem}
+\begin{proposition}[Existence of B]
+  Suppose$\nabla f(\bar{x})^T d <0$ Then there exists$B\succ0$that satisfies d=$-B^{-1}\nabla f(\bar{x})$
+\end{proposition}
+\begin{proof}
+  Ignore it for now\textcolor{red}{text}
+\end{proof}
+
 The main difference between line search methods is the choice of the descent direction
 \begin{problem}[Example]
   If $\nabla f(x) \neq 0$ then $d = - \nabla f(x)$ is a descent direction since
@@ -41,6 +112,7 @@ The main difference between line search methods is the choice of the descent dir
   $$d^T \nabla f(x) = - \nabla f(x)^T H^{-1} \nabla f(x) < 0$$
   since $H \succ 0$, we have $H^{-1} \succ 0$, so $\nabla f(x)^T H^{-1} \nabla f(x) > 0$.
 \end{problem}
+
 \begin{theorem}[Existence of a Descent Direction]
   Let $f: \mathbb R^n \to \mathbb R$ be continuously differentiable and let $\bar x \in \mathbb R^n$. Assume that $d$ is a descent direction of $f$ at $\bar x$, so $$\nabla f(\bar x)^T d < 0$$ Then there exists $\delta > 0$ such that for every $\alpha \in (0, \delta]$, 
   $$f(\bar x + \alpha d) < f(\bar x)$$.
@@ -174,6 +246,11 @@ This is the secant equation. We can use this equation to update $B_{k+1}$.
 
 
 \subsubsection{Trust Region Strategy}
+\begin{problem}[Trust Rigion Strategy]
+  Construct a model for f at $x_k$, $f(x_k+\Delta x)\sim mq(\Delta x)=f(x_k)+\Delta x^T\nabla f(x_k)+\frac{1}{2}\Delta x^TB_k\Delta x$,
+  where $B_k\simeq \nabla^2 f(x_k)$. COnstruct region where we trust the model. Region can be a ball,
+  eg. $\Omega_k=\{\Delta x| ||\Delta x||\leq \delta_k^2\}$
+\end{problem}
 The difference in trust region strategy and line search strategy is that in line search strategy, we first choose the direction, then choose step size. In trust region, we first choose the step size, then we choose the direction.
 \begin{definition}[Trust Region Strategy]
   In each iteration, we construct a model of $f$. That is, in each step we consider $m_k: \mathbb R^n \to \mathbb R$ that is a simple function that approximates $f$ well on some simple set $\Omega_k$ (the trust region) around our current approximation $x_k$. Then we find the new approximation $$\hat x = \text{argmin } m_k(x) \quad \text{$x \in \Omega_k$}$$
@@ -185,4 +262,6 @@ The difference in trust region strategy and line search strategy is that in line
 \end{definition}
 
 
-
+\begin{definition}[Comparing Algorithms]
+  \textcolor{red}{upload later}
+\end{definition}
