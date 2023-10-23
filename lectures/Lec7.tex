@@ -10,8 +10,12 @@
   \end{bmatrix}$$
 \end{definition}
 \begin{problem}[Solving Nonlinear Least Squares]
-  For the nonlinear least squares problem defined above, we consider the special case $m = n$. Then we can consider the problem as solving the square system of nonlinear equations $F(x) = 0$. Recall that for current approximation $x_c$, $$0 = F(x_c + d) \approx F(x_c) + \underbrace{F'(x_c)}_{\text{Jacobian}}\underbrace{d}_{\text{search direction}}$$ So we solve $$F'(x_c)d = -f(x_c)$$ which is called the Newton equation. Then we can take a step in the search/Newton direction $d$ to get a new approxiamtion $x_{c+1} = x_c + \alpha d$ for appropriate step length $\alpha$.
+  For the nonlinear least squares problem defined above, we consider the special case $m = n$. Then we can consider the problem as solving the square system of nonlinear equations $F(x) = 0$. Recall that for current approximation $x_c$, $$0 = F(x_c + d) \approx F(x_c) + \underbrace{F'(x_c)}_{\text{Jacobian}}\underbrace{d}_{\text{search direction}}$$ So we solve $$F'(x_c)d = -F(x_c)$$ which is called the Newton equation. Then we can take a step in the search/Newton direction $d$ to get a new approxiamtion $x_{c+1} = x_c + \alpha d$ for appropriate step length $\alpha$.
+  \\ In general, $\nabla h(x_c)=\sum_{i=1}^mf_i(x_c)\nabla f_i(x_c)=J(x_c)^TF(x_c)$
 \end{problem}
+\begin{definition}[Second Order Model for Nonlinear Problem]
+  $h(x+\nabla x)\sim h()$ \textcolor{red}{upload later}
+\end{definition}
 \begin{definition}[Argmin and argmax]
   $\text{argmin } f(x)$ is the set of all minimizers of $f(x)$, similarly $\text{argmax }f(x)$ is the set of all maximizers of $f(x)$.
 \end{definition}
