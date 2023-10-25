@@ -57,7 +57,7 @@ Then we update $x_{k+1} = x_k + \alpha_k v_k$.
 \end{lemma}
 
 \begin{proof}
-  \textbf{Proof.} From the hypothesis we have
+  From the hypothesis we have
 \[
 f(x + td) = f(x) + t \nabla f(x) \cdot d + o(t).
 \]
@@ -65,8 +65,7 @@ Therefore we deduce
 \[
 \frac{f(x + td) - f(x)}{t} = \langle d, \nabla f(x) \rangle + \frac{o(t)}{t} < 0, \text{ for all sufficiently small } t > 0.
 \]
-Moreover, since $U$ is open, we have $x + td \in U$ for all sufficiently small $t > 0$. \qed
-
+Moreover, since $U$ is open, we have $x + td \in U$ for all sufficiently small $t > 0$.
 \end{proof}
 
 \begin{problem}[Example(direction of steepest descent)]
@@ -104,7 +103,7 @@ Moreover, since $U$ is open, we have $x + td \in U$ for all sufficiently small $
   Ignore it for now\textcolor{red}{text}
 \end{proof}
 
-\subsubsection[short]{Second order model: Newton Type}
+\subsubsection{Second order model: Newton Type}
 Model $mq(x)=f(x_c+\nabla f(x_c)^T\Delta x+\frac{1}{2}\Delta x^TB_c \Delta x$ 
 where $B_c\simeq \nabla^2f(x_c)$
 

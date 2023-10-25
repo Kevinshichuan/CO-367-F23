@@ -17,9 +17,25 @@
     \item Sufficient conditions: If $\nabla f(\bar{x})=0,\nabla^2f(\bar{x}) \succ 0$ is positive definite then $\bar{x}$ is a strict local minimizer of $f$ on $D$.
   \end{enumerate}
 \end{theorem}
-\begin{proof}
-  This should be proved by the Taylor expansion
-  $f(\bar{x}+\Delta X)=f(\bar{x})+\nabla f(\bar{x})^T \Delta x$+o($|\Delta x|$ ) 
+\begin{proof}[Proof of Necessary conditions.]
+  Assume $\bar x$ is a local minimizer of $f$, we show that $\nabla f(\bar x) = 0$ and $\nabla^2 f(\bar x) \succeq 0$.
+    
+  By multivariate Taylor Theorem, we have
+  $$f(\bar x + d) = f(\bar x) + \nabla f(\bar x)^Td + o(\|d\|)$$
+  Rearranging, then dividing both sides by $\|d\|$ gives
+  $$\frac{f(\bar x + d) - f(\bar x)}{\| d\|} = \nabla f(\bar x)^T \frac{d}{\|d\|} + \frac{o(\|d\|)}{\|d\|}$$
+  Since $\bar x$ is a local minimizer, $f(\bar x + d) \geq f(\bar x)$, thus $\frac{f(\bar x + d) - f(\bar x)}{\|d\|} \geq 0$, so $\nabla f(\bar x)^T \frac{d}{\| d\|} \geq 0$ as well. Now, $\frac{d}{\|d\|}$ is a unit vector with arbitrary $d$, so $\nabla f(\bar x) v \geq 0$ for all unit vectors $v$.
+
+  Consider $+v$ and $-v$, we have $\nabla f(\bar x) v \geq 0$ and $\nabla f(\bar x) (-v) \geq 0$, so $\nabla f(\bar x) v = 0$ for all $v$. Thus, $\nabla f(\bar x) = 0$.
+
+  \bigskip
+  We now show that $\nabla^2 f(\bar x) \succeq 0$. By multivariate Taylor Theorem, we have
+  $$f(\bar x + d) = f(\bar x) + \nabla f(\bar x)^T d + \frac{1}{2}d^T \nabla^2 f(\bar x)^T d + o(\|d\|^2)$$
+  Rearranging and dividing both sides by $\|d\|^2$ gives
+  $$\frac{f(\bar x + d) - f(\bar x) -  \nabla f(\bar x)^T d}{\|d\|^2} = \frac{1}{2}\frac{d^T \nabla^2 f(\bar x)^T d}{\|d\|^2} + \frac{o(\|d\|^2)}{\|d\|^2}$$
+  Since $\nabla f(\bar x) = 0$ from first part, we get
+  $$\frac{f(\bar x + d) - f(\bar x)}{\|d\|^2} = \frac{1}{2}\frac{d^T \nabla^2 f(\bar x)^T d}{\|d\|^2} + \frac{o(\|d\|^2)}{\|d\|^2}$$
+  Similar to first part, $\frac{d^T \nabla^2 f(\bar x)^T d}{\|d\|^2} \geq 0$. Since $\|d\|^2 \geq 0$, we have $d^T \nabla^2 f(\bar x)^T d \geq 0$. The Hessian is symmetric, so $\nabla^2 f(x) \succeq 0$.
 \end{proof}
 \begin{theorem}[Second Order Optimality Conditions (Max)]
   Let $f: \mathbb R^n \to \mathbb R$ be twice continuously differentiable at an open set $D$. Then
