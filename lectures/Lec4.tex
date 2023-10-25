@@ -69,6 +69,18 @@
     \item All principal minors of $A$ are nonnegative.
   \end{enumerate}
 \end{proposition}
+\begin{theorem}[]
+  $A \in S^n$ is positive definite if and only if it can be factored as $A = LL^T$, where $L$ is a lower triangular matrix with positive diagonal entries.
+\end{theorem}
+\begin{proof}[Proof of $\Leftarrow$]
+  Let $A = LL^T$ where $L$ is a lower triangular matrix with positive diagonal entries. Then
+  \begin{align*}
+    x^T Ax &= x^T LL^T x \\
+    &= y^T y \tag*{where $y = L^Tx$}\\
+    &= \|y\|^2 \geq 0
+  \end{align*}
+  $\|y\|^2 = 0$ iff $y = 0$. Since $L$ is lower triangular with positive diagonal entries, it is invertible, thus $y = Lx = 0$ iff $x = 0$. Thus $x^T Ax > 0$ for all $x \neq 0$, so $A$ is positive definite.
+\end{proof}
 
 \begin{problem}[Motivation]
   When can we guarantee that global minimizers of $f: \mathbb R^n \rightarrow \mathbb R$ exist?
@@ -140,11 +152,6 @@
   $ \lambda_i=0 \implies \bar{b_i}=0\textcolor{red}{Why}$. 
   $\bar{b_i}=u_i^Tb$ which is the ith eigenvector.
 \end{proof}
-
-\begin{theorem}[Weierstrass]
-  Given f:$R^n\rightarrow R$ cts and D in $R^n$ closed and bounded,
-  Then $\exists\bar{x}\in D$s.t $\bar{x}\in$ argmin f(x)
-\end{theorem}
 
 \begin{proposition}
   If f is coercive, f maps $R^n$ to R and cts, then there exists $\bar{x}\in argmin\,f(x)$
