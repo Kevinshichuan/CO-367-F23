@@ -1,6 +1,7 @@
 \newpage
 \section{Linear Least Squares \& Solving Linear Systems}
 \subsection{Lecture 5}
+\subsubsection{Linear Least Squares}
 \begin{problem}[Motivation For Least Squares]
   Suppose we have a series of observed values from an experiment:
   $$\{(t_1, s_1), (t_2, s_2),\ldots, (t_m,s_m)\}$$ where $t_i$ is the time and $s_i$ is the observed value at time $t_i$. We want to find a polynomial function $$p(t) = x_0 + x_1t + \cdots + x_nt^n$$ that fits the data. So we want to find coefficients $x_0,\ldots x_n$ such that $p(t_i) \approx s_i$ for all $i$. More formally, we want to minimize the absolute value of the error of each term. The error ($\ell_1$ norm) is defined as $$|e_i| = |p(t_i) - s_i|$$ This can be formulated into a $\ell_1$ norm minimization problem:$$\min \left\{\sum^m_{i=1}|p(t_i) - s_i| : (x_0,\ldots,x_n) \in \mathbb R^{n+1}\right\}$$ This is a non-differentiable optimization problem since we have absolute values which make it not smooth. So we can be reformualte it as a linear program:
@@ -63,7 +64,7 @@
     &= \frac{1}{2} (Ax)^T Ax - (Ax)^Tb + \frac{1}{2} \|b \|^2 \\
     &= \frac{1}{2} x^T A^T Ax - x^T A^T b + \frac{1}{2} \|b \|^2 
   \end{align*}
-  Then, using the definition of linear transformation definition of the gradient (\textcolor{red}{WTF is this (This is the matrix differentiation. I think there are only three forms and just remember them lollhttps://atmos.washington.edu/~dennis/MatrixCalculus.pdf)}), we have $$\nabla g(x) = A^T Ax - A^T b$$
+  Then, applying the gradient on both sides, we have $$\nabla g(x) = A^T Ax - A^T b$$
   
   To find the critical points, we solve for $\nabla g(x) = 0$. So the critical points are $x^*$ that satisfy the equation
   $$A^TAx = A^Tb$$
@@ -71,18 +72,22 @@
 
   \textcolor{red}{also something about the condition number, i dont really understand.}
 \end{problem}
-\begin{definition}[Singular Values of a Matrix]
-  The singular values of a matrix $A$ are the square roots of the eigenvalues of the matrix $A^TA$. They are always non-negative real numbers.
-
-  The number of non-zero singular values of a matrix equals the rank of that matrix.
-\end{definition}
-\begin{definition}[Condition Number of a Matrix]
-  Suppose $A \in \mathbb R^{m \times n}, m > n$ is full column rank. The condition number of the matrix $A$, $\text{cond}(A)$, is the ratio of the largest to smallest nonzero singular values of $A$. Let $\sigma_{\max}$ be the largest singular value and $\sigma_{\min}$ be the smallest singular value. Then
-  $$\text{cond}(A) = \frac{\sigma_{\max}}{\sigma_{\min}}$$
-\end{definition}
+\begin{theorem}[Matrix Calculus]
+  $$\nabla (Ax) = A^T$$
+  $$\nabla (x^T A) = A$$
+  $$\nabla (x^T x) = 2x$$
+  $$\nabla (x^T Ax) = (A + A^T)x$$
+\end{theorem}
 \begin{definition}[Frechet Derivative]
   Let $h: U \to W$, where $U$ is an open subset of $V$, and $V,W$ are finite dimensional vector spaces. The function $h$ is \textbf{Frechet differentiable} at $x \in U$ if there exists a linear transformation $A: V \to W$ such that
   $$\lim_{d \rightarrow 0} \frac{\|h(x + d) - h(x) - Ad \|}{\|d\|} = 0$$
   \textcolor{red}{idk}
+\end{definition}
+\subsubsection{Best Linear Least Squares}
+Suppose $\bar x$ is a solution to the normal equation $$A^TAx = A^Tb$$ When $A$ is not full column rank, the solution $\bar x$ is not unique. Therefore, the solution set to $A^T Ax = A^T b$ is $$S = \{\bar x + y: y \in \text{null}(A)\}$$
+Then, an algorithm might choose $x \in S$ with very large norm. This is not the best solution.
+\begin{definition}[Best Linear Least Square]
+  The best linear least square is the least squares solution of minimal norm. It is the solution to the problem
+  $$\min_x \{\|x\|: x \in \text{argmin}\|Ax - b\|\}$$
 \end{definition}
 
