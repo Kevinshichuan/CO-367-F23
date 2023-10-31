@@ -1,0 +1,59 @@
+\subsection{Lecture 11+ cts}
+To finish:
+
+Newton/trust region (second order model)
+
+\begin{definition}[p-th order convergence]
+    If residuals $r_R\to 0$ and 
+    $lim\frac{||r_{k+1}||}{||r_k||^p}\to r >0$ is called p-th order convergence.
+    \\ If p=1,r<1,then this is linear convergence, (For s.d, linear , r $\cong r$ (cond(Hessian at $x^*$)))
+    \\ If p =2, quadratic convergence
+\end{definition}
+
+\begin{theorem}[Convergence of Newton]
+    Suppose $f:R^n\to R\,in\, c^2-Smooth$, $\nabla^2f(x^*)>0,\nabla f(x^2)=0$, and 
+    the hessian locally lipschitz continuous.\\
+    Consider iterately:
+    $$x_{k+1}=x_k+t_kv_k,v_k=-\nabla^2f(x_k)^{-1}\nabla f(x_k)(Newton\,direction)$$
+    Where $t_k$ satisfy wolfe condition, then  if the ""\textcolor{red}{text} point $x_0$,
+    "close enough" to $x^*$ ...Theorem 5.6.2 \textcolor{red}{text finish it after}
+\end{theorem}
+\begin{problem}
+    $d_{SC}=-\nabla f(x_k),d_N=-\nabla^2f(x_k)^{-1}\nabla f(x_k) $
+\end{problem}
+
+%\begin{Problem}
+    levenberg marquardt algorithm
+$-(\nabla^2 f(x_k)+\lambda I)^{-1}\nabla f(x_k)$ $\lambda >0$
+%\end{Problem}
+\begin{problem}
+    This leads to trust region method ,
+    follows by 5.8.1 Trust Region Methods Outline.
+    note: Find $d_k$ is trust region subproblem
+\end{problem}
+
+
+\section{Convex set and function}
+\subsection{Lecture 11+ cts}
+
+\begin{definition}[Convex set]
+    Set s in $R^n$ in a convex set if x,y $\in S$, $0\leq \lambda \leq 1\implies\lambda x+(1-\lambda)y\in S$
+    
+\end{definition}
+\begin{definition}[Convex combination]
+    $x_i \in S,i=1,...k$ $\lambda_i \geq 0,\sum_{i=1}^{k}\lambda_i=1,x=\sum\lambda_i x_i$ is called a convex combination of $\{x_i\}$
+\end{definition}
+
+\begin{lemma}
+    S is a convex set iff S contians all its convex combination
+\end{lemma}
+
+\begin{definition}
+    Given $S\in R^n$, the convex hull of S, convS=smallest convext set containning s\\
+    and = $\{\text{All convex combination}\}$
+
+\end{definition}
+
+\begin{lemma}
+    Suppose C is in a compact set, convex hall of S is compact.
+\end{lemma}
