@@ -35,25 +35,26 @@ $-(\nabla^2 f(x_k)+\lambda I)^{-1}\nabla f(x_k)$ $\lambda >0$
 
 \section{Convex set and function}
 \subsection{Lecture 11+ cts}
+\begin{definition}[Line Segment]
+    Let $x,y \in \mathbb R^n$. The line segment joining $x$ and $y$ is the set
+    $$[x,y] = \{\lambda x + (1 - \lambda)y : \lambda \in [0,1]\}$$
+\end{definition}
 
 \begin{definition}[Convex set]
-    Set s in $R^n$ in a convex set if x,y $\in S$, $0\leq \lambda \leq 1\implies\lambda x+(1-\lambda)y\in S$
-    
+    Set $S$ in $R^n$ in a convex set if for every $x, y \in S$ and for every  $0\leq \lambda \leq 1$ $$\lambda x+(1-\lambda)y\in S$$
+    That is, the line segment $[x,y]$ is contained in $S$.
 \end{definition}
 \begin{definition}[Convex combination]
-    $x_i \in S,i=1,...k$ $\lambda_i \geq 0,\sum_{i=1}^{k}\lambda_i=1,x=\sum\lambda_i x_i$ is called a convex combination of $\{x_i\}$
+    Let $S$ be a convex set and let $x_1,\ldots x_n \in S$. If $\lambda_1,\lambda_2,\ldots,\lambda_n$ are nonnegative numbers such that $$\sum_{i=1}^{n} \lambda_i = 1$$ then $$\sum^n_{i=1} \lambda_i x_i$$ is called a convex combination and is contained in $S$.
 \end{definition}
 
 \begin{lemma}
-    S is a convex set iff S contians all its convex combination
+    $S$ is a convex set iff $S$ contains all its convex combination
 \end{lemma}
-
 \begin{definition}
-    Given $S\in R^n$, the convex hull of S, convS=smallest convext set containning s\\
-    and = $\{\text{All convex combination}\}$
-
+    Given $S\in R^n$, the convex hull of $S$, $\text{conv }S$ is the smallest convex set containing $S$ and is equal to the set of all convex combinations of points in $S$.
 \end{definition}
 
 \begin{lemma}
-    Suppose C is in a compact set, convex hall of S is compact.
+    Suppose $S$ is a compact set, then $\text{conv }S$ is a compact set.
 \end{lemma}
