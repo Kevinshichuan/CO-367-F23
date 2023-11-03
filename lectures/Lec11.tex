@@ -58,3 +58,15 @@ $-(\nabla^2 f(x_k)+\lambda I)^{-1}\nabla f(x_k)$ $\lambda >0$
 \begin{lemma}
     Suppose $S$ is a compact set, then $\text{conv }S$ is a compact set.
 \end{lemma}
+\begin{definition}[Affine Set]
+    Let $S \subseteq \mathbb R^n$ be a subspace, and $a \in \mathbb R^n$. Then $L = a + S$ is an affine set (i.e. it is a translation of a subspace).
+
+    Moreover, $\dim L = \dim S$. In addition, let $T \subseteq \mathbb R^n$. Then the affine hull, $\text{aff }T$, is the smallest affine set containing $T$. If $T$ is a convex set, then $\dim(T) = \dim(\text{aff }T)$.
+\end{definition}
+\begin{definition}[Convex Cone]
+    $K \subseteq \mathbb R^n$ is a convex cone if the Minkowski sums satisfy
+    \begin{enumerate}
+        \item $\lambda K \subseteq K$ for all $\lambda \geq 0$
+        \item $K + K \subseteq K$
+    \end{enumerate}
+\end{definition}
