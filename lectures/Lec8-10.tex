@@ -260,23 +260,3 @@ This is the secant equation. We can use this equation to update $B_{k+1}$.
 
 
 
-\subsubsection{Trust Region Strategy}
-\begin{problem}[Trust Rigion Strategy]
-  Construct a model for f at $x_k$, $f(x_k+\Delta x)\sim mq(\Delta x)=f(x_k)+\Delta x^T\nabla f(x_k)+\frac{1}{2}\Delta x^TB_k\Delta x$,
-  where $B_k\simeq \nabla^2 f(x_k)$. COnstruct region where we trust the model. Region can be a ball,
-  eg. $\Omega_k=\{\Delta x| ||\Delta x||\leq \delta_k^2\}$
-\end{problem}
-The difference in trust region strategy and line search strategy is that in line search strategy, we first choose the direction, then choose step size. In trust region, we first choose the step size, then we choose the direction.
-\begin{definition}[Trust Region Strategy]
-  In each iteration, we construct a model of $f$. That is, in each step we consider $m_k: \mathbb R^n \to \mathbb R$ that is a simple function that approximates $f$ well on some simple set $\Omega_k$ (the trust region) around our current approximation $x_k$. Then we find the new approximation $$\hat x = \text{argmin } m_k(x) \quad \text{$x \in \Omega_k$}$$
-  A common model is the quadratic model $$m_k(x) = f(x_k) + \langle \nabla f(x_k), x - x_k \rangle + \frac{1}{2} \langle x - x_k, B_k(x - x_k) \rangle$$ where $B_k \approx \nabla^2 f(x_k)$ approximates the Hessian. If the values $f(\hat x)$ and $m_k(\hat x)$ are close, then we declare $x_{k+1} = \hat x$. Otherwise, we shrink the size of the trust region $\Omega_k$ and repeat the process.
-
-  Usually $\Omega_k$ is a ball, ellipsoid, or a box around $x_k$.
-
-  The main points are how to choose a model function $m_k$, and how to choose a trust region $\Omega_k$.
-\end{definition}
-
-
-\begin{definition}[Comparing Algorithms]
-  \textcolor{red}{upload later}
-\end{definition}
