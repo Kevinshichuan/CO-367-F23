@@ -41,21 +41,32 @@ If we plot out our iterations, we can see that there is a zig-zagging behaviour 
 \begin{definition}[Comparing Algorithms]
     \textcolor{red}{upload later}
   \end{definition}
-  
-  \begin{definition}[p-th order convergence]
-      If residuals $r_R\to 0$ and 
-      $lim\frac{||r_{k+1}||}{||r_k||^p}\to r >0$ is called p-th order convergence.
-      \\ If p=1,r<1,then this is linear convergence, (For s.d, linear , r $\cong r$ (cond(Hessian at $x^*$)))
-      \\ If p =2, quadratic convergence
+  \begin{definition}[$p$-th Order Convergence]
+    If the sequence of residuals/errors $r_k \to 0$ and
+    $$\lim_{k \to \infty} \frac{\|r_{k+1}\|}{\|r_k\|^p} \to r > 0$$
+    then the order of convergence is called $p$-th order.
+
+    If $p = 1, r < 1$, then this is called linear convergence. (For s.d, linear , r $\cong r$ (cond(Hessian at $x^*$)))
+    
+    If $p = 2$, then this is called quadratic convergence.
+
+    If $$\lim_{k \to \infty} \frac{\|r_{k+1} \|}{\|r_k \|} \to 0$$ then this is called superlinear convergence.
   \end{definition}
   
-  \begin{theorem}[Convergence of Newton]
-      Suppose $f:R^n\to R\,in\, c^2-Smooth$, $\nabla^2f(x^*)>0,\nabla f(x^2)=0$, and 
-      the hessian locally lipschitz continuous.\\
-      Consider iterately:
-      $$x_{k+1}=x_k+t_kv_k,v_k=-\nabla^2f(x_k)^{-1}\nabla f(x_k)(Newton\,direction)$$
-      Where $t_k$ satisfy wolfe condition, then  if the ""\textcolor{red}{text} point $x_0$,
-      "close enough" to $x^*$ ...Theorem 5.6.2 \textcolor{red}{text finish it after}
+  \begin{theorem}[Convergence of Newton's Method]
+    Suppose that $f: \mathbb R^n \to \mathbb R$ is $C^2$-smooth, $\nabla^2 f(x^*)$ is positive definite, $\nabla f(x^*) = 0$ (also minor condition: Hessian is locally Lipschitz continuous, which in particular holds if $f$ is $C^3$-smooth). Consider the iterates
+    \begin{align*}
+        x_{k+1} &= x_k + t_k v_k \\
+        &= x_k + t_k (\nabla^2 f(x_k))^{-1} (-\nabla f(x_k))
+    \end{align*}
+    where $t_k$ is the step size chosen to satisfy the Wolfe conditions (with $c_1 < \frac{1}{2}$). Then if the starting point $x_0$ is sufficiently close to $x^*$, then we have:
+    \begin{enumerate}
+        \item $t_k = 1$ satisfies the Wolfe conditions (pure/free Newton step).
+        \item $x_k$ converges to $x^*$.
+        \item If we choose $t_k = 1$, then we have quadratic convergence locally of the iterates, that is for some $r \geq 0$ and some $x_0$ close enough to the strict local minimum $x^*$, we have
+        $$\|x_{k+1} - x^* \| \leq r \|x_k - x^*\|^2$$
+        $$\| \nabla f(x_{k+1})\| \leq r \|\nabla f(x_k)\|^2$$
+    \end{enumerate}
   \end{theorem}
   \begin{problem}
       $d_{SC}=-\nabla f(x_k),d_N=-\nabla^2f(x_k)^{-1}\nabla f(x_k) $
@@ -71,11 +82,6 @@ If we plot out our iterations, we can see that there is a zig-zagging behaviour 
       note: Find $d_k$ is trust region subproblem
   \end{problem}
 
-
-
-To finish:
-
-Newton/trust region (second order model)
 \subsubsection{Trust Region Strategy}
 \begin{problem}[Trust Rigion Strategy]
   Construct a model for f at $x_k$, $f(x_k+\Delta x)\sim mq(\Delta x)=f(x_k)+\Delta x^T\nabla f(x_k)+\frac{1}{2}\Delta x^TB_k\Delta x$,
@@ -91,6 +97,16 @@ The difference in trust region strategy and line search strategy is that in line
 
   The main points are how to choose a model function $m_k$, and how to choose a trust region $\Omega_k$.
 \end{definition}
+\begin{theorem}[Trust Region Methods Outline]
+    Outline:
+    \begin{enumerate}
+        \item Given $f: \mathbb R^n \to \mathbb R$, an iterate $x_k$, a local model function $$m_k(d) = f(x_k) + \langle \nabla f(x_k), d \rangle + \frac{1}{2} \langle B_kd, d \rangle$$
+        and a trust region radius $\nabla_k > 0$
+        \item Find $d_k \in \text{argmin} \{m_k(d) : \|d\| \leq \nabla_k\}$
+        \item Use the relative decrease (actual/predicted decrease)
+        $$\rho_k = \frac{f(x_k) - f(x_k + d_k)}{m_k(0) - m_k(d_k)}$$ to gauge the strength of the model in order to obtain the new trust region radius $\Delta_{k+1}$ and to decide whether to accept the new point as $x_{k+1} = x_k + d_k$ or use $x_{k+1} = x_k$.
+    \end{enumerate}
+\end{theorem}
 
 
 
