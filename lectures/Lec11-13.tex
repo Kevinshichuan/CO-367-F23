@@ -122,6 +122,19 @@ The difference in trust region strategy and line search strategy is that in line
     Set $S$ in $R^n$ in a convex set if for every $x, y \in S$ and for every  $0\leq \lambda \leq 1$ $$\lambda x+(1-\lambda)y\in S$$
     That is, the line segment $[x,y]$ is contained in $S$.
 \end{definition}
+\begin{problem}[Example of Convex Sets]
+    The following are convex sets:
+    \begin{enumerate}
+        \item The empty set $\emptyset$, any single point $\{x_0\}$, and $\mathbb R^n$
+        \item Lines in $\mathbb R^n$. For example, a line through the point $x_0$ in the direction $d$ $$L = \{x_0 + \alpha d: \alpha \in \mathbb R\}$$
+        \item A halfspace in $\mathbb R^n$: $H = \{x: a^Tx \leq c\}$
+        \item An open halfspace in $\mathbb R^n$: $H^o = \{x: a^Tx < c\}$
+        \item A polyhedron in $\mathbb R^n$: $P = \{x: Ax \leq b\}$
+        \item An open and closed ball in $\mathbb R^n$
+        \item The set of $n \times n$ positive semi definite and positive definite matrices:
+        $$S_+^n = \{A \in \mathbb R^{n \times n}: A \succeq 0\}, \quad S_{++}^n = \{A \in \mathbb R^{n \times n}: A \succ 0\}$$
+    \end{enumerate}
+\end{problem}
 \begin{definition}[Convex combination]
     Let $S$ be a convex set and let $x_1,\ldots x_n \in S$. If $\lambda_1,\lambda_2,\ldots,\lambda_n$ are nonnegative numbers such that $$\sum_{i=1}^{n} \lambda_i = 1$$ then $$\sum^n_{i=1} \lambda_i x_i$$ is called a convex combination and is contained in $S$.
 \end{definition}
@@ -188,3 +201,32 @@ The difference in trust region strategy and line search strategy is that in line
     $$x \in [y,z], \quad y, z \in C \implies x = y = z$$
     That is, there is no nontrivial convex combination with points in $C$.
 \end{definition}
+\begin{definition}[Convex Functions and Strictly Convex Functions]
+    Let $f: C \to \mathbb R$ where $C \subseteq \mathbb R^n$ is a convex set. We say that $f$ is a convex function if for every $x, y \in C$ and for every $\lambda \in [0,1]$,
+    $$f((1 - \lambda)x + \lambda y) \leq (1 - \lambda) f(x) + \lambda f(y)$$
+    We say that $f$ is strictly convex if for every $x, y \in C, x \neq y$ and for every $\lambda \in [0,1]$,
+    $$f((1 - \lambda)x + \lambda y) < (1 - \lambda) f(x) + \lambda f(y)$$
+\end{definition}
+\begin{theorem}[First Order Condition]
+    Assume that $f(x)$ is continuously differentiable on a convex set $C \subseteq \mathbb R^n$. Then the function $f(x)$ is
+    \begin{enumerate}
+        \item convex if and only if for all $x, y \in C$, $$f(x) + \nabla f(x)^T (y - x) \leq f(y)$$
+        \item strictly convex if and only if for all $x, y \in C$ with $x \neq y$,
+        $$f(x) + \nabla f(x)^T (y - x) < f(y)$$
+    \end{enumerate}
+\end{theorem}
+\begin{proof}[Proof]
+    See past course notes
+\end{proof}
+\begin{corollary}
+    Let $f(x)$ be a continuously differentiable convex function on an open convex set $C \subseteq \mathbb R^n$. If $x^* \in C$ is a critical point of $f$, then $x^*$ is a global minimizer of $f$ in $C$.
+\end{corollary}
+\begin{theorem}[Second Order Condition]
+    Assume that $f(x)$ is twice continuously differentiable on an open convex set $C \subseteq \mathbb R^n$. Then the function $f(x)$ is convex if and only if $\nabla^2 f(x)$ is positive semidefinite for every $x \in C$.
+\end{theorem}
+\begin{proof}[Proof]
+    See past course notes
+\end{proof}
+\begin{theorem}[]
+    Let $C \subseteq \mathbb R^n$ be a convex set. Then any local minimizer (in $C$) of a convex function $f: C \to \mathbb R$ is also a global minimizer of $f$ on $C$. Furthermore, any local minimizer of a strictly convex function $f: C \to \mathbb R$ is the unique global minimizer of $f$ on $C$.
+\end{theorem}
