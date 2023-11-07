@@ -1,4 +1,4 @@
-\subsection{Lecture 11+ cts}
+\subsection{Lecture 11}
 \subsubsection{Convergence of Line Search Methods}
 \begin{definition}[Key Quantity]
     The key quantity is the angle between the search direction and the gradient. It is
@@ -112,7 +112,7 @@ The difference in trust region strategy and line search strategy is that in line
 
 
 \section{Convex set and function}
-\subsection{Lecture 11+ cts}
+\subsection{Lecture 11-13}
 \begin{definition}[Line Segment]
     Let $x,y \in \mathbb R^n$. The line segment joining $x$ and $y$ is the set
     $$[x,y] = \{\lambda x + (1 - \lambda)y : \lambda \in [0,1]\}$$
@@ -147,4 +147,44 @@ The difference in trust region strategy and line search strategy is that in line
         \item $\lambda K \subseteq K$ for all $\lambda \geq 0$
         \item $K + K \subseteq K$
     \end{enumerate}
+\end{definition}
+\begin{definition}[Hyperplane]
+    For $a \in \mathbb R^n, b \in \mathbb R$, their hyperplane is defined as
+    $$H = \{x \in \mathbb R^n: a^Tx = b\}$$
+\end{definition}
+\begin{definition}[Halfspace]
+    For $a \in \mathbb R^n, b \in \mathbb R$, their halfspace is defined as
+    $$H = \{x \in \mathbb R^n: a^Tx \leq b\}$$
+\end{definition}
+\begin{definition}[Polytope]
+    A polytope(polyhedron set) is a finite intersection of halfspaces.
+\end{definition}
+\begin{definition}[Face]
+    Let $C$ be a convex set. The convex set $F \subseteq C$ is a face of $C$, denoted as $F \unlhd C$ if $$x, y \in C, \quad z \in (x, y) \cap F \implies x, y \in F$$
+    That is, for any two points $x,y \in C$, if a point $z$ lies in the open line segment between $x$ and $y$ (denoted $(x,y)$) also lies in $F$, then $x, y \in F$.
+
+    If this is true, then $F$ is a face of $C$.
+\end{definition}
+\begin{theorem}[]
+    If $C$ is a convex cone, then the faces of $C$ are convex cones.
+\end{theorem}
+\begin{proof}[Proof]
+    Exercise.
+\end{proof}
+\begin{definition}[Non-negative Polar (Dual) Cone]
+    The non-negative polar (dual) cone of a set $C$ is
+    $$C^+ = C^* = \{\phi : \langle \phi, c \rangle \geq 0, \forall c \in C\}$$
+\end{definition}
+\begin{definition}[Conjugate Face]
+    Let $F$ be a face of the convex cone $K$ denoted $F \unlhd K$. The conjugate face of $F$ is $$F^* = F^\bot \cap K^*$$
+\end{definition}
+\begin{definition}[Exposed Face]
+    Let $F$ be a face of the convex cone $K$, $F \unlhd K$. Then $F$ is an exposed face if there exists $\phi \in K^*$ such that
+    $$F = K \cap \phi^\bot$$
+    where $\phi^\bot = \{\phi\}^\bot$.
+\end{definition}
+\begin{definition}[Extreme Point]
+    Let $C \subseteq \mathbb R^n$. The point $x \in C$ is an extreme point of $C$ if
+    $$x \in [y,z], \quad y, z \in C \implies x = y = z$$
+    That is, there is no nontrivial convex combination with points in $C$.
 \end{definition}
