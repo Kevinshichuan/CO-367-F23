@@ -201,32 +201,6 @@ The difference in trust region strategy and line search strategy is that in line
     $$x \in [y,z], \quad y, z \in C \implies x = y = z$$
     That is, there is no nontrivial convex combination with points in $C$.
 \end{definition}
-\begin{definition}[Convex Functions and Strictly Convex Functions]
-    Let $f: C \to \mathbb R$ where $C \subseteq \mathbb R^n$ is a convex set. We say that $f$ is a convex function if for every $x, y \in C$ and for every $\lambda \in [0,1]$,
-    $$f((1 - \lambda)x + \lambda y) \leq (1 - \lambda) f(x) + \lambda f(y)$$
-    We say that $f$ is strictly convex if for every $x, y \in C, x \neq y$ and for every $\lambda \in [0,1]$,
-    $$f((1 - \lambda)x + \lambda y) < (1 - \lambda) f(x) + \lambda f(y)$$
-\end{definition}
-\begin{theorem}[First Order Condition]
-    Assume that $f(x)$ is continuously differentiable on a convex set $C \subseteq \mathbb R^n$. Then the function $f(x)$ is
-    \begin{enumerate}
-        \item convex if and only if for all $x, y \in C$, $$f(x) + \nabla f(x)^T (y - x) \leq f(y)$$
-        \item strictly convex if and only if for all $x, y \in C$ with $x \neq y$,
-        $$f(x) + \nabla f(x)^T (y - x) < f(y)$$
-    \end{enumerate}
-\end{theorem}
-\begin{proof}[Proof]
-    See past course notes
-\end{proof}
-\begin{corollary}
-    Let $f(x)$ be a continuously differentiable convex function on an open convex set $C \subseteq \mathbb R^n$. If $x^* \in C$ is a critical point of $f$, then $x^*$ is a global minimizer of $f$ in $C$.
-\end{corollary}
-\begin{theorem}[Second Order Condition]
-    Assume that $f(x)$ is twice continuously differentiable on an open convex set $C \subseteq \mathbb R^n$. Then the function $f(x)$ is convex if and only if $\nabla^2 f(x)$ is positive semidefinite for every $x \in C$.
-\end{theorem}
-\begin{proof}[Proof]
-    See past course notes
-\end{proof}
 \begin{theorem}[]
-    Let $C \subseteq \mathbb R^n$ be a convex set. Then any local minimizer (in $C$) of a convex function $f: C \to \mathbb R$ is also a global minimizer of $f$ on $C$. Furthermore, any local minimizer of a strictly convex function $f: C \to \mathbb R$ is the unique global minimizer of $f$ on $C$.
+    $\{z\}$ is an extreme point of $C$ iff $\{z\} = F$ is a face of $C$ of dimension 0.
 \end{theorem}

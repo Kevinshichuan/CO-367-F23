@@ -1,1 +1,39 @@
 \subsection{Lecture 14}
+\subsubsection{Review of Linear Programming}
+Review of basic solutions, basic feasible solutions, simplex etc. Basic feasible solutions are extreme points.
+\subsubsection{Operations that Preserve Convexity}
+\begin{itemize}
+    \item If $Q_i$ are convex, then $\bigcap_i Q_i$ is convex (can be infinite).
+    \item For an affine map $f: C \to D$, $f(x) = Ax + b$, where $C, D$ are convex. The images $f(C)$, and preimages $f^{-1}(D)$ are convex sets.
+    \item Projections of convex sets $P(C)$ are convex.
+    \item Scaling of convex sets are convex, $\alpha C$
+    \item Rotation of convex sets are convex, $QC, Q^TQ = I$.
+    \item Translation of convex sets are convex, $C + x$.
+\end{itemize}
+\subsubsection{Hyperplane Separation and Support Theorems}
+\begin{theorem}[Hyperplane Separation Theorem]
+    Let $C, D \subset \mathbb R^n$ be convex sets and $C \cap D = \emptyset$. Then there exists $a \neq 0, \alpha \in \mathbb R$ such that $$a^Tx \leq \alpha \leq a^Ty$$ for all $x \in C, y \in D$.
+
+    \bigskip
+    In other words, this theorem guarantees that if you have two sets that do not intersect and are convex, there is a hyperplane (which is a generalization of a flat surface to $n$-dimensions; for instance, a line in 2D or a plane in 3D) that separates the two sets. This hyperplane can be thought of as a decision boundary, which one can use to distinguish points belonging to one set from those belonging to the other.
+\end{theorem}
+\begin{proof}[Proof]
+    See studocu course notes
+\end{proof}
+\begin{definition}[Minkowski Sum and Difference]
+    Let $C, D \subseteq \mathbb R^n$ be two sets. The Minkowski sum of $C$ and $D$ is defined as
+    $$C + D = \{x + y: x \in C, y \in D\}$$
+    The Minkowski difference of $C$ and $D$ is defined as
+    $$C - D = \{x - y: x \in C, y \in D\}$$
+\end{definition}
+\begin{lemma}
+    Let $C \subset \mathbb R^n$ be a closed convex set and let $d \not \in C$. Let $x^*$ be the nearest point in $C$ to $d$. Then the hyperplane $$H = \{x: \langle v, x \rangle = \langle v, d \rangle - \|v\|^2\}$$ strictly separates $C$ from $d$. That is, we have
+    $$\langle v, x \rangle \leq \langle v, d \rangle - \|v\|^2 < \langle v, d \rangle$$ for all $x \in C$.
+\end{lemma}
+\begin{definition}[Supporting Hyperplane]
+    $H = \{x: v^Tx = b\}$ is a supporting hyperplane to a convex set $Q$ at $\bar x \in Q$, if 
+    $$x^Tv \leq b , \quad \forall x \in Q$$ and the equation $x^T v = b$ holds.
+\end{definition}
+
+
+
