@@ -150,6 +150,12 @@
 
   \bigskip
   This theorem provides a way to approximate the value of the function $f$ at a point $\x + \textbf{d}$ based on the value and derivatives of $f$ at or near the point $\x$.
+
+  \bigskip
+  Alternatively, we can write
+  $$f(x + d) = f(x) + \langle \nabla f(x), d \rangle + o(\|d\|)$$
+  and
+  $$f(x + d) = f(x) + \langle \nabla f(x), d \rangle + \frac{1}{2} \langle \nabla^2 f(x) d, d \rangle + o(\|d\|^2)$$ for small $d$. 
 \end{theorem}
 \begin{theorem}[Taylor's Thoerem (alternative)]
   Let $f: \mathbb R^n \to \mathbb R$ be continuously differentiable at $\x^*$. Then $\forall x \in \mathbb R^n$
