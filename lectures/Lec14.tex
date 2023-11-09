@@ -325,6 +325,16 @@ Review of basic solutions, basic feasible solutions, simplex etc. Basic feasible
     $H = \{x: v^Tx = b\}$ is a supporting hyperplane to a convex set $Q$ at $\bar x \in Q$, if 
     $$x^Tv \leq b , \quad \forall x \in Q$$ and the equation $x^T v = b$ holds.
 \end{definition}
+\begin{theorem}[Existence of Supporting Hyperplane]
+    Suppose that $S \subseteq \mathbb R^n$ is a convex set, and $x_0 \in \text{bd}(S)$, the boundary of $S$. Then there exists a supporting hyperplane containing $x_0$.
+\end{theorem}
+\begin{theorem}[Krein-Milman Theorem]
+    Let $K$ be a compact convex set. Then 
+    $$K = \text{conv}(\text{ext}(K))$$ where $\text{ext}(K)$ is the set of extreme points of $K$.
+\end{theorem}
+\begin{theorem}[Caratheodory Theorem]
+    Let $S \subseteq \mathbb R^n$ and let $x \in \text{conv}(S)$. Then there exists $x_i \in S, i = 1,\ldots, n+1$ such that $x \in \text{conv}\{x_1,\ldots,x_{n+1}\}$. In other words, we need at most $n + 1$ points for the convex combination.
+\end{theorem}
 
 
 

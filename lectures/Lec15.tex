@@ -7,12 +7,31 @@
     $f$ is convex if and only if $\text{epi}(f)$ is a convex set.
 \end{definition}
 
-\begin{definition}[Convex Functions and Strictly Convex Functions]
+\begin{definition}[Convex Functions and Strictly Convex Functions/Zero Order Characterization Convex Function]
     Let $f: C \to \mathbb R$ where $C \subseteq \mathbb R^n$ is a convex set. We say that $f$ is a convex function if for every $x, y \in C$ and for every $\lambda \in [0,1]$,
     $$f((1 - \lambda)x + \lambda y) \leq (1 - \lambda) f(x) + \lambda f(y)$$
     We say that $f$ is strictly convex if for every $x, y \in C, x \neq y$ and for every $\lambda \in [0,1]$,
     $$f((1 - \lambda)x + \lambda y) < (1 - \lambda) f(x) + \lambda f(y)$$
+    If the above is an equality, then $f$ is an affine function.
 \end{definition}
+\begin{definition}[Concave Functions]
+    The function $f$ is called concave if $-f$ is convex.
+\end{definition}
+\begin{theorem}[Affine Function]
+    Suppose that $f: \mathbb R^n \to \mathbb R$ is both concave and convex. Then $f$ is affine.
+\end{theorem}
+\begin{definition}[Unit Simplex]
+    The unit simplex is defined as 
+    $$\Delta_k = \{\lambda \in \mathbb R^n_+: e^T\lambda = 1\}$$
+    where $e = (1, \ldots, 1)^T \in \mathbb R^n$.
+\end{definition}
+\begin{theorem}[Jensen's Inequality]
+    Let $C \subseteq \mathbb R^n$ be a convex set and $f: C \to \mathbb R$ be a convex function. Then for any $x_i \in C, i = 1,\ldots,k$ and $\lambda \in \Delta_k$, we have
+    $$f\left(\sum_i^k \lambda_{i=1} x_i\right) \leq \sum_{i=1}^k \lambda_i f(x_i)$$
+\end{theorem}
+\begin{theorem}[]
+    Let $C$ be an open convex set in $\mathbb R^n$ and $f: C \to \mathbb R$ is a convex function. Then $f$ is continuous. 
+\end{theorem}
 \begin{theorem}[First Order Condition]
     Assume that $f(x)$ is continuously differentiable on a convex set $C \subseteq \mathbb R^n$. Then the function $f(x)$ is
     \begin{enumerate}
@@ -24,15 +43,27 @@
 \begin{proof}[Proof]
     See past course notes
 \end{proof}
-\begin{corollary}
-    Let $f(x)$ be a continuously differentiable convex function on an open convex set $C \subseteq \mathbb R^n$. If $x^* \in C$ is a critical point of $f$, then $x^*$ is a global minimizer of $f$ in $C$.
-\end{corollary}
 \begin{theorem}[Second Order Condition]
     Assume that $f(x)$ is twice continuously differentiable on an open convex set $C \subseteq \mathbb R^n$. Then the function $f(x)$ is convex if and only if $\nabla^2 f(x)$ is positive semidefinite for every $x \in C$.
 \end{theorem}
 \begin{proof}[Proof]
     See past course notes
 \end{proof}
+\begin{corollary}[Critical Points of Convex Functions]
+    Let $f$ be convex on convex set $C$, $\bar x \in C$. Then $$\nabla f(\bar x) = 0 \iff f(\bar x) \leq f(y)$$ for all $y \in C$ (So $\bar x$ is a global minimizer of $f$ on $C$).
+
+    So, $\bar x$ is a critical point of $f$ if and only if it is a global minimizer of $f$ on $C$.
+\end{corollary}\
+\begin{lemma}
+    Let $C \subseteq \mathbb R^n$, $C$ convex. Let $f: C \to \mathbb R$ be a $C^1$-smooth convex function on $C$. Then for $x,y \in C$, $$f(y) < f(x) \implies \underbrace{f'(x; y - x)}_{\nabla f(x)^T (y - x)} < 0$$
+\end{lemma}
 \begin{theorem}[]
     Let $C \subseteq \mathbb R^n$ be a convex set. Then any local minimizer (in $C$) of a convex function $f: C \to \mathbb R$ is also a global minimizer of $f$ on $C$. Furthermore, any local minimizer of a strictly convex function $f: C \to \mathbb R$ is the unique global minimizer of $f$ on $C$.
 \end{theorem}
+\begin{lemma}[Global Maximizer of Convex Functions]
+    Let $f: C \to \mathbb R$, $f$ convex, $C\subseteq \mathbb R^n$ convex. Let $\bar x, \bar y \in C$ with $$\bar x \in \text{argmax}_{x \in C}f(x), \quad f(\bar x) > f(\bar y)$$ then $\bar x \not \in \text{int}(C)$ (Must be on boundary).
+
+    So a global maximum of a convex function on a convex set must be on the boundary of the set.
+\end{lemma}
+\subsubsection{Operation that Preserve Convexity}
+Course notes
