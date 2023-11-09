@@ -1,6 +1,297 @@
 \subsection{Lecture 14}
 \subsubsection{Review of Linear Programming}
 Review of basic solutions, basic feasible solutions, simplex etc. Basic feasible solutions are extreme points.
+\begin{definition}[Column Sub-matrix]
+	Suppose we have a matrix
+	$$\begin{blockarray}{ccccc}
+			1 & 2 & 3 & 4 & 5 \\
+			\begin{block}{(ccccc)}
+				1 & 2 & -1 & 1 & -1 \\
+				0 & 1 & 0 & 1 & -1 \\
+				0 & 0 & 1 & 1 & -1 \\
+			\end{block}
+		\end{blockarray}$$
+	with columns labelled $1,2,3,4,5$. Let $B$ be a subset of column indices, so $B \subseteq \{1,2,3,4,5\}$. Then $A_B$ is a column sub-matrix of $A$ indexed by set $B$.
+
+	For example, if $B = \{1,2,3\}$, then $A_B$ is
+	$$\begin{pmatrix}
+			1 & 2 & -1 \\
+			0 & 1 & 0  \\
+			0 & 0 & 1
+		\end{pmatrix}$$
+	Using this notation, $A_j$ denotes column $j$ of $A$.
+\end{definition}
+\begin{definition}[Basis]
+	Let $B$ be a subset of column indices. $B$ is a basis if
+	\begin{enumerate}
+		\item $A_B$ is a square matrix
+		\item $A_B$ is non-singular (columns are independent)
+	\end{enumerate}
+	Let $A$ be a matrix with independent rows, then $B$ is a basis if and only if $B$ is a maximal set of independent columns of $A$.
+\end{definition}
+\begin{theorem}[]
+	The maximum number of independent columns is equal to the maximum number of independent rows.
+
+\end{theorem}
+\begin{definition}[Basic and Non-basic Variables]
+	Let $B$ be a basis for $A$
+	\begin{itemize}
+		\item if $j \in B$ then $x_j$ is a basic variable
+		\item if $j \notin B$ then $x_j$ is a non-basic variable
+	\end{itemize}
+	For example, for basis $B = \{1,2,4\}$, then $x_1,x_2,x_4$ are basic variables and $x_3,x_5$ are non-basic variables.
+\end{definition}
+\begin{definition}[Basic Solution]
+	$x$ is a basic solution for basis $B$ if
+	\begin{enumerate}
+		\item $Ax = b$ and
+		\item $x_j = 0$ whenever $j \not \in B$.
+	\end{enumerate}
+	For example, suppose we have
+	$$A = \begin{blockarray}{ccccc}
+			1 & 2 & 3 & 4 & 5 \\
+			\begin{block}{(ccccc)}
+				1 & 2 & -1 & 1 & -1 \\
+				0 & 1 & 0 & 1 & -1 \\
+				0 & 0 & 1 & 1 & -1 \\
+			\end{block}
+		\end{blockarray}$$ $$B = \begin{pmatrix}
+			2 \\ 1 \\ 1
+		\end{pmatrix}$$ Then $x = \begin{pmatrix}
+			1 \\ 1 \\ 1 \\ 0 \\ 0
+		\end{pmatrix}$ is a basic solution for basis $B = \{1,2,3\}$ since $Ax = b$ and $x_4 = x_5 = 0$.
+\end{definition}
+\begin{problem}[]
+    Suppose we have the system of linear equations
+    $$\begin{pmatrix}
+            1 & 0 & 1 & -1 \\
+            0 & 1 & 1 & 1
+        \end{pmatrix} x = \begin{pmatrix}
+            2 \\ 2
+        \end{pmatrix}$$ What is the basic solution $x$ for basis $B = \{1,4\}$?
+    We have
+    \begin{align*}
+        \begin{pmatrix}
+            2 \\ 2
+        \end{pmatrix} & = \begin{pmatrix}
+                              1 & 0 & 1 & -1 \\
+                              0 & 1 & 1 & 1
+                          \end{pmatrix} x                                                                               \\
+                        & = x_1 \begin{pmatrix}
+                                    1 \\ 0
+                                \end{pmatrix} + x_2 \begin{pmatrix}
+                                                        1 \\ 0
+                                                    \end{pmatrix} + x_3 \begin{pmatrix}
+                                                                            1 \\ 1
+                                                                        \end{pmatrix} + x_4 \begin{pmatrix}
+                                                                                                -1 \\ 1
+                                                                                            \end{pmatrix}              \\
+                        & = x_1 \begin{pmatrix}
+                                    1 \\ 0
+                                \end{pmatrix} + x_4 \begin{pmatrix}
+                                                        -1 \\ 1
+                                                    \end{pmatrix} \tag*{Since $x$ is a basic solution, $x_2 = x_3 = 0$} \\
+                        & = \begin{pmatrix}
+                                1 & -1 \\
+                                0 & 1
+                            \end{pmatrix} \begin{pmatrix}
+                                              x_1 \\ x_4
+                                          \end{pmatrix}
+    \end{align*}
+    Since $A_B$ is a square matrix and non-singular, it must have an inverse, therefore $$\begin{pmatrix}
+            x_1 \\ x_4
+        \end{pmatrix} = \begin{pmatrix}
+            1 & -1 \\
+            0 & 1
+        \end{pmatrix}^{-1} \begin{pmatrix}
+            2 \\ 2
+        \end{pmatrix} = \begin{pmatrix}
+            1 & 1 \\
+            0 & 1
+        \end{pmatrix} \begin{pmatrix}
+            2 \\ 2
+        \end{pmatrix} = \begin{pmatrix}
+            4 \\ 2
+        \end{pmatrix}$$
+    Therefore the basic solution is $x = \begin{pmatrix}
+            4 \\ 0 \\ 0 \\ 2
+        \end{pmatrix}$.
+    
+    \bigskip
+    Notice that when we are given a basis, then there is only 1 solution. This is a theorem.
+    \end{problem}
+    \begin{theorem}[]
+        Consider $Ax = b$ and a basis $B$ of $A$. Then there exists a unique basic solution $x$ for $B$.
+    \end{theorem}
+    \begin{proof}[Proof]
+        We have
+        \begin{align*}
+            b & = Ax                                                                   \\
+              & = \sum_j A_j x_j                                                       \\
+              & = \sum_{j \in B} A_jx_j + \sum_{j \not \in B} A_jx_j                   \\
+              & = \sum_{j \in B} A_jx_j  \tag*{Since $x_j = 0$ for all $j \not \in B$} \\
+              & = A_Bx_B
+        \end{align*}
+        Now, since $B$ is a basis, it implies $A_B$ is invertible, so $A^{-1}_B$ exists. Hence, $x_B = A^{-1}_B b$.
+    \end{proof}
+    \begin{definition}[Basic Solution]
+        Consider $Ax = b$ with independent rows. Vector $x$ is a basic solution if it is a basic solution for some basis $B$.
+    \end{definition}
+    \begin{problem}[]
+    For the system of linear equations
+    $$ \begin{pmatrix}
+            3  & 2 & 1 & 4 & 1 \\
+            -1 & 1 & 0 & 2 & 1 \\
+        \end{pmatrix} x = \begin{pmatrix}
+            6 \\ 3
+        \end{pmatrix}$$
+    is $x = \begin{pmatrix}
+            0 \\ 0 \\ 3 \\ 0 \\ 3
+        \end{pmatrix}$ basic?
+    
+    We just have to give a basis $B$ and show that $x$ is basic for the basis $B$. We let $B = \{3,5\}$ and we have $Ax = b$, and $x_1 = x_2 = x_4 = 0$. Therefore, $x$ is basic for basis $B$, and so $x$ is a basic solution.
+    
+    \bigskip
+    Now is $x = \begin{pmatrix}
+            0 \\ 1 \\ 0 \\ 1 \\ 0
+        \end{pmatrix}$ basic?
+    
+    No, we will prove it. Suppose $x$ is basic for basis $B$. By definition, since $x_2 \neq 0$ and $x_4 \neq 0$, we have $2,4 \in B$. Thus $$A_{\{2,4\}} = \begin{pmatrix}
+            2 & 4 \\
+            1 & 2 \\
+        \end{pmatrix}$$ is a column submatrix of $A_B$. But the columns of $A_{\{2,4\}}$ are dependent, so $A_B$ is singular and $B$ is not a basis, a contradiction.
+    \end{problem}
+    \begin{definition}[Feasible Basic Solution]
+        A basic solution $x$ of $Ax = b$ is feasible if $x \geq 0$, i.e., if it is feasible for the problem $P$.
+    \end{definition}
+    \begin{definition}[Simplex Algorithm]
+        Suppose we have a basic solution to the LP problem in canonical form with basis $B$. We can find a better feasible solution by:
+        \begin{enumerate}
+            \item Pick $k \not \in B$ such that $c_k > 0$.
+            \item Set $x_k = t \geq 0$ as large as possible
+            \item Keep all other non-basic variables at 0
+            \item Choose basic variables such that $Ax = b$ holds
+        \end{enumerate}
+        Here is an example:
+    
+        Suppose we have the following LP problem:
+    
+        max $$\begin{pmatrix}
+                0 & 1 & 3 & 0
+            \end{pmatrix}x$$
+        s.t.
+        \begin{align*}
+            \begin{pmatrix}
+                1 & 1 & 2 & 0 \\
+                0 & 1 & 1 & 1 \\
+            \end{pmatrix} x & = \begin{pmatrix}
+                                    2 \\ 5
+                                \end{pmatrix} \\
+            x_1,x_2,x_3,x_4  & \geq 0
+        \end{align*}
+        Our LP is in canonical form for basis $B =\{1,4\}$ and $(2,0,0,5)^T$ is a basic solution. We will pick $k \not \in B$ such that $c_k > 0$. So we pick $k = 2$, and set $x_2 = t \geq 0$, while keeping other non-basic variables to 0. So $x_3 = 0$.
+    
+        Then we choose basic variables such that $Ax = b$ holds. So we have
+        \begin{align*}
+            \begin{pmatrix}
+                2 \\ 5
+            \end{pmatrix} & = \begin{pmatrix}
+                                  1 & 1 & 2 & 0 \\
+                                  0 & 1 & 1 & 1 \\
+                              \end{pmatrix}x                                                                   \\
+                            & = x_1 \begin{pmatrix}
+                                        1 \\ 0
+                                    \end{pmatrix} + x_2 \begin{pmatrix}
+                                                            1 \\ 1
+                                                        \end{pmatrix} + x_3 \begin{pmatrix}
+                                                                                2 \\ 1
+                                                                            \end{pmatrix} + x_4 \begin{pmatrix}
+                                                                                                    0 \\ 1
+                                                                                                \end{pmatrix} \\
+                            & = \begin{pmatrix}
+                                    x_1 \\ 0
+                                \end{pmatrix} + t \begin{pmatrix}
+                                                      1 \\ 1
+                                                  \end{pmatrix} + 0 \begin{pmatrix}
+                                                                        2 \\ 1
+                                                                    \end{pmatrix} + \begin{pmatrix}
+                                                                                        0 \\ x_4
+                                                                                    \end{pmatrix}             \\
+                            & = t \begin{pmatrix}
+                                      1 \\ 1
+                                  \end{pmatrix} + \begin{pmatrix}
+                                                      x_1 \\ x_4
+                                                  \end{pmatrix}                                               \\
+        \end{align*}
+        Rearranging gives $$\begin{pmatrix}
+                x_1 \\ x_4
+            \end{pmatrix} = \begin{pmatrix}
+                2 \\ 5
+            \end{pmatrix} - t \begin{pmatrix}
+                1 \\ 1
+            \end{pmatrix}$$
+        This can be written in general as $$x_B = b - tA_k$$
+        Since we want $x_1,x_4 \geq 0$, we have
+        \begin{align*}
+            x_1 & = 2 - t \geq 0 \Rightarrow t \leq 2 \\
+            x_4 & = 5 - t \geq 0 \Rightarrow t \leq 5
+        \end{align*}
+        So $t \leq 2$ and we choose $t = 2$. Therefore, our new feasible solution is $$x = \begin{pmatrix}
+                2 - t \\ t \\ 0 \\ 5 - t
+            \end{pmatrix} = \begin{pmatrix}
+                0 \\ 2 \\ 0 \\ 3
+            \end{pmatrix}$$
+        Notice that our new solution is a basic solution for basis $B = \{2,4\}$, we can say that 1 left the basis and 2 entered the basis. Rewriting our LP to canonical form with basis $B = \{2,4\}$, we have
+    
+        max $$\begin{pmatrix}
+                -1 & 0 & 1 & 0
+            \end{pmatrix}x$$
+        s.t.
+        \begin{align*}
+            \begin{pmatrix}
+                1  & 1 & 2  & 0 \\
+                -1 & 0 & -1 & 1 \\
+            \end{pmatrix} x & = \begin{pmatrix}
+                                    2 \\ 3
+                                \end{pmatrix} \\
+            x_1,x_2,x_3,x_4    & \geq 0
+        \end{align*}
+        Again, we choose $k \not \in B$ such that $c_k > 0$ and set $x_k = t$. So we choose $k = 3$, so $x_3 = t \geq 0$. We then pick
+        \begin{align*}
+            x_B             & = b - tA_k                       \\
+            \begin{pmatrix}
+                x_2 \\ x_4
+            \end{pmatrix} & = \begin{pmatrix}
+                                  2 \\ 3
+                              \end{pmatrix} - t \begin{pmatrix}
+                                                    2 \\ -1
+                                                \end{pmatrix}
+        \end{align*}
+        From here, we pick $t = 1$, so $x_2 = 0$, thus 2 leaves the basis. The new basis is now $B = \{3,4\}$ with canonical form
+    
+        max $$\begin{pmatrix}
+                -1.5 & -0.5 & 0 & 0
+            \end{pmatrix}x$$
+        s.t.
+        \begin{align*}
+            \begin{pmatrix}
+                0.5  & 0.5 & 1 & 0 \\
+                -0.5 & 0.5 & 0 & 1 \\
+            \end{pmatrix} x & = \begin{pmatrix}
+                                    1 \\ 4
+                                \end{pmatrix} \\
+            x_1,x_2,x_3,x_4       & \geq 0
+        \end{align*}
+        The basic solution is $x = \begin{pmatrix}
+                0 \\ 0 \\ 1 \\ 4
+            \end{pmatrix}$.
+        Since there is no $k \not \in B$ such that $c_k > 0$, we have reached the optimal solution.
+    
+        However, the Simplex algorithm is not guaranteed to terminate.
+    \end{definition}
+    \begin{definition}[Feasible Region]
+        For an optimization problem, the feasible region is the set of all feasible solutions.
+    \end{definition}
 \subsubsection{Operations that Preserve Convexity}
 \begin{itemize}
     \item If $Q_i$ are convex, then $\bigcap_i Q_i$ is convex (can be infinite).

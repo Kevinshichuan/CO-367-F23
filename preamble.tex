@@ -79,6 +79,9 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr} 
 
+\usepackage{blkarray}
+\usepackage{diagbox}
+
 \pagestyle{fancy}
 \fancyhf{}
 \fancyheadoffset{0cm}
@@ -99,6 +102,12 @@
 \definecolor{shallowGreen}{RGB}{235,255,255}
 \definecolor{deepBlue}{RGB}{61,124,222}
 \definecolor{shallowBlue}{RGB}{235,249,255}
+\definecolor{violet}{RGB}{147,112,219}
+\definecolor{shallowViolet}{RGB}{237,234,255}
+\definecolor{ruby}{RGB}{155,17,30}
+\definecolor{shallowRuby}{RGB}{255,235,238}
+\definecolor{amber}{RGB}{255,191,0}
+\definecolor{shallowAmber}{RGB}{255,250,235}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% Define an orangebox command %%%%%%%%%%%%%%%%%%%%%%%%
@@ -111,21 +120,23 @@
 \theoremstyle{mytheoremstyle}
 \newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{theorem}{Theorem}[section]
 \theoremstyle{mytheoremstyle}
-\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{corollary}{Corollary}[section]
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowViolet,linecolor=violet,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{corollary}{Corollary}[section]
 \theoremstyle{mytheoremstyle}
-\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{lemma}{Lemma}[section]
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowRuby,linecolor=ruby,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{lemma}{Lemma}[section]
 \theoremstyle{mytheoremstyle}
-\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{proposition}{Proposition}[section]
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowAmber,linecolor=amber,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{proposition}{Proposition}[section]
 \theoremstyle{mytheoremstyle}
-\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{axiom}{Axiom}[section]
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowBlue,linecolor=deepBlue,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{axiom}{Axiom}[section]
 \theoremstyle{mytheoremstyle}
-\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{conjecture}{Conjecture}[section]
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowRuby,linecolor=ruby,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{conjecture}{Conjecture}[section]
 \theoremstyle{mytheoremstyle}
-\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{hypothesis}{Hypothesis}[section]
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowAmber,linecolor=amber,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{hypothesis}{Hypothesis}[section]
 \theoremstyle{mytheoremstyle}
 \newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowBlue,linecolor=deepBlue,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{definition}{Definition}[section]
 \theoremstyle{myproblemstyle}
 \newmdtheoremenv[linecolor=black,leftmargin=0pt,innerleftmargin=10pt,innerrightmargin=10pt,]{problem}{Problem}[section]
+\theoremstyle{myproblemstyle}
+\newmdtheoremenv[linecolor=black,leftmargin=0pt,innerleftmargin=10pt,innerrightmargin=10pt,]{example}{Example}[section]
 \theoremstyle{myproblemstyle}
 \newmdtheoremenv[linecolor=black,leftmargin=0pt,innerleftmargin=10pt,innerrightmargin=10pt,]{claim}{Claim}[section]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
