@@ -1,0 +1,129 @@
+\newpage
+\section{Matrix Calculus}
+Youtube Series on Matrix Calculus: \href{https://youtube.com/playlist?list=PLhcN-s3_Z7-YS6ltpJhjwqvHO1TYDbiZv&feature=shared}{here}
+\subsection{Kronecker Product}
+Given two matrices $A \in \mathbb R^{m \times n}$ and $B \in \mathbb R^{p \times q}$, the Kronecker product of $A$ and $B$ is defined as
+$$A \otimes B = \begin{bmatrix}a_{11}B & \cdots & a_{1n}B \\ \vdots & \ddots & \vdots \\ a_{m1}B & \cdots & a_{mn}B\end{bmatrix} \in \mathbb R^{mp \times nq}$$ 
+For example,
+\begin{align*}
+    \begin{bmatrix}
+        2 & 3 & 1 \\
+        5 & 2 & 3 \\
+        2 & 6 & 4
+    \end{bmatrix} \otimes \begin{bmatrix}
+        1 & 7
+    \end{bmatrix} &= \begin{bmatrix}
+        2 & 14 & 3 & 21 & 1 & 7 \\
+        5 & 35 & 2 & 14 & 3 & 21 \\
+        2 & 14 & 6 & 42 & 4 & 28
+    \end{bmatrix}
+\end{align*}
+
+\subsection{Differentiating w.r.t a Scalar}
+Suppose we have $y$ scalar, $\y$ vector, and $Y$ matrix
+$$y = \sin(x^2) \quad \y = \begin{pmatrix}
+    x \\ \cos x \\ 2x^2
+\end{pmatrix} \quad Y = \begin{bmatrix}
+    x^2 + 1 & \cos x \\ \sin x & x - 1
+\end{bmatrix}$$
+Differentiating them w.r.t. a scalar $x$ is just element-wise differentiation.
+\begin{align*}
+    \frac{\partial y}{\partial x} &= \cos(x^2)2x \\
+    \frac{\partial \y}{\partial x} &= \begin{pmatrix}
+        \frac{\partial}{\partial x} x \\ \frac{\partial}{\partial x} \cos x \\ \frac{\partial}{\partial x} 2x^2
+    \end{pmatrix} = \begin{pmatrix}
+        1 \\ -\sin x \\ 4x
+    \end{pmatrix} \\
+    \frac{\partial Y}{\partial x} &= \begin{bmatrix}
+        \frac{\partial}{\partial x} x^2 + 1 & \frac{\partial}{\partial x} \cos x \\ \frac{\partial}{\partial x} \sin x & \frac{\partial}{\partial x} x - 1
+    \end{bmatrix} = \begin{bmatrix}
+        2x & -\sin x \\ \cos x & 1
+    \end{bmatrix}
+\end{align*}
+
+\subsection{Differentiating w.r.t a Vector}
+\begin{definition}[Layout Notation]
+    When we differentiate we have to follow one of two layout notations: either Numerator layout notation or Denominator layout notation.
+
+    \bigskip
+    Denominator layout notation first takes the transpose of the numerator before differentiating. For example if we do $\frac{\partial y}{\partial x}$, we will transpose $y$ first.
+
+    \bigskip
+    Numerator layout notation first takes the transpose of the denominator before differentiating. For example if we do $\frac{\partial y}{\partial x}$, we will transpose $x$ first. So we are always differentiating w.r.t. a row vector. So if $\x = (x_1 \ x_2 \ x_3 \ \cdots)^T$ then $$\frac{\partial}{\partial \x} = \left(\frac{\partial}{\partial x_1} \ \frac{\partial}{\partial x_2} \ \cdots\right)$$ Below we will use numerator layout notation.
+\end{definition}
+Suppose we have $y$ scalar, $\y$ vector, and $Y$ matrix
+$$y = \sin(x + yz), \quad \y = \begin{pmatrix}
+    e^{xyz} \\ x^2z \\ yx
+\end{pmatrix}, \quad Y = \begin{bmatrix}
+    x^2yz & xy^2z \\
+    xyz^2 & \ln(xyz)
+\end{bmatrix}$$
+We will take the derivatives w.r.t. $\textbf{r} = (x \ y \ z)^T$.
+\begin{align*}
+    \frac{\partial y}{\partial \textbf{r}} &= \frac{\partial}{\partial \textbf{r}}  \otimes y \tag*{Treat this as Kronecker product} \\
+    &= \left(\frac{\partial}{\partial x} \ \frac{\partial}{\partial y} \ \frac{\partial}{\partial z}\right) \otimes \sin(x + yz) \\
+    &= \begin{pmatrix}
+        \cos(x + yz) & z\cos(x + yz) & y\cos(x + yz)
+    \end{pmatrix} \\
+    \frac{\partial \y}{\partial \textbf{r}} &= \frac{\partial}{\partial \textbf{r}} \otimes \y \\
+    &= \left(\frac{\partial}{\partial x} \begin{pmatrix}
+        e^{xyz} \\ x^2z \\ yx
+    \end{pmatrix} \ \frac{\partial}{\partial y} \begin{pmatrix}
+        e^{xyz} \\ x^2z \\ yx
+    \end{pmatrix} \ \frac{\partial}{\partial z} \begin{pmatrix}
+        e^{xyz} \\ x^2z \\ yx
+    \end{pmatrix}\right) \\
+    &= \begin{bmatrix}
+        yze^{xyz} & xze^{xyz} & xye^{xyz} \\
+        2xz & 0 & x^2 \\
+        y & x & 0
+    \end{bmatrix} \tag*{also called the Jacobian} \\
+    \frac{\partial Y}{\partial \textbf{r}} &= \frac{\partial}{\partial \textbf{r}} \otimes Y \\
+    &= \left(\frac{\partial}{\partial x} \begin{bmatrix}
+        x^2yz & xy^2z \\
+        xyz^2 & \ln(xyz)
+    \end{bmatrix} \ \frac{\partial}{\partial y} \begin{bmatrix}
+        x^2yz & xy^2z \\
+        xyz^2 & \ln(xyz)
+    \end{bmatrix} \ \frac{\partial}{\partial z} \begin{bmatrix}
+        x^2yz & xy^2z \\
+        xyz^2 & \ln(xyz)
+    \end{bmatrix}\right) \\
+    &= \begin{bmatrix}
+        2xyz & y^2z & x^2z & 2xyz & x^2y & xy^2 \\
+        yz^2 & \frac{yz}{xyz} & xz^2 & \frac{1}{y} & 2xyz & \frac{1}{2}
+    \end{bmatrix}
+\end{align*}
+\subsection{Differentiating w.r.t a Matrix}
+Suppose we have $y$ scalar, $\y$ vector, and $Y$ matrix
+$$y = 4x_3 + 3x_2 + 2x_1 + x_0, \quad \y = \begin{pmatrix}
+    e^{x_0x_1} \\ e^{x_2x_3}
+\end{pmatrix}, \quad Y = \begin{bmatrix}
+    \sin(x_0 + 2x_1) & 2x_1 + x_3 \\
+    2x_0 + x_2 & \cos(2x_2 + x_3)
+\end{bmatrix}$$
+We differentiate w.r.t. matrix $X = \begin{bmatrix}
+    x_0 & x_1 \\ x_2 & x_3
+\end{bmatrix}$. So $$\frac{\partial}{\partial X} = \begin{bmatrix}
+    \frac{\partial}{\partial x_0} & \frac{\partial}{\partial x_2} \\ \frac{\partial}{\partial x_1} & \frac{\partial}{\partial x_3}
+\end{bmatrix}$$
+Differentiating gives
+\begin{align*}
+    \frac{\partial y}{\partial X} &= \frac{\partial}{\partial X} \otimes y \\
+    &= \begin{bmatrix}
+        1 & 3 \\
+        2 & 4 
+    \end{bmatrix} \\
+    \frac{\partial \y}{\partial X} &= \frac{\partial}{\partial X} \otimes \y \\
+     &= \begin{bmatrix}
+        x_1e^{x_0x_1} & 0 & 0 & x_3e^{x_2x_3} \\
+        x_0e^{x_0x_1} & 0 & 0 & x_2e^{x_2x_3}
+     \end{bmatrix} \\
+    \frac{\partial Y}{\partial X} &= \frac{\partial}{\partial X} \otimes Y \\
+    &= \begin{bmatrix}
+        \cos(x_0 + 2x_1) & 0 & 0 & 0 \\
+        2 & 0 & 1 & -2\sin(2x_2 + x_3) \\
+        2\cos(x_0 + 2x_1) & 2 & 0 & 1 \\
+        0 & 0 & 0 & -\sin(2x_2 + x_3)
+    \end{bmatrix}
+\end{align*}

@@ -1,0 +1,28 @@
+\newpage
+\section{Constrained Optimization}
+\subsection{Lectures 16-17}
+\subsubsection{Linear Programming, Lagrange Multipliers, and Implicit Function Theorem}
+\begin{example}[Simplex Method]
+    Consider the following LP in standard form:
+    \begin{align*}
+        \min \quad & c^T x \\
+        \text{s.t.} \quad & Ax = b \in \mathbb R^n\\
+        & x \geq 0
+    \end{align*}
+    Let $x = \begin{pmatrix}x_B \\ x_N \end{pmatrix}$ denote a basic feasible solution, BFS. So $x$ is feasible and $x_N = 0$. 
+    
+    We call $x_B$ the basic variables and $x_N$ the non-basic variables. 
+    
+    We let $A = \begin{pmatrix}B & N\end{pmatrix}$ where $B$, the basis matrix, is an $m \times m$ invertible matrix. W.L.O.G. we have assumed the first $m$ variables to be the basic variables, so the basis is $B = \{1,\ldots,m\}$.
+
+    We split the constraints $Ax = b$ into two parts, $$Bx_B + Nx_N = b$$ 
+    We solve our equation w.r.t. $x_B$ to get $$x_B = B^{-1}b - B^{-1}Nx_N$$
+    Similarly, we can split our objective function $c^T x$ into two parts, $$c^T_B x_B + c^T_N x_N$$ Substituting $x_B = B^{-1}b - B^{-1}Nx_N$ into objective function gives
+    $$c^T_B x_B + c^T_N x_N = c^T_B(B^{-1}b - B^{-1}Nx_N) + c^T_N x_N$$
+    Then let $y^T = c^T_BB^{-1}$ denote the dual variable estimates. The objective function becomes
+    \begin{align*}
+        c^Tx &= y^Tb - y^TNx_N + c^T_Nx_N \\
+        &= y^Tb + (c^T_N - y^TN)x_N
+    \end{align*}
+    We can see that the objective values decreases if we find a reduced cost $c^T_N - y^TN < 0$ and increase the corresponding nonbasic variable $x_j$, i.e. $j$ enters the basis. Review Simplex method if needed.
+\end{example}
