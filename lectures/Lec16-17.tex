@@ -26,3 +26,10 @@
     \end{align*}
     We can see that the objective values decreases if we find a reduced cost $c^T_N - y^TN < 0$ and increase the corresponding nonbasic variable $x_j$, i.e. $j$ enters the basis. Review Simplex method if needed.
 \end{example}
+\begin{example}
+    Example of Lagrange multipliers and implicit function thoerem here that I do not understand.
+\end{example}
+\begin{theorem}[Lagrange Multipliers for Equality Constraints]
+    Suppose that $f: C \to \mathbb R$ and $h: C \to \mathbb R^m$ are sufficiently smooth functions on the open set $C \subseteq \mathbb R^n$. Let $x \in C$ be a local minimum of $f$ subject to the constraints $h(x) = 0, x \in C$. In addition, assume the following regularity condition at $x$ (constraint qualification at $x$) $$h'(x) \text{ is onto}$$
+    Then there exists $\lambda \in \mathbb R^m$ (a Lagrange multiplier vector) such that $$0 = \nabla f(x) + \langle \lambda, h'(x) \rangle$$ Equivalently, the gradient $\nabla f(x)$ is in the range of $h'(x)^T$.
+  \end{theorem}
