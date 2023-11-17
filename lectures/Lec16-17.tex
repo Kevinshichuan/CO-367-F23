@@ -32,4 +32,11 @@
 \begin{theorem}[Lagrange Multipliers for Equality Constraints]
     Suppose that $f: C \to \mathbb R$ and $h: C \to \mathbb R^m$ are sufficiently smooth functions on the open set $C \subseteq \mathbb R^n$. Let $x \in C$ be a local minimum of $f$ subject to the constraints $h(x) = 0, x \in C$. In addition, assume the following regularity condition at $x$ (constraint qualification at $x$) $$h'(x) \text{ is onto}$$
     Then there exists $\lambda \in \mathbb R^m$ (a Lagrange multiplier vector) such that $$0 = \nabla f(x) + \langle \lambda, h'(x) \rangle$$ Equivalently, the gradient $\nabla f(x)$ is in the range of $h'(x)^T$.
-  \end{theorem}
+\end{theorem}
+\subsection{Optimality Conditions and Geometry}
+Consider the following LP:
+\begin{align*}
+    \min \quad & f(x) \\
+    \text{s.t.} \quad & x \in Q
+\end{align*}
+where $f: \mathbb R^n \to \mathbb R$ is $C^1$ or $C^2$ smooth and $Q$ is a closed set.
