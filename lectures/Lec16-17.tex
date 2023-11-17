@@ -40,3 +40,11 @@ Consider the following LP:
     \text{s.t.} \quad & x \in Q
 \end{align*}
 where $f: \mathbb R^n \to \mathbb R$ is $C^1$ or $C^2$ smooth and $Q$ is a closed set.
+\begin{example}
+    If we have the LP
+    \begin{align*}
+        \min \quad & f(x) \\
+        \text{s.t.} \quad & c_1(x_1,x_2) = x_1^2 + x_2^2 = 0 
+    \end{align*}
+    Let $x^*$ be a local optimal solution. Then $\nabla f(x^*) \in \mathrm{span}(\nabla c_i)$ by Lagrange Multiplier
+\end{example}
