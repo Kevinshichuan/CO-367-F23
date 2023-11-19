@@ -9,6 +9,8 @@
         \text{s.t.} \quad & Ax = b \in \mathbb R^n\\
         & x \geq 0
     \end{align*}
+    where $A$ has full row rank (constraints are in linear independence (LICQ)).
+
     Let $x = \begin{pmatrix}x_B \\ x_N \end{pmatrix}$ denote a basic feasible solution, BFS. So $x$ is feasible and $x_N = 0$. 
     
     We call $x_B$ the basic variables and $x_N$ the non-basic variables. 
@@ -46,5 +48,25 @@ where $f: \mathbb R^n \to \mathbb R$ is $C^1$ or $C^2$ smooth and $Q$ is a close
         \min \quad & f(x) \\
         \text{s.t.} \quad & c_1(x_1,x_2) = x_1^2 + x_2^2 = 0 
     \end{align*}
-    Let $x^*$ be a local optimal solution. Then $\nabla f(x^*) \in \mathrm{span}(\nabla c_i)$ by Lagrange Multiplier
+    Let $x^*$ be a local optimal solution. Then $\nabla f(x^*) \in \mathrm{span}(\nabla c_i)$ by Lagrange Multiplier since
+    $$\nabla f(x^*) + \lambda \nabla c_1(x^*) = 0$$ and rearranging gives
+    $$\nabla f(x^*) = -\lambda \nabla c_1(x^*)$$
+\end{example} 
+\begin{example}
+    Consider the LP
+    \begin{align*}
+        \min \quad & f(x) = x_1 + x_2 \\
+        \text{s.t.} \quad & c_1(x_1,x_2) = 1 - x_1^2 - x_2^2 \geq 0 
+    \end{align*}
+    Let $\bar x$ be a local optimal solution, then
+    \begin{enumerate}
+        \item If $\bar x$ satisfies $c_1(\bar x) > 1$, then $\nabla f(\bar x) = 0$.
+        \item If $\bar x$ satisfies $c_1(\bar x) = 1$, then $\nabla f(\bar x) \in \underbrace{\mathrm{cone}\{\nabla c_1(\bar x)\}}_{-\lambda \nabla c_1(\bar x), \lambda \leq 0}$.
+    \end{enumerate}
 \end{example}
+\begin{definition}[Tangent Vector]
+    Let $\bar x \in Q \subseteq \mathbb R^n$. A vector $v \in \mathbb R^n$ is tangent to $Q$ at $\bar x \in Q$ if there exists sequences $\{x_k\}\subseteq Q$ and $\{t_k\} \subset R_+$ such that $$x_k \to \bar x, \quad \underbrace{t_k \downarrow 0}_{t_k > 0, t_k \to 0, \text{non-increasing}}, \quad \frac{1}{t_k}(x_k - \bar x) \to v$$
+\end{definition}
+\begin{definition}[Tangent Cone]
+    We denote the set of all tangent vectors to $Q$ at $\bar x$ as the tangent cone $T_Q(\bar x)$.
+\end{definition}
