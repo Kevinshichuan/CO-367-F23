@@ -1,6 +1,24 @@
 \newpage
 \section{Constrained Optimization}
 \subsection{Lectures 16-17}
+\subsubsection{Review}
+Recall that constrained optimization problems can be formulated as 
+\begin{align*}
+    \min \quad & f(x) \\
+    \text{s.t.} \quad &g_i(x) \leq 0, \quad i \in \{1,\ldots,m\} \\
+    & h_j(x) = 0, \quad j \in \{1,\ldots,p\}
+\end{align*}
+$f: \mathbb R^n \to \mathbb R$ is the objective function, $x \in \mathbb R^n$ is the optimization variable. The inequalities $g_i(x) \leq 0$ are called inequality constraints, the equations $h_j(x) = 0$ are called the equality constraints. If there are no constraints, i.e. $m = p = 0$ then we have an unconstrained optimization problem.
+
+\bigskip
+A special case of constrained optimization is linear programming:
+\begin{align*}
+    \min \quad & c^T x \\
+    \text{s.t.} \quad & Ax = b \in \mathbb R^n\\
+    & x \geq 0
+\end{align*}
+In this case, the equality constraints are $$h_i(x) = A_i x - b_i$$ where $A_i$ is the $i$th row vector and the inequality constraints are $$g_i(x) = -x_i$$ For an LP, the feasible region is a polyhedron. Recall that a polyhedron is a set of the form
+$$P = \{x \in \mathbb R^n: Ax \leq b\}$$ where $A$ is a $m \times n$ matrix and $b \in \mathbb R^m$.
 \subsubsection{Linear Programming, Lagrange Multipliers, and Implicit Function Theorem}
 \begin{example}[Simplex Method]
     Consider the following LP in standard form:
@@ -42,6 +60,12 @@ Consider the following LP:
     \text{s.t.} \quad & x \in Q
 \end{align*}
 where $f: \mathbb R^n \to \mathbb R$ is $C^1$ or $C^2$ smooth and $Q$ is a closed set.
+
+We say that $\bar x$ is a local minimizer if there exists $\epsilon > 0$ such that $$\forall x \in Q \cap B_\epsilon(\bar x), \quad f(x) \geq f(\bar x)$$ where $B_\epsilon(\bar x)$ is a ball of radius $\epsilon$ centered at $\bar x$. For an NLP, the feasible set is 
+$$Q = \{x: g_i(x) \leq 0, h_j(x) = 0, i \in I, j \in E\}$$
+where $I,E$ are index sets for the inequality and equality constraints respectively.
+
+For a convex program, the feasible set is a convex set.
 \begin{example}
     If we have the LP
     \begin{align*}
@@ -64,9 +88,82 @@ where $f: \mathbb R^n \to \mathbb R$ is $C^1$ or $C^2$ smooth and $Q$ is a close
         \item If $\bar x$ satisfies $c_1(\bar x) = 1$, then $\nabla f(\bar x) \in \underbrace{\mathrm{cone}\{\nabla c_1(\bar x)\}}_{-\lambda \nabla c_1(\bar x), \lambda \leq 0}$.
     \end{enumerate}
 \end{example}
+\begin{definition}[Active Set]
+    Let $\bar x$ be a feasible solution of an NLP. Then the set
+    $$A(\bar x) = \{i \in I: g_i(\bar x) = 0\}$$ is called the active set at the feasible point $\bar x$. The inequality constraint $i \in I$ is said to be active at a feasible point $\bar x$ if $g_i(\bar x) = 0$ and inactive if $g_i(\bar x) < 0$.
+\end{definition}
+\begin{theorem}[]
+    Let $\bar x$ be a local minimizer of 
+    \begin{align*}
+        \min \quad & f(x) \\
+        \text{s.t.} \quad & g_i(x) \leq 0, \quad i \in I \\
+    \end{align*}
+    where $f, g_1,\ldots,g_m \in C^1$. Then there does not exist vector $d$ such that 
+    $$\nabla f(\bar x)^Td < 0 \quad \text{and} \quad \nabla g_i(\bar x)^Td < 0, \quad \forall i \in A(\bar x)$$
+    where $A(\bar x) = \{i \in I: g_i(\bar x) = 0\}$ is the active set at $\bar x$.
+\end{theorem}
+\begin{proof}[Proof]
+    Suppose such $d$ exists. Then by Taylor's Theorem, there exists $\alpha' > 0$ such that for every $\alpha \in (0, \alpha')$
+    \begin{align*}
+        f(\bar x + \alpha d) &< f(\bar x) \tag*{and} \\
+        g_i(\bar x + \alpha d) &< g_i(\bar x) = 0 \quad \forall i \in A(\bar x) 
+    \end{align*}
+    which contradicts the fact that $\bar x$ is a local minimizer.
+\end{proof}
+\begin{lemma}
+    Let $A \in \mathbb R^{m \times n}$. Then exactly one of the following statements holds:
+    \begin{enumerate}
+        \item There exists $x \in \mathbb R^n$ such that $Ax < 0$
+        \item There exists $y \in \mathbb R^m$ such that $A^Ty = 0$ and $y \geq 0$
+    \end{enumerate}
+\end{lemma}
+\begin{theorem}[]
+    Let $\bar x$ be a local minimizer of 
+    \begin{align*}
+        \min \quad & f(x) \\
+        \text{s.t.} \quad & g_i(x) \leq 0, \quad i \in I \\
+    \end{align*}
+    where $f, g_1,\ldots,g_m \in C^1$. Assume that the set $\{\nabla g_i(\bar x): i \in A(\bar x)\}$ is linearly independent. Then there exists $\lambda_1,\ldots,\lambda_m \geq 0$ such that
+    \begin{align*}
+        \nabla f(\bar x) + \sum^m_{i=1} \lambda_i \nabla g_i(\bar x) &= 0 \\
+        \lambda_i g_i(\bar x) &= 0 \quad \forall i \in I
+    \end{align*}
+\end{theorem}
+\begin{definition}[LICQ]
+    Given $\bar x$ and $A(\bar x)$, we say that the linear independence constraint qualification (LICQ) holds if the set of active constraint gradients
+    $$\{\nabla g_i(\bar x): i \in A(\bar x)\} \cup \{\nabla h_j(\bar x): j \in E\}$$ is linearly independent.
+\end{definition}
+\begin{definition}[Lagrangian Function for NLP]
+    We define the Lagrangian function for an NLP as 
+    \begin{align*}
+        \mathcal L(x, \lambda, \mu) &= f(x) + \sum_{i=1}^m \lambda_i g_i(x) + \sum_{j=1}^p \mu_j h_j(x) \\
+        &= f(x) + \lambda^T g_I(x) + \mu^T h_E(x)
+    \end{align*}
+\end{definition}
+\begin{theorem}[First Order KTT Necessary Condition]
+    Suppose $x^*$ is a local minimizer of an NLP and $f,g_1,\ldots,g_m,h_1,\ldots,h_p \in C^1$ and LICQ holds at $x^*$. Then there exists Lagrangian multipliers $\lambda^* \in \mathbb R^m, \mu^* \in \mathbb R^p$ such that
+    \begin{align*}
+        \nabla_x \mathcal L(x^*, \lambda^*, \mu^*) &= 0, \quad \lambda^* \geq 0 \tag*{Dual feasibility} \\
+        g_i(x^*) &\leq 0, \quad i \in I, \quad h_j(x^*) = 0, \quad j \in E \tag*{Primal feasibility} \\
+        \lambda^*_i g_i(x^*) &= 0, \quad i \in I \tag*{Complementary slackness}
+    \end{align*}
+    We call the dual feasibility, primal feasibility and complementary slackness conditions as KTT conditions, and call the point satisfying these conditions as KTT point.
+\end{theorem}
+\begin{definition}[Constraint Qualification]
+    A condition on the constraints is called a constrained qualification (CQ) at a feasible point $\bar x$:
+
+    if $\bar x$ is a local minimizer then KTT conditions hold at $\bar x$.
+\end{definition}
+\begin{definition}[Cone]
+    We say that the set $K$ is a cone if for every $x \in K$ and for every $\alpha > 0$, we have $\alpha x \in K$.
+\end{definition}
 \begin{definition}[Tangent Vector]
     Let $\bar x \in Q \subseteq \mathbb R^n$. A vector $v \in \mathbb R^n$ is tangent to $Q$ at $\bar x \in Q$ if there exists sequences $\{x_k\}\subseteq Q$ and $\{t_k\} \subset R_+$ such that $$x_k \to \bar x, \quad \underbrace{t_k \downarrow 0}_{t_k > 0, t_k \to 0, \text{non-increasing}}, \quad \frac{1}{t_k}(x_k - \bar x) \to v$$
 \end{definition}
 \begin{definition}[Tangent Cone]
     We denote the set of all tangent vectors to $Q$ at $\bar x$ as the tangent cone $T_Q(\bar x)$.
+\end{definition}
+\begin{definition}[Linearized Feasible Directions]
+    Given an NLP with a feasible set $F$, the set of linearized feasible directions at $\bar x \in F$ is defined as 
+    $$\mathcal L_F(\bar x) = \{d: d^T \nabla g_i(\bar x) \leq 0, \forall i \in A(\bar x) \cap I, \quad d^T \nabla h_j(\bar x) = 0, \forall j \in E\}$$
 \end{definition}
