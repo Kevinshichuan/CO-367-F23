@@ -53,7 +53,7 @@ $$P = \{x \in \mathbb R^n: Ax \leq b\}$$ where $A$ is a $m \times n$ matrix and 
     Suppose that $f: C \to \mathbb R$ and $h: C \to \mathbb R^m$ are sufficiently smooth functions on the open set $C \subseteq \mathbb R^n$. Let $x \in C$ be a local minimum of $f$ subject to the constraints $h(x) = 0, x \in C$. In addition, assume the following regularity condition at $x$ (constraint qualification at $x$) $$h'(x) \text{ is onto}$$
     Then there exists $\lambda \in \mathbb R^m$ (a Lagrange multiplier vector) such that $$0 = \nabla f(x) + \langle \lambda, h'(x) \rangle$$ Equivalently, the gradient $\nabla f(x)$ is in the range of $h'(x)^T$.
 \end{theorem}
-\subsection{Optimality Conditions and Geometry}
+\subsubsection{Optimality Conditions and Geometry}
 Consider the following LP:
 \begin{align*}
     \min \quad & f(x) \\
@@ -133,27 +133,7 @@ For a convex program, the feasible set is a convex set.
     Given $\bar x$ and $A(\bar x)$, we say that the linear independence constraint qualification (LICQ) holds if the set of active constraint gradients
     $$\{\nabla g_i(\bar x): i \in A(\bar x)\} \cup \{\nabla h_j(\bar x): j \in E\}$$ is linearly independent.
 \end{definition}
-\begin{definition}[Lagrangian Function for NLP]
-    We define the Lagrangian function for an NLP as 
-    \begin{align*}
-        \mathcal L(x, \lambda, \mu) &= f(x) + \sum_{i=1}^m \lambda_i g_i(x) + \sum_{j=1}^p \mu_j h_j(x) \\
-        &= f(x) + \lambda^T g_I(x) + \mu^T h_E(x)
-    \end{align*}
-\end{definition}
-\begin{theorem}[First Order KTT Necessary Condition]
-    Suppose $x^*$ is a local minimizer of an NLP and $f,g_1,\ldots,g_m,h_1,\ldots,h_p \in C^1$ and LICQ holds at $x^*$. Then there exists Lagrangian multipliers $\lambda^* \in \mathbb R^m, \mu^* \in \mathbb R^p$ such that
-    \begin{align*}
-        \nabla_x \mathcal L(x^*, \lambda^*, \mu^*) &= 0, \quad \lambda^* \geq 0 \tag*{Dual feasibility} \\
-        g_i(x^*) &\leq 0, \quad i \in I, \quad h_j(x^*) = 0, \quad j \in E \tag*{Primal feasibility} \\
-        \lambda^*_i g_i(x^*) &= 0, \quad i \in I \tag*{Complementary slackness}
-    \end{align*}
-    We call the dual feasibility, primal feasibility and complementary slackness conditions as KTT conditions, and call the point satisfying these conditions as KTT point.
-\end{theorem}
-\begin{definition}[Constraint Qualification]
-    A condition on the constraints is called a constrained qualification (CQ) at a feasible point $\bar x$:
 
-    if $\bar x$ is a local minimizer then KTT conditions hold at $\bar x$.
-\end{definition}
 \begin{definition}[Cone]
     We say that the set $K$ is a cone if for every $x \in K$ and for every $\alpha > 0$, we have $\alpha x \in K$.
 \end{definition}
@@ -163,7 +143,49 @@ For a convex program, the feasible set is a convex set.
 \begin{definition}[Tangent Cone]
     We denote the set of all tangent vectors to $Q$ at $\bar x$ as the tangent cone $T_Q(\bar x)$.
 \end{definition}
-\begin{definition}[Linearized Feasible Directions]
-    Given an NLP with a feasible set $F$, the set of linearized feasible directions at $\bar x \in F$ is defined as 
-    $$\mathcal L_F(\bar x) = \{d: d^T \nabla g_i(\bar x) \leq 0, \forall i \in A(\bar x) \cap I, \quad d^T \nabla h_j(\bar x) = 0, \forall j \in E\}$$
+\begin{theorem}[Geometric First-Order Necessary Condition, Rockafellar-Pshenichnyi]
+    Let $f$ be sufficiently smooth on the set $\Omega \subseteq \mathbb R^n$, and let $x^*$ be a local minimizer of 
+    \begin{align*}
+        \min \quad & f(x) \\
+        \text{s.t.} \quad & x \in \Omega
+    \end{align*}
+    Then $$\langle \nabla f(x^*), v \rangle \geq 0, \quad \forall v \in T_\omega(x^*)$$
+    where $T_\omega(x^*)$ is the tangent cone to $\omega$ at $x^*$.
+\end{theorem}
+\begin{definition}[Polar Cone]
+    Given a cone $A$, the polar cone $A^+$ is defined as a set of vectors that make a non-obtuse angle with every vector in $A$. Formally, if $A$ is a cone in a real vector space, the polar cone $A^+$ is defined as
+    $$A^+ \{y \in \mathbb R^n: \langle y, x \rangle \leq 0 \quad \forall x \in A\}$$
 \end{definition}
+\begin{definition}[Normal Cone]
+    The normal cone of the set $\Omega$ at $\bar x \in \Omega$ is $$N_{\Omega}(\bar x) = -(T_\Omega(\bar x))^+$$ 
+    where $T_\Omega(\bar x)^+$ is the polar cone of $T_\Omega(\bar x)$.
+\end{definition}
+\begin{corollary}
+    Let $f$ be sufficiently smooth on the set $\Omega \subseteq \mathbb R^n$, and let $x^*$ be a local minimizer of 
+    \begin{align*}
+        \min \quad & f(x) \\
+        \text{s.t.} \quad & x \in \Omega
+    \end{align*}
+    Then $$\nabla f(x^*) \in N_\Omega(x^*)$$
+\end{corollary}
+\begin{definition}[Linearized Feasible Directions/Linearizing Cone]
+    Given an NLP with a feasible set $F$, the set of linearized feasible directions(linearizing cone) at $\bar x \in F$ is defined as 
+    $$L_F(\bar x) = \{d: d^T \nabla g_i(\bar x) \leq 0, \forall i \in A(\bar x) \cap I, \quad d^T \nabla h_j(\bar x) = 0, \forall j \in E\}$$
+\end{definition}
+\begin{definition}[Lagrangian Function for NLP]
+    We define the Lagrangian function for an NLP as 
+    \begin{align*}
+        \mathcal L(x, \lambda, \mu) &= f(x) + \sum_{i=1}^m \lambda_i g_i(x) + \sum_{j=1}^p \mu_j h_j(x) \\
+        &= f(x) + \lambda^T g_I(x) + \mu^T h_E(x)
+    \end{align*}
+    where $g_I(x)$ are the inequality constraints and $h_E(x)$ are the equality constraints.
+\end{definition}
+\begin{theorem}[First Order KTT Necessary Condition]
+    Suppose $x^*$ is a local minimizer of an NLP and $f,g_1,\ldots,g_m,h_1,\ldots,h_p \in C^1$ and LICQ holds at $x^*$. Then there exists Lagrangian multipliers $\lambda^* \in \mathbb R^m, \mu^* \in \mathbb R^p$ such that
+    \begin{align*}
+        \nabla_x \mathcal L(x^*, \lambda^*, \mu^*) &= 0, \quad \lambda^* \geq 0 \tag*{Dual feasibility} \\
+        g_i(x^*) &\geq 0, \quad i \in I, \quad h_j(x^*) = 0, \quad j \in E \tag*{Primal feasibility} \\
+        \lambda^*_i g_i(x^*) &= 0, \quad i \in I \tag*{Complementary slackness}
+    \end{align*}
+    We call the dual feasibility, primal feasibility and complementary slackness conditions as KTT conditions, and call the point satisfying these conditions as KTT point.
+\end{theorem}

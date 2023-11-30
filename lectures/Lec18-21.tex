@@ -1,0 +1,13 @@
+\subsection{Lectures 18-21}
+\subsubsection{Constraint Qualification}
+\begin{definition}[Constraint Qualification]
+    A condition on the constraints that define the feasible set $\Omega$ is called a constraint qualification (CQ) at a feasible point $\bar x$ if whenever $\bar x$ is a local minimizer then the KTT optimality conditions hold at $\bar x$.
+\end{definition}
+\begin{lemma}
+    Let $a_i, a_j \in \mathbb R^n$ for all $i \in I, j \in J$ where $I$ is the index set of inequality constraints and $J$ is the index set of equality constraints. Let
+    $$Q = \left\{v \in \mathbb R^n : \substack{\langle a_i, v \rangle \geq 0, \quad \forall i \in I \\ \langle a_j, v \rangle = 0 , \quad \forall j \in J}\right\}$$
+    Then
+    $$Q = \{a_j\}^\perp_{j \in J} \cap \{a_i\}^+_{i \in I}$$
+    and the nonnegative polar is
+    $$Q^+ = \span\{a_j\}_{j \in J} + \cone\{a_i\}_{i \in I}$$
+\end{lemma}
