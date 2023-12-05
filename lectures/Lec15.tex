@@ -32,7 +32,7 @@
 \begin{theorem}[]
     Let $C$ be an open convex set in $\mathbb R^n$ and $f: C \to \mathbb R$ is a convex function. Then $f$ is continuous. 
 \end{theorem}
-\begin{theorem}[First Order Condition]
+\begin{theorem}[First Order Condition] \label{thm:first-order-convex}
     Assume that $f(x)$ is continuously differentiable on a convex set $C \subseteq \mathbb R^n$. Then the function $f(x)$ is
     \begin{enumerate}
         \item convex if and only if for all $x, y \in C$, $$f(x) + \nabla f(x)^T (y - x) \leq f(y)$$
@@ -43,7 +43,7 @@
 \begin{proof}[Proof]
     See past course notes
 \end{proof}
-\begin{theorem}[Second Order Condition]
+\begin{theorem}[Second Order Condition] \label{thm:second-order-convex}
     Assume that $f(x)$ is twice continuously differentiable on an open convex set $C \subseteq \mathbb R^n$. Then the function $f(x)$ is convex if and only if $\nabla^2 f(x)$ is positive semidefinite for every $x \in C$.
 \end{theorem}
 \begin{proof}[Proof]

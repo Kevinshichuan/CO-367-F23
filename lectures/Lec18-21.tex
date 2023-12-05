@@ -11,3 +11,59 @@
     and the nonnegative polar is
     $$Q^+ = \text{span}\{a_j\}_{j \in J} + \text{cone}\{a_i\}_{i \in I}$$
 \end{lemma}
+\begin{definition}[Weakest Constraint Qualification (WCQ)]
+    We say that the weakest constraint qualification holds at a feasible point $\bar x$ if $$T_\Omega(\bar x) = L(\bar x)$$
+    That is, the tangent cone is equal to the linearizing cone.
+\end{definition}
+\begin{theorem}[]
+    Suppose $\bar x$ is a local minimizer and WCQ holds at $\bar x$. Then the KTT conditions hold at $\bar x$.
+\end{theorem}
+\begin{theorem}[]
+    Let $\bar x$ be a feasible point. Then the following are true.
+    $$T_\Omega(\bar x) \subseteq L(\bar x)$$
+    If LICQ holds at $\bar x$, then $$T_\Omega(\bar x) = L(\bar x)$$
+\end{theorem}
+\begin{theorem}[]
+    If $x^*$ is a local minimizer of an NLP, then for all $d \in T_\Omega(x^*)$, the directional derivative is nonnegative: $$\nabla f(x^*)^Td \geq 0$$
+\end{theorem}
+\begin{definition}[Slater Point, Slater Constraint Qualification (SCQ)]
+    Consider a convex program and suppose there exists $\bar x$ such that $g_i(\bar x) < 0$ for all $i \in I$ and $g_j(\bar x) = 0$ for all $j \in J$. Then $\bar x$ is called a slater point. The above is called the Slater constraint qualification (SCQ). Then for every $x \in \Omega$, $$T_\Omega(x) = L(x)$$
+\end{definition}
+\begin{theorem}[]
+    Let $f, g_1,\ldots,g_m$ be continuously differentiable. Assume that the following KTT conditions hold at $\bar x \in \Omega$ for a convex program:
+
+    There exists $\lambda_i \geq 0$ for all $i \in A(\bar x) \cap I$ and $\mu_j \in \mathbb R$ for all $j \in J$ such that $$\nabla f(\bar x) + \sum_{i \in A(\bar x) \cap I} \lambda_i \nabla g_i(\bar x) + \sum_{j \in J} \mu_j \nabla g_j(\bar x) = 0$$
+    Then $\bar x$ is a global minimizer.
+\end{theorem}
+\begin{proof}[Proof]
+    Let $\bar x \in \Omega$ satisfy $$\nabla f(\bar x) + \sum_{i \in A(\bar x) \cap I} \lambda_i \nabla g_i(\bar x) + \sum_{j \in J} \mu_j \nabla g_j(\bar x) = 0$$ and let $x \in \Omega$ be an arbitrary feasible point. We want to show that $f(x) \geq f(\bar x)$. Since $\Omega$ is convex, we have that each $g_i$ is convex. Then by \hyperref[thm:first-order-convex]{First Order Convexity Conditions}, we get 
+    $$g_i(x) - g_i(\bar x) \geq \nabla g_i(\bar x)^T (x - \bar x)$$ This implies that $$\nabla g_i(\bar x)^T (x - \bar x) \leq 0$$
+    Let $j \in J$. Then $g_j(x) = a_j^T - b_j = 0$ and $g_j(\bar x) = a_j^T \bar x - b_j = 0$. This gives $$a_j^T (x - \bar x) = 0$$ Since $\bar x$ satisfies our initial condition, we have 
+    $$\nabla f(\bar x)^T (x - \bar x) = \underbrace{-\sum_{i \in A(\bar x) \cap I} \lambda_i \nabla g_i(\bar x)^T (x - \bar x)}_{\geq 0} - \underbrace{\sum_{j \in J} \mu_j \nabla g_j(\bar x)^T (x - \bar x)}_{= 0} \geq 0$$
+    Since $f$ is convex, we get $$f(x) - f(\bar x) \geq \nabla f(\bar x)^T (x - \bar x) \geq 0$$ So $\bar x$ is a global minimizer.
+\end{proof}
+\begin{theorem}[]
+    Consider a convex problem with a feasible region $\Omega$ such that $f, g_1,\ldots,g_m$ are continuously differentiable. Suppose $\bar x \in \Omega$ and there exists Lagrangian multipliers $\lambda_1,\ldots, \lambda_m \geq 0$ and $\mu_1,\ldots,\mu_p \in \mathbb R$ such that $$\nabla f(\bar x) + \sum^m_{i=1} \lambda_i \nabla g_i(\bar x) + \sum^p_{j=1} \mu_j \nabla g_j(\bar x) = 0$$ and $$\lambda_i g_i(\bar x) = 0$$ for all $i = 1,\ldots,m = I$. Then $\bar x$ is an optimal solution.
+\end{theorem}
+\begin{proof}[Proof]
+    Omitted
+\end{proof}
+\begin{theorem}[]
+    Consider an NLP with the feasible region $\Omega$, where all active constraints at $\bar x$ are affine. Then $$T_\Omega(\bar x) = L(\bar x)$$
+\end{theorem}
+\begin{proof}[Proof]
+    This is assignment 6 question 3
+\end{proof}
+\begin{definition}[Critical Cone]
+    The critical cone at $\bar x \in \Omega$ for the minimization problem 
+    \begin{align*}
+        \text{min} \quad &f(x) \\
+        \text{s.t.} \quad &g_i(x) \leq 0, \quad i \in I \\
+        &g_j(x) = 0, \quad j \in J
+    \end{align*}
+    is the set $$C(\bar x, \lambda^*, \mu^*) = \{d \in \mathcal L(\bar x): \nabla c_i(\bar x)^T d = 0, \quad \forall i \in A(\bar x) \text{ with } \lambda_i > 0\}$$
+\end{definition}
+\begin{theorem}[Second Order Optimality Conditions]
+    (Necessary condition) Let $x^*$ be a local minimizer and LICQ holds at $x^*$. Then $x^*$ is a KTT point with unique lagrange multipliers $\lambda^*, \mu^*$ such that $$\langle \nabla^2_{x, x} \mathcal L(x^*, \lambda^*, \mu^*)d, d \rangle \geq 0, \quad \forall d \in C(x^*, \lambda^*, \mu^*)$$
+    (Sufficient Conditions) If $x^*$ is a KTT point with multipliers $\lambda^*, \mu^*$ such that $$\langle \nabla^2_{x, x} \mathcal L(x^*, \lambda^*, \mu^*)d, d \rangle > 0, \quad \forall 0 \neq d \in C(x^*, \lambda^*, \mu^*)$$ then $x^*$ is a strict local minimizer. 
+\end{theorem}
