@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\input{preamble.tex}
+\title{CO 367 Practice Problems for Final}
+
+\begin{document}
+\maketitle
+\section{Unconstrained Optimality Conditions}
+Find an example showing:
+\begin{enumerate}
+    \item The second order necessary optimality conditions for unconstrained optimization are not sufficient.
+    
+    \textbf{Solution.} We find a function $f(x)$ such that its gradient at $\bar x$ is 0 and hessian at $\bar x$ is positive semidefinite, but it is not a local minimizer. Let $f(x,y) = x^3 + y^3$. Then $$\nabla f(x,y) = \begin{bmatrix} 3x^2 \\ 3y^2 \end{bmatrix}, \quad \nabla^2 f(x,y) = \begin{bmatrix} 6x & 0 \\ 0 & 6y \end{bmatrix}$$ At (0,0), $\nabla f(0,0) = (0,0)^T$ and $\nabla^2 f(0,0) = \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}$. So this satisfies the necessary optimality conditions, but it is a saddle point.
+    \item The second order sufficient optimality conditions for unconstrained optimization are not necessary.
+    
+    \textbf{Solution.} We find a function $f(x)$ such that $\bar x$ is a strict local minimizer, but the hessian at $\bar x$ is not positive definite. Let $f(x) = x^4 + y^4$. Then $$\nabla f(x,y) = \begin{bmatrix} 4x^3 \\ 4y^3 \end{bmatrix}, \quad \nabla^2 f(x,y) = \begin{bmatrix} 12x^2 & 0 \\ 0 & 12y^2 \end{bmatrix}$$ At (0,0), $\nabla f(0,0) = (0,0)^T$ and $\nabla^2 f(0,0) = \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix} \succeq 0$. So the hessian is not positive definite.  
+\end{enumerate}
+\section{Constrained Optimality Conditions}
+Find an explicit optimal solution to the following problems:
+\begin{enumerate}
+    \item $\min\{c^Tx : Ax = b, x \in \mathbb R\}$
+    
+    \textbf{Solution.} We use second order necessary condition: Let $x^*$ be a local minimizer and LICQ holds at $x^*$. Then $x^*$ is a KTT point with unique lagrange multipliers $\lambda^*, \mu^*$ such that $$\langle \nabla^2_{x, x} L(x^*, \lambda^*, \mu^*)d, d \rangle \geq 0, \quad \forall d \in C(x^*, \lambda^*, \mu^*)$$
+
+    \bigskip
+    Suppose we have a local minimizer $\bar x$ that is a KTT point and KTT pair $(\bar x, \mu)$. We derive it using the necessary conditions. The lagrangian is $$L(\bar x, \mu) = c^T\bar x + \mu^T(A\bar x - b)$$
+    Then $$\nabla_x L(\bar x, \mu) = c + A^T\mu, \quad \nabla^2_{x, x} L(\bar x, \mu) = 0$$ The KTT conditions are 
+    \begin{align*}
+        \nabla_x L(\bar x, \mu) = c + A^T\mu &= 0 \\
+        A\bar x - b &= 0
+    \end{align*}
+    $\langle \nabla^2_{x, x} L(x^*, \lambda^*, \mu^*)d, d \rangle = 0$ for all $d$, so we just need $\bar x$ that satisfies the KTT conditions. So the local minimizer is $\bar x = A^{-1}b$ along with $\mu = -A^{-T}c$. \textcolor{red}{idk}
+    \item $\min\{c^Tx : e^Tx = 1, x \geq 0\}$
+\end{enumerate}
+\end{document}
