@@ -12,7 +12,7 @@
     $$Q^+ = \text{span}\{a_j\}_{j \in J} + \text{cone}\{a_i\}_{i \in I}$$
 \end{lemma}
 \begin{definition}[Weakest Constraint Qualification (WCQ)]
-    We say that the weakest constraint qualification holds at a feasible point $\bar x$ if $$T_\Omega(\bar x) = L(\bar x)$$
+    We say that the weakest constraint qualification holds at a feasible point $\bar x$ if $$T_\Omega(\bar x) = \mathcal L(\bar x)$$
     That is, the tangent cone is equal to the linearizing cone.
 \end{definition}
 \begin{theorem}[]
@@ -54,34 +54,35 @@
 \begin{proof}[Proof]
     This is assignment 6 question 3
 \end{proof}
+\subsubsection{Second Order Conditions}
 \begin{definition}[Critical Cone]
     The critical cone at $\bar x \in \Omega$ for the minimization problem 
     \begin{align*}
-        \text{min} \quad &f(x) \\
+        \min \quad &f(x) \\
         \text{s.t.} \quad &g_i(x) \leq 0, \quad i \in I \\
         &g_j(x) = 0, \quad j \in J
     \end{align*}
     is the set $$C(\bar x, \lambda^*, \mu^*) = \{d \in \mathcal L(\bar x): \nabla c_i(\bar x)^T d = 0, \quad \forall i \in A(\bar x) \text{ with } \lambda_i > 0\}$$
 \end{definition}
 \begin{theorem}[Second Order Optimality Conditions]
-    (Necessary condition) Let $x^*$ be a local minimizer and LICQ holds at $x^*$. Then $x^*$ is a KTT point with unique lagrange multipliers $\lambda^*, \mu^*$ such that $$\langle \nabla^2_{x, x} \mathcal L(x^*, \lambda^*, \mu^*)d, d \rangle \geq 0, \quad \forall d \in C(x^*, \lambda^*, \mu^*)$$
-    (Sufficient Conditions) If $x^*$ is a KTT point with multipliers $\lambda^*, \mu^*$ such that $$\langle \nabla^2_{x, x} \mathcal L(x^*, \lambda^*, \mu^*)d, d \rangle > 0, \quad \forall 0 \neq d \in C(x^*, \lambda^*, \mu^*)$$ then $x^*$ is a strict local minimizer. 
+    (Necessary condition) Let $x^*$ be a local minimizer and LICQ holds at $x^*$. Then $x^*$ is a KTT point with unique lagrange multipliers $\lambda^*, \mu^*$ such that $$\langle \nabla^2_{x, x} L(x^*, \lambda^*, \mu^*)d, d \rangle \geq 0, \quad \forall d \in C(x^*, \lambda^*, \mu^*)$$
+    (Sufficient Conditions) If $x^*$ is a KTT point with multipliers $\lambda^*, \mu^*$ such that $$\langle \nabla^2_{x, x} L(x^*, \lambda^*, \mu^*)d, d \rangle > 0, \quad \forall 0 \neq d \in C(x^*, \lambda^*, \mu^*)$$ then $x^*$ is a strict local minimizer. 
 \end{theorem}
 \begin{example}
     Consider 
     \begin{align*}
-        \text{min}_{x \in \mathbb R^2} \quad &x_1^2 + x_2^2 \\
+        \min_{x \in \mathbb R^2} \quad &x_1^2 + x_2^2 \\
         \text{s.t.} \quad &x_1^2 + x_2^2 - 2\leq 0 \\
     \end{align*}
-    The Lagrangian is $$\mathcal L(x, \lambda) = x_1 + x_2 + \lambda(x_1^2 + x_2^2 - 2)$$
+    The Lagrangian is $$L(x, \lambda) = x_1 + x_2 + \lambda(x_1^2 + x_2^2 - 2)$$
     With gradient
-    $$\nabla_x \mathcal L(x, \lambda) = \begin{pmatrix}
+    $$\nabla_x L(x, \lambda) = \begin{pmatrix}
         2\lambda x_1 + 1 \\
         2\lambda x_2 + 1
     \end{pmatrix} $$
     The KTT conditions are 
     \begin{align*}
-        \nabla_x \mathcal L(x, \lambda) = \begin{pmatrix}
+        \nabla_x L(x, \lambda) = \begin{pmatrix}
             2\lambda x_1 + 1 \\
             2\lambda x_2 + 1
         \end{pmatrix} &= 0 \tag{1}\\
@@ -95,12 +96,59 @@
     (1) implies $x_1 = - \frac{1}{2\lambda_1}, x_2 = - \frac{1}{2\lambda_2}$. Substituting this into $x_1^2 + x_2^2 - 2 = 0$ gives $\lambda = \frac{1}{2}$ which implies $x = (x_1,x_2) = (-1,-1)$. 
 
     \bigskip
-    Now, the Hessian for the Lagrangian is $$\nabla^2_{x, x} \mathcal L(x, \lambda) = \begin{bmatrix}
+    Now, the Hessian for the Lagrangian is $$\nabla^2_{x, x} L(x, \lambda) = \begin{bmatrix}
         2\lambda & 0 \\
         0 & 2\lambda
     \end{bmatrix} = \begin{bmatrix}
         1 & 0 \\
         0 & 1
     \end{bmatrix} \succ 0$$
-    Since the Hessian is positive definite for every $d$, we have $\langle \nabla^2_{x, x} \mathcal L(x, \lambda)d, d \rangle > 0$ for all $d \in C(x, \lambda)$. Thus by second order optimality conditions, $x$ is a strict local minimizer.
+    Since the Hessian is positive definite for every $d$, we have $\langle \nabla^2_{x, x} L(x, \lambda)d, d \rangle > 0$ for all $d \in C(x, \lambda)$. Thus by second order optimality conditions, $x$ is a strict local minimizer.
 \end{example}
+
+\subsubsection{Duality}
+Consider the problem
+\begin{align*}
+    \min_{x \in D} \quad &f(x) \\
+    \mathrm{s.t.} \quad &g_i(x) \leq 0, \quad i \in I = \{1,\ldots,m\} \\
+    &h_j(x) = 0, \quad j \in J = \{1,\ldots,p\}
+\end{align*}
+where $f, g_i, h_j$ are defined on $D$. We call this the primal problem. The Lagrangian is
+$$L(x, \lambda, \mu) = f(x) + \sum_{i \in I} \lambda_i g_i(x) + \sum_{j \in J} \mu_j h_j(x)$$
+where $\lambda \in \mathbb R^m_+, \mu \in \mathbb R^p$.
+
+\bigskip
+The dual problem is
+\begin{align*}
+    \max \quad &q(\lambda, \mu) \\
+    \text{s.t.} \quad &(\lambda, \mu) \in \mathrm{dom}(q)
+\end{align*}
+where $$q(\lambda, \mu) = \min_{x \in D} L(x, \lambda, \mu)$$ $$\mathrm{dom}(q) = \{(\lambda, \mu) \in \mathbb R^m_+ \times \mathbb R^p: q(\lambda, \mu) > -\infty\}$$
+
+\begin{example}[Lagrangian Dual of an LP]
+    Consider the primal 
+    \begin{align*}
+        \min \quad &c^Tx \\
+        \text{s.t.} \quad &Ax = b
+    \end{align*}
+    The Lagrangian is $$L(x, \lambda) = c^Tx + \lambda^T(Ax - b) = (c^T + \lambda^TA)x - \lambda^Tb$$
+    The dual function is then $$q(\lambda) =  -\lambda^Tb + \min_{x \in \mathbb R^n} (c^T + \lambda^TA)x$$
+    Then $$q(\lambda) = \begin{cases}
+        -\lambda^Tb, &\text{if } c^T + \lambda^TA = 0 \\
+        -\infty, &\text{otherwise}
+    \end{cases}$$ Therefore, the dual problem is 
+    \begin{align*}
+        \max \quad &-\lambda^Tb \\
+        \text{s.t.} \quad &c^T + \lambda^TA = 0 \\
+        &\lambda \geq 0
+    \end{align*}
+\end{example}
+\begin{theorem}[Weak Duality]
+    Consider the LP
+    \begin{align*}
+        \min_{x \in D} \quad &f(x) \\
+        \mathrm{s.t.} \quad &g_i(x) \leq 0, \quad i \in I = \{1,\ldots,m\} \\
+        &h_j(x) = 0, \quad j \in J = \{1,\ldots,p\}
+    \end{align*}
+    and its dual problem. Let $p^*$ and $d^*$ denote the optimal primal and dual objective values respectively. Then $$d^* \leq p^*$$
+\end{theorem}

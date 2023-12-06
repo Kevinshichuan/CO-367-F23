@@ -170,12 +170,12 @@ For a convex program, the feasible set is a convex set.
 \end{corollary}
 \begin{definition}[Linearized Feasible Directions/Linearizing Cone]
     Given an NLP with a feasible set $F$, the set of linearized feasible directions(linearizing cone) at $\bar x \in F$ is defined as 
-    $$L_F(\bar x) = \{d: d^T \nabla g_i(\bar x) \leq 0, \forall i \in A(\bar x) \cap I, \quad d^T \nabla h_j(\bar x) = 0, \forall j \in E\}$$
+    $$\mathcal L_F(\bar x) = \{d: d^T \nabla g_i(\bar x) \leq 0, \forall i \in A(\bar x) \cap I, \quad d^T \nabla h_j(\bar x) = 0, \forall j \in E\}$$
 \end{definition}
 \begin{definition}[Lagrangian Function for NLP]
     We define the Lagrangian function for an NLP as 
     \begin{align*}
-        \mathcal L(x, \lambda, \mu) &= f(x) + \sum_{i=1}^m \lambda_i g_i(x) + \sum_{j=1}^p \mu_j h_j(x) \\
+        L(x, \lambda, \mu) &= f(x) + \sum_{i=1}^m \lambda_i g_i(x) + \sum_{j=1}^p \mu_j h_j(x) \\
         &= f(x) + \lambda^T g_I(x) + \mu^T h_E(x)
     \end{align*}
     where $g_I(x)$ are the inequality constraints and $h_E(x)$ are the equality constraints.
@@ -183,7 +183,7 @@ For a convex program, the feasible set is a convex set.
 \begin{theorem}[First Order KTT Necessary Condition]
     Suppose $x^*$ is a local minimizer of an NLP and $f,g_1,\ldots,g_m,h_1,\ldots,h_p \in C^1$ and LICQ holds at $x^*$. Then there exists Lagrangian multipliers $\lambda^* \in \mathbb R^m, \mu^* \in \mathbb R^p$ such that
     \begin{align*}
-        \nabla_x \mathcal L(x^*, \lambda^*, \mu^*) &= 0, \quad \lambda^* \geq 0 \tag*{Dual feasibility} \\
+        \nabla_x L(x^*, \lambda^*, \mu^*) &= 0, \quad \lambda^* \geq 0 \tag*{Dual feasibility} \\
         g_i(x^*) &\geq 0, \quad i \in I, \quad h_j(x^*) = 0, \quad j \in E \tag*{Primal feasibility} \\
         \lambda^*_i g_i(x^*) &= 0, \quad i \in I \tag*{Complementary slackness}
     \end{align*}
