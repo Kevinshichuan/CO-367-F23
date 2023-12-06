@@ -31,5 +31,54 @@ Find an explicit optimal solution to the following problems:
     \end{align*}
     $\langle \nabla^2_{x, x} L(x^*, \lambda^*, \mu^*)d, d \rangle = 0$ for all $d$, so we just need $\bar x$ that satisfies the KTT conditions. So the local minimizer is $\bar x = A^{-1}b$ along with $\mu = -A^{-T}c$. \textcolor{red}{idk}
     \item $\min\{c^Tx : e^Tx = 1, x \geq 0\}$
+    
+    \textbf{Solution.}
+\end{enumerate}
+\section{Constrained Equivalent Optimality Conditions}
+Is the following claim true or false? Justify your answer.
+
+\bigskip
+Consider the following constrained optimization problem:
+\begin{align*}
+    \min \quad &f(x) \\
+    \text{s.t.} \quad &c_i(x) = 0, \quad i \in \mathcal E 
+\end{align*}
+Assume LICQ holds for this problem. We consider the following equivalent problem (equivalent geometrically)
+\begin{align*}
+    \min \quad &f(x) \\
+    \text{s.t.} \quad &c_i^2(x) = 0, \quad i \in \mathcal E
+\end{align*}
+Let $x^*$ be a KTT point of the above problem, then $x^*$ satisfies 
+\begin{align*}
+    0 &= \nabla f(x^*) + 2 \sum_{i \in \mathcal E} \lambda^* c_i(x^*) \nabla c_i(x^*) \\
+    0 &= c_i(x^*) \quad \forall i \in \mathcal E
+\end{align*}
+where $\lambda_i^*$ are the corresponding Lagrangian multipliers. By rearrangement, we have $\nabla f(x^*) = 0$. This implies for equality constrained optimization problems, we can get the equivalent first order necessary optimal condition as for the unconstrained optimization problem.
+
+\textbf{Solution.}
+
+\section{Duality}
+Find the dual problem of the following problem and the dual of the dual problem.
+\begin{align*}
+    \min_{x \in \mathbb R^n} \quad & x^TAx + 2b^T x \\
+    \text{s.t.} \quad & \|x\|_2 leq 1
+\end{align*}
+where $A \in \mathcal S^n, b \in \mathbb R^n$ (Use the generalized inverse to derive the dual).
+
+\textbf{Solution.}
+
+\section{Question 5}
+Given the following optimization problem 
+\begin{align*}
+    \min_{x \in \mathbb R, y > 0} \quad & e^{-x} \\
+    \text{s.t.} \quad & \frac{x^2}{y} \leq 0
+\end{align*}
+\begin{enumerate}
+    \item Show that this is a convex optimization problem, find its global minimizer, and verify if Slater condition holds.
+    
+    \textbf{Solution.}
+    \item Find the dual problem of this problem; find the optimal solution of the dual problem; compute the duality gap.
+    
+    \textbf{Solution.}
 \end{enumerate}
 \end{document}
