@@ -153,3 +153,20 @@ where $$q(\lambda, \mu) = \min_{x \in D} L(x, \lambda, \mu)$$ $$\mathrm{dom}(q) 
     and its dual problem. Let $p^*$ and $d^*$ denote the optimal primal and dual objective values respectively. Then $$d^* \leq p^*$$
     The difference $p^* - d^*$ is called the \textbf{duality gap}. If $p^* = d^*$, then we say that \textbf{strong duality} holds.
 \end{theorem}
+\begin{definition}[Strong Duality]
+    Let $p^*$ and $d^*$ denote the optimal primal and dual objective values respectively. If $p^* = d^*$ and $d^*$ is attained, then we say that \textbf{strong duality} holds.
+\end{definition}
+\begin{theorem}[Strong Duality]
+    Consider the primal convex program $$p^* = min\{f(x): g(x) \leq 0, x \in \Omega\}$$ Suppose that the optimal value $p^*$ is finite and the Slater condition holds, i.e. there exists a feasible point $$\bar x \in \Omega, g(\bar x) < 0$$ Then strong duality holds. So there is zero duality gap and the dual is attained with $\lambda^* \geq 0$, $$p^* = d^* = \min_{x \in \Omega} L(x, \lambda^*)$$
+    where the Lagrangian is $$L(x, \lambda) = f(x) + \langle \lambda^*, g(x) \rangle$$ Moreover, suppose that $p^*$ is attained, i.e. $p^* = f(x^*)$ with $x^*$ feasible in the primal. Then complementary slackness holds, so $$\langle \lambda^*, g(x^*) \rangle = 0$$ In addition, complementary slackness and strong duality imply that $x^*$ is a global minimum.
+\end{theorem}
+\begin{theorem}[Primal-Dual Sufficient Optimality Conditions]
+    Suppose we have a minimization problem (P) and the following hold:
+    \begin{itemize}
+        \item $\bar x$ is a feasible solution for (P)
+        \item $f(x)$ and $-c_i(x)$ are all convex for all inequality constraints, $i \in I$
+        \item $c_j(x)$ are affine for all equality constraints, $j \in J$
+        \item $(\bar x, \bar \lambda, \bar \mu)$ is a KKT point for (P)
+    \end{itemize}
+    Then $(\bar \lambda, \bar mu)$ solves the associated dual problem (D) with value $q(\bar \lambda, \bar \mu) = f(\bar x)$ and $\bar x$ solves the primal.
+\end{theorem}
