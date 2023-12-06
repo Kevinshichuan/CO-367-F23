@@ -67,3 +67,40 @@
     (Necessary condition) Let $x^*$ be a local minimizer and LICQ holds at $x^*$. Then $x^*$ is a KTT point with unique lagrange multipliers $\lambda^*, \mu^*$ such that $$\langle \nabla^2_{x, x} \mathcal L(x^*, \lambda^*, \mu^*)d, d \rangle \geq 0, \quad \forall d \in C(x^*, \lambda^*, \mu^*)$$
     (Sufficient Conditions) If $x^*$ is a KTT point with multipliers $\lambda^*, \mu^*$ such that $$\langle \nabla^2_{x, x} \mathcal L(x^*, \lambda^*, \mu^*)d, d \rangle > 0, \quad \forall 0 \neq d \in C(x^*, \lambda^*, \mu^*)$$ then $x^*$ is a strict local minimizer. 
 \end{theorem}
+\begin{example}
+    Consider 
+    \begin{align*}
+        \text{min}_{x \in \mathbb R^2} \quad &x_1^2 + x_2^2 \\
+        \text{s.t.} \quad &x_1^2 + x_2^2 - 2\leq 0 \\
+    \end{align*}
+    The Lagrangian is $$\mathcal L(x, \lambda) = x_1 + x_2 + \lambda(x_1^2 + x_2^2 - 2)$$
+    With gradient
+    $$\nabla_x \mathcal L(x, \lambda) = \begin{pmatrix}
+        2\lambda x_1 + 1 \\
+        2\lambda x_2 + 1
+    \end{pmatrix} $$
+    The KTT conditions are 
+    \begin{align*}
+        \nabla_x \mathcal L(x, \lambda) = \begin{pmatrix}
+            2\lambda x_1 + 1 \\
+            2\lambda x_2 + 1
+        \end{pmatrix} &= 0 \tag{1}\\
+        \lambda &\geq 0 \tag{2}\\
+        x_1^2 + x_2^2 - 2 &\leq 0 \tag{3}\\
+        \lambda(x_1^2 + x_2^2 - 2) &= 0 \tag{4}
+    \end{align*}
+    From (4), either $\lambda = 0$ or $x_1^2 + x_2^2 - 2 = 0$. Notice that $\lambda \neq 0$ since $\lambda = 0$ does not satisfy equation (1). So we must have $\lambda > 1$ and $x_1^2 + x_2^2 - 2 = 0$. 
+    
+    \bigskip 
+    (1) implies $x_1 = - \frac{1}{2\lambda_1}, x_2 = - \frac{1}{2\lambda_2}$. Substituting this into $x_1^2 + x_2^2 - 2 = 0$ gives $\lambda = \frac{1}{2}$ which implies $x = (x_1,x_2) = (-1,-1)$. 
+
+    \bigskip
+    Now, the Hessian for the Lagrangian is $$\nabla^2_{x, x} \mathcal L(x, \lambda) = \begin{bmatrix}
+        2\lambda & 0 \\
+        0 & 2\lambda
+    \end{bmatrix} = \begin{bmatrix}
+        1 & 0 \\
+        0 & 1
+    \end{bmatrix} \succ 0$$
+    Since the Hessian is positive definite for every $d$, we have $\langle \nabla^2_{x, x} \mathcal L(x, \lambda)d, d \rangle > 0$ for all $d \in C(x, \lambda)$. Thus by second order optimality conditions, $x$ is a strict local minimizer.
+\end{example}
