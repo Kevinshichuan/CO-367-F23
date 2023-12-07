@@ -180,12 +180,12 @@ For a convex program, the feasible set is a convex set.
     \end{align*}
     where $g_I(x)$ are the inequality constraints and $h_E(x)$ are the equality constraints.
 \end{definition}
-\begin{theorem}[First Order KTT Necessary Condition]
+\begin{theorem}[First Order KKT Necessary Condition]
     Suppose $x^*$ is a local minimizer of an NLP and $f,g_1,\ldots,g_m,h_1,\ldots,h_p \in C^1$ and LICQ holds at $x^*$. Then there exists Lagrangian multipliers $\lambda^* \in \mathbb R^m, \mu^* \in \mathbb R^p$ such that
     \begin{align*}
         \nabla_x L(x^*, \lambda^*, \mu^*) &= 0, \quad \lambda^* \geq 0 \tag*{Dual feasibility} \\
         g_i(x^*) &\geq 0, \quad i \in I, \quad h_j(x^*) = 0, \quad j \in E \tag*{Primal feasibility} \\
         \lambda^*_i g_i(x^*) &= 0, \quad i \in I \tag*{Complementary slackness}
     \end{align*}
-    We call the dual feasibility, primal feasibility and complementary slackness conditions as KTT conditions, and call the point satisfying these conditions as KTT point.
+    We call the dual feasibility, primal feasibility and complementary slackness conditions as KKT conditions, and call the point satisfying these conditions as KKT point.
 \end{theorem}

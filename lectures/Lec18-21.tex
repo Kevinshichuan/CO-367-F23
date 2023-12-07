@@ -1,7 +1,7 @@
 \subsection{Lectures 18-21}
 \subsubsection{Constraint Qualification}
 \begin{definition}[Constraint Qualification]
-    A condition on the constraints that define the feasible set $\Omega$ is called a constraint qualification (CQ) at a feasible point $\bar x$ if whenever $\bar x$ is a local minimizer then the KTT optimality conditions hold at $\bar x$.
+    A condition on the constraints that define the feasible set $\Omega$ is called a constraint qualification (CQ) at a feasible point $\bar x$ if whenever $\bar x$ is a local minimizer then the KKT optimality conditions hold at $\bar x$.
 \end{definition}
 \begin{lemma}
     Let $a_i, a_j \in \mathbb R^n$ for all $i \in I, j \in J$ where $I$ is the index set of inequality constraints and $J$ is the index set of equality constraints. Let
@@ -16,7 +16,7 @@
     That is, the tangent cone is equal to the linearizing cone.
 \end{definition}
 \begin{theorem}[]
-    Suppose $\bar x$ is a local minimizer and WCQ holds at $\bar x$. Then the KTT conditions hold at $\bar x$.
+    Suppose $\bar x$ is a local minimizer and WCQ holds at $\bar x$. Then the KKT conditions hold at $\bar x$.
 \end{theorem}
 \begin{theorem}[]
     Let $\bar x$ be a feasible point. Then the following are true.
@@ -30,7 +30,7 @@
     Consider a convex program and suppose there exists $\bar x$ such that $g_i(\bar x) < 0$ for all $i \in I$ and $g_j(\bar x) = 0$ for all $j \in J$. Then $\bar x$ is called a slater point. The above is called the Slater constraint qualification (SCQ). Then for every $x \in \Omega$, $$T_\Omega(x) = L(x)$$
 \end{definition}
 \begin{theorem}[]
-    Let $f, g_1,\ldots,g_m$ be continuously differentiable. Assume that the following KTT conditions hold at $\bar x \in \Omega$ for a convex program:
+    Let $f, g_1,\ldots,g_m$ be continuously differentiable. Assume that the following KKT conditions hold at $\bar x \in \Omega$ for a convex program:
 
     There exists $\lambda_i \geq 0$ for all $i \in A(\bar x) \cap I$ and $\mu_j \in \mathbb R$ for all $j \in J$ such that $$\nabla f(\bar x) + \sum_{i \in A(\bar x) \cap I} \lambda_i \nabla g_i(\bar x) + \sum_{j \in J} \mu_j \nabla g_j(\bar x) = 0$$
     Then $\bar x$ is a global minimizer.
@@ -65,8 +65,8 @@
     is the set $$C(\bar x, \lambda^*, \mu^*) = \{d \in \mathcal L(\bar x): \nabla c_i(\bar x)^T d = 0, \quad \forall i \in A(\bar x) \text{ with } \lambda_i > 0\}$$
 \end{definition}
 \begin{theorem}[Second Order Optimality Conditions]
-    (Necessary condition) Let $x^*$ be a local minimizer and LICQ holds at $x^*$. Then $x^*$ is a KTT point with unique lagrange multipliers $\lambda^*, \mu^*$ such that $$\langle \nabla^2_{x, x} L(x^*, \lambda^*, \mu^*)d, d \rangle \geq 0, \quad \forall d \in C(x^*, \lambda^*, \mu^*)$$
-    (Sufficient Conditions) If $x^*$ is a KTT point with multipliers $\lambda^*, \mu^*$ such that $$\langle \nabla^2_{x, x} L(x^*, \lambda^*, \mu^*)d, d \rangle > 0, \quad \forall 0 \neq d \in C(x^*, \lambda^*, \mu^*)$$ then $x^*$ is a strict local minimizer. 
+    (Necessary condition) Let $x^*$ be a local minimizer and LICQ holds at $x^*$. Then $x^*$ is a KKT point with unique lagrange multipliers $\lambda^*, \mu^*$ such that $$\langle \nabla^2_{x, x} L(x^*, \lambda^*, \mu^*)d, d \rangle \geq 0, \quad \forall d \in C(x^*, \lambda^*, \mu^*)$$
+    (Sufficient Conditions) If $x^*$ is a KKT point with multipliers $\lambda^*, \mu^*$ such that $$\langle \nabla^2_{x, x} L(x^*, \lambda^*, \mu^*)d, d \rangle > 0, \quad \forall 0 \neq d \in C(x^*, \lambda^*, \mu^*)$$ then $x^*$ is a strict local minimizer. 
 \end{theorem}
 \begin{example}
     Consider 
@@ -80,7 +80,7 @@
         2\lambda x_1 + 1 \\
         2\lambda x_2 + 1
     \end{pmatrix} $$
-    The KTT conditions are 
+    The KKT conditions are 
     \begin{align*}
         \nabla_x L(x, \lambda) = \begin{pmatrix}
             2\lambda x_1 + 1 \\

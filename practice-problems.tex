@@ -20,16 +20,16 @@ Find an explicit optimal solution to the following problems:
 \begin{enumerate}
     \item $\min\{c^Tx : Ax = b, x \in \mathbb R\}$
     
-    \textbf{Solution.} We use second order necessary condition: Let $x^*$ be a local minimizer and LICQ holds at $x^*$. Then $x^*$ is a KTT point with unique lagrange multipliers $\lambda^*, \mu^*$ such that $$\langle \nabla^2_{x, x} L(x^*, \lambda^*, \mu^*)d, d \rangle \geq 0, \quad \forall d \in C(x^*, \lambda^*, \mu^*)$$
+    \textbf{Solution.} We use second order necessary condition: Let $x^*$ be a local minimizer and LICQ holds at $x^*$. Then $x^*$ is a KKT point with unique lagrange multipliers $\lambda^*, \mu^*$ such that $$\langle \nabla^2_{x, x} L(x^*, \lambda^*, \mu^*)d, d \rangle \geq 0, \quad \forall d \in C(x^*, \lambda^*, \mu^*)$$
 
     \bigskip
-    Suppose we have a local minimizer $\bar x$ that is a KTT point and KTT pair $(\bar x, \mu)$. We derive it using the necessary conditions. The lagrangian is $$L(\bar x, \mu) = c^T\bar x + \mu^T(A\bar x - b)$$
-    Then $$\nabla_x L(\bar x, \mu) = c + A^T\mu, \quad \nabla^2_{x, x} L(\bar x, \mu) = 0$$ The KTT conditions are 
+    Suppose we have a local minimizer $\bar x$ that is a KKT point and KKT pair $(\bar x, \mu)$. We derive it using the necessary conditions. The lagrangian is $$L(\bar x, \mu) = c^T\bar x + \mu^T(A\bar x - b)$$
+    Then $$\nabla_x L(\bar x, \mu) = c + A^T\mu, \quad \nabla^2_{x, x} L(\bar x, \mu) = 0$$ The KKT conditions are 
     \begin{align*}
         \nabla_x L(\bar x, \mu) = c + A^T\mu &= 0 \\
         A\bar x - b &= 0
     \end{align*}
-    $\langle \nabla^2_{x, x} L(x^*, \lambda^*, \mu^*)d, d \rangle = 0$ for all $d$, so we just need $\bar x$ that satisfies the KTT conditions. So the local minimizer is $\bar x = A^{-1}b$ along with $\mu = -A^{-T}c$. \textcolor{red}{idk}
+    $\langle \nabla^2_{x, x} L(x^*, \lambda^*, \mu^*)d, d \rangle = 0$ for all $d$, so we just need $\bar x$ that satisfies the KKT conditions. So the local minimizer is $\bar x = A^{-1}b$ along with $\mu = -A^{-T}c$. \textcolor{red}{idk}
     \item $\min\{c^Tx : e^Tx = 1, x \geq 0\}$
     
     \textbf{Solution.}
@@ -48,7 +48,7 @@ Assume LICQ holds for this problem. We consider the following equivalent problem
     \min \quad &f(x) \\
     \text{s.t.} \quad &c_i^2(x) = 0, \quad i \in \mathcal E
 \end{align*}
-Let $x^*$ be a KTT point of the above problem, then $x^*$ satisfies 
+Let $x^*$ be a KKT point of the above problem, then $x^*$ satisfies 
 \begin{align*}
     0 &= \nabla f(x^*) + 2 \sum_{i \in \mathcal E} \lambda^* c_i(x^*) \nabla c_i(x^*) \\
     0 &= c_i(x^*) \quad \forall i \in \mathcal E
