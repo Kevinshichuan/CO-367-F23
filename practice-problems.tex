@@ -77,8 +77,21 @@ Given the following optimization problem
     \item Show that this is a convex optimization problem, find its global minimizer, and verify if Slater condition holds.
     
     \textbf{Solution.}
+    First, $f(x) = e^{-x}$ is a convex function since $$f(\lambda x + (1-\lambda)y) = e^{-\lambda x - (1-\lambda)y} \leq \lambda e^{-x} + (1-\lambda)e^{-y} = \lambda f(x) + (1-\lambda)f(y)$$
+    Then, the feasible region is $$\Omega = \left\{(x, y): \frac{x^2}{y} \leq 0, y > 0\right\}$$ Since $x^2 \geq 0$ and $y > 0$, the only way that $\frac{x^2}{y} \leq 0$ is when $x = 0$. So the feasible region is $$\Omega = \{(0, y): y > 0\}$$ This is a convex set since $$\lambda(0, y_1) + (1-\lambda)(0, y_2) = (0, \lambda y_1 + (1-\lambda)y_2)$$ Since $y_1, y_2 > 0$, we get $\lambda y_1 + (1-\lambda)y_2 > 0$. So $(0, \lambda y_1 + (1-\lambda)y_2) \in \Omega$. So this is a convex optimization problem.
+
+    \bigskip Now we find its global minimizer. Since the feasible region is $\Omega = \{(0, y): y > 0\}$, the global minimizer is $(0, y)$ for any $y > 0$ (the objective function does not depend on $y$). For a point to satisfy the Slater condition, we need $\frac{\bar x^2}{\bar y} \leq 0$, however, $\bar x = 0$, so $\frac{\bar x^2}{\bar y} = 0$. So the Slater condition does not hold.
     \item Find the dual problem of this problem; find the optimal solution of the dual problem; compute the duality gap.
     
     \textbf{Solution.}
+    The Lagrangian is $$L(x, y, \lambda) = e^{-x} + \lambda\left(\frac{x^2}{y}\right)$$ The dual function is 
+    \begin{align*}
+        q(\lambda) &= \min_{x \in \mathbb R, y > 0} L(x, y, \lambda) \\
+        &= \min_{x \in \mathbb R, y > 0} e^{-x} + \lambda\left(\frac{x^2}{y}\right) \\
+        &= 1 \tag*{since $x$ is always 0}  
+    \end{align*}
+    So the dual problem is 
+    $$\max_{\lambda \geq 0} \quad 1$$
+    The optimal solution for the dual is any $\lambda \geq 0$. The optimal value is 1 for the dual. The optimal value is $e^{0} = 1$ for the primal. So the duality gap is $1 - 1 = 0$.
 \end{enumerate}
 \end{document}
